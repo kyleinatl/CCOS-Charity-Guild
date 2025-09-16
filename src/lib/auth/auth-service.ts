@@ -5,18 +5,18 @@ import { User } from '@supabase/supabase-js';
 export interface AuthUser extends User {
   member_profile?: {
     id: string;
-    first_name: string;
-    last_name: string;
-    tier: string;
-    total_donated: number;
-    phone: string;
-    address: string;
-    city: string;
-    state: string;
-    zip_code: string;
-    engagement_score: number;
-    created_at: string;
-    updated_at: string;
+    first_name: string | null;
+    last_name: string | null;
+    tier: string | null;
+    total_donated: number | null;
+    phone: string | null;
+    address_line1: string | null;
+    city: string | null;
+    state: string | null;
+    zip_code: string | null;
+    engagement_score: number | null;
+    created_at: string | null;
+    updated_at: string | null;
   };
 }
 
@@ -55,12 +55,11 @@ export class AuthService {
           first_name: memberData.first_name,
           last_name: memberData.last_name,
           phone: memberData.phone || '',
-          address: memberData.address || '',
+          address_line1: memberData.address || '',
           city: memberData.city || '',
           state: memberData.state || '',
           zip_code: memberData.zip_code || '',
           tier: 'bronze',
-          status: 'active',
           total_donated: 0,
           engagement_score: 0,
         });
@@ -129,7 +128,7 @@ export class AuthService {
     first_name: string;
     last_name: string;
     phone: string;
-    address: string;
+    address_line1: string;
     city: string;
     state: string;
     zip_code: string;
@@ -192,7 +191,7 @@ export class AuthService {
         tier: 'gold',
         total_donated: 1250,
         phone: '+1 (555) 123-4567',
-        address: '123 Main St',
+        address_line1: '123 Main St',
         city: 'Anytown',
         state: 'CA',
         zip_code: '12345',
