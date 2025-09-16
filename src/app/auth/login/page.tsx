@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useAuth } from '@/lib/auth/auth-context';
 import { Heart, Eye, EyeOff, Mail, Lock } from 'lucide-react';
 
 export default function LoginPage() {
@@ -15,7 +14,6 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const { signIn } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,12 +22,13 @@ export default function LoginPage() {
     setError('');
 
     try {
-      const { data, error } = await signIn(email, password);
-      
-      if (error) {
-        setError(error.message || 'Invalid email or password');
-      } else if (data?.user) {
-        router.push('/portal');
+      // Demo login - in production this would connect to Supabase
+      if (email && password) {
+        // Simulate login delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        router.push('/members');
+      } else {
+        setError('Please enter both email and password');
       }
     } catch (err) {
       setError('An unexpected error occurred');

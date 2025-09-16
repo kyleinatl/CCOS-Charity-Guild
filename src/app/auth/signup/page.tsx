@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useAuth } from '@/lib/auth/auth-context';
 import { Heart, Eye, EyeOff, Mail, Lock, User, Phone, MapPin } from 'lucide-react';
 
 export default function SignUpPage() {
@@ -27,7 +26,6 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
-  const { signUp } = useAuth();
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,23 +54,16 @@ export default function SignUpPage() {
     }
 
     try {
-      const { data, error } = await signUp(formData.email, formData.password, {
-        first_name: formData.firstName,
-        last_name: formData.lastName,
-        phone: formData.phone,
-        address: formData.address,
-        city: formData.city,
-        state: formData.state,
-        zip_code: formData.zipCode,
-      });
-      
-      if (error) {
-        setError(error.message || 'Failed to create account');
-      } else if (data?.user) {
+      // Demo signup - in production this would connect to Supabase
+      if (formData.email && formData.firstName && formData.lastName) {
+        // Simulate signup delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
         setSuccess(true);
         setTimeout(() => {
-          router.push('/auth/login?message=Please check your email to verify your account');
+          router.push('/auth/login?message=Account created successfully! Please sign in.');
         }, 2000);
+      } else {
+        setError('Please fill in all required fields');
       }
     } catch (err) {
       setError('An unexpected error occurred');
