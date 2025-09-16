@@ -1,20 +1,7 @@
 import { Stripe } from 'stripe';
 
-// Server-side Stripe instance with conditional initialization
-let stripe: Stripe | null = null;
-
-try {
-  if (process.env.STRIPE_SECRET_KEY && process.env.STRIPE_SECRET_KEY.startsWith('sk_')) {
-    stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2025-08-27.basil' as any,
-      typescript: true,
-    });
-  }
-} catch (error) {
-  console.warn('Stripe not initialized - missing or invalid STRIPE_SECRET_KEY');
-}
-
-export default stripe;
+// Mock Stripe for build purposes when keys are not available
+export default null;
 
 // Stripe configuration constants
 export const STRIPE_CONFIG = {

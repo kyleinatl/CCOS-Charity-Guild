@@ -1,4 +1,4 @@
-import stripe, { calculateStripeProcessingFee } from './stripe-server';
+import stripe, { calculateStripeProcessingFee } from './stripe-server-mock';
 import { createClient } from '@/lib/supabase/client';
 import Stripe from 'stripe';
 import { automationService } from '@/lib/automation/automation-service';
@@ -49,6 +49,10 @@ export class PaymentService {
    * Create a new Stripe customer
    */
   static async createCustomer(params: CreateCustomerParams): Promise<Stripe.Customer> {
+    if (!stripe) {
+      throw new Error('Stripe not initialized - missing STRIPE_SECRET_KEY');
+    }
+    
     try {
       const customer = await stripe.customers.create({
         email: params.email,
