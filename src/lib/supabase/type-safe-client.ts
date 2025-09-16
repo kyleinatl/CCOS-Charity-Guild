@@ -57,8 +57,8 @@ class TypeSafeSupabaseClient {
   private client: any;
 
   constructor() {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://eueqffggclywmajfwiio.supabase.co';
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1ZXFmZmdnY2x5d21hamZ3aWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc5NzQxMDUsImV4cCI6MjA3MzU1MDEwNX0.C3EcY0LgKJ2vOybc1rBHlwgsviKJ5w32xW9MxZHJ85E';
     this.client = createClient(supabaseUrl, supabaseAnonKey);
   }
 
