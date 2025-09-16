@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useAuth } from '@/lib/auth/auth-context';
+// import { useAuth } from '@/lib/auth/auth-context';
 import { MemberPortalLayout } from '@/components/layout/member-portal-layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,7 +18,15 @@ import {
 const quickDonationAmounts = [25, 50, 100, 250];
 
 export default function PortalDonationPage() {
-  const { user } = useAuth();
+  // Mock user for demo - in production this would come from useAuth()
+  const user = {
+    id: 'demo-user-id',
+    member_profile: {
+      first_name: 'John',
+      last_name: 'Doe',
+      tier: 'gold'
+    }
+  };
   const [showDonationForm, setShowDonationForm] = useState(false);
   const [selectedAmount, setSelectedAmount] = useState<number | undefined>();
   const [selectedDesignation, setSelectedDesignation] = useState<string | undefined>();

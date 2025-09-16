@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useAuth } from '@/lib/auth/auth-context';
+// import { useAuth } from '@/lib/auth/auth-context';
 import { MemberPortalLayout } from '@/components/layout/member-portal-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -25,7 +25,35 @@ import {
 } from 'lucide-react';
 
 function MemberProfile() {
-  const { user, updateProfile } = useAuth();
+  // Mock user for demo - replace with actual auth
+  const user = {
+    id: 'demo-user-id',
+    member_profile: {
+      id: 'profile-123',
+      first_name: 'John',
+      last_name: 'Doe',
+      email: 'john.doe@example.com',
+      phone: '+1234567890',
+      address: '123 Main St',
+      city: 'Anytown',
+      state: 'ST',
+      zip_code: '12345',
+      date_of_birth: '1990-01-01',
+      membership_tier: 'gold' as const,
+      membership_start_date: '2023-01-01',
+      donation_total: 2500,
+      preferences: {
+        email_notifications: true,
+        sms_notifications: true,
+        postal_mail: false
+      }
+    }
+  };
+  
+  const updateProfile = async (data: any) => {
+    console.log('Profile update demo:', data);
+    // Add demo update logic here
+  };
   const [profileData, setProfileData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);

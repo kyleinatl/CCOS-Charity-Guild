@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useAuth } from '@/lib/auth/auth-context';
+// import { useAuth } from '@/lib/auth/auth-context';
 import { MemberPortalLayout } from '@/components/layout/member-portal-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -64,7 +64,18 @@ interface DashboardData {
 }
 
 function MemberDashboard() {
-  const { user } = useAuth();
+  // Mock user for demo - in production this would come from useAuth()
+  const user = {
+    id: 'demo-user-id',
+    email: 'john.doe@example.com',
+    member_profile: {
+      first_name: 'John',
+      last_name: 'Doe',
+      tier: 'gold',
+      total_donated: 1250,
+      engagement_score: 85
+    }
+  };
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
 

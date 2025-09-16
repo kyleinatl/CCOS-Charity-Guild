@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useAuth } from '@/lib/auth/auth-context';
+// import { useAuth } from '@/lib/auth/auth-context';
 import { MemberPortalLayout } from '@/components/layout/member-portal-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -22,7 +22,14 @@ import {
 } from 'lucide-react';
 
 function MemberDonations() {
-  const { user } = useAuth();
+  // Mock user for demo - in production this would come from useAuth()
+  const user = {
+    id: 'demo-user-id',
+    member_profile: {
+      first_name: 'John',
+      last_name: 'Doe'
+    }
+  };
   const [donationsData, setDonationsData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
