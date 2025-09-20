@@ -37,35 +37,35 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-green-200 mb-8">
-            <span className="text-green-700 font-semibold">🏆 100% Volunteer-Based • Supporting Atlanta Non-Profits</span>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
+        <div className="text-center mb-12 sm:mb-20">
+          <div className="inline-flex items-center bg-white/80 backdrop-blur-sm px-3 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg border border-green-200 mb-6 sm:mb-8">
+            <span className="text-green-700 font-semibold text-xs sm:text-sm">🏆 100% Volunteer-Based • Supporting Atlanta Non-Profits</span>
           </div>
-          <h2 className="text-6xl font-bold mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8">
             <span className="bg-gradient-to-r from-green-700 via-emerald-600 to-green-800 bg-clip-text text-transparent">
               Country Club of the South
             </span>
-            <span className="block text-4xl text-amber-600 font-light mt-2">Charity Guild</span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl text-amber-600 font-light mt-2">Charity Guild</span>
           </h2>
-          <div className="max-w-4xl mx-auto mb-12">
-            <h3 className="text-2xl font-semibold text-green-800 mb-6">Our Mission</h3>
-            <p className="text-xl text-green-700 leading-relaxed mb-8">
+          <div className="max-w-4xl mx-auto mb-8 sm:mb-12 px-2">
+            <h3 className="text-xl sm:text-2xl font-semibold text-green-800 mb-4 sm:mb-6">Our Mission</h3>
+            <p className="text-base sm:text-lg lg:text-xl text-green-700 leading-relaxed mb-6 sm:mb-8">
               The mission of the Country Club of the South Charity Guild is to support Atlanta area non-profits. 
               Our 100% volunteer-based group is dedicated to raising funds and awarding grants to improve the 
               quality of life for those in our community facing hardship.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
             <a
               href="/portal"
-              className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-10 py-4 rounded-xl text-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105"
+              className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
             >
               Member Sign In
             </a>
             <a
               href="/auth/login"
-              className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-10 py-4 rounded-xl text-lg font-semibold hover:from-amber-600 hover:to-yellow-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105"
+              className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:from-amber-600 hover:to-yellow-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
             >
               Admin Sign In
             </a>
@@ -73,13 +73,13 @@ export default function Home() {
         </div>
 
         {/* How We Operate Section */}
-        <section id="how-we-operate" className="mb-20">
-          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-12 shadow-2xl border border-green-100">
-            <div className="text-center mb-12">
-              <h3 className="text-4xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent mb-6">
+        <section id="how-we-operate" className="mb-12 sm:mb-20">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl border border-green-100">
+            <div className="text-center mb-8 sm:mb-12">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent mb-4 sm:mb-6">
                 How We Operate
               </h3>
-              <p className="text-lg text-green-700 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base lg:text-lg text-green-700 max-w-4xl mx-auto leading-relaxed px-2">
                 Charities submit grant applications annually in November. Using a well-established vetting process, 
                 members vote on which of these charities will be the focus of our fundraising the following year. 
                 Voting for the large and small grants typically occurs in January.
