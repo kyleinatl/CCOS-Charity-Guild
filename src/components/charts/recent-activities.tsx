@@ -68,8 +68,8 @@ export function RecentActivities({ data }: RecentActivitiesProps) {
           <CardTitle>Recent Activities</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-center h-64 text-muted-foreground">
-            No recent activities
+                    <div className="flex items-center justify-center h-64 text-green-600">
+            No activities available
           </div>
         </CardContent>
       </Card>
@@ -80,8 +80,8 @@ export function RecentActivities({ data }: RecentActivitiesProps) {
     <Card>
       <CardHeader>
         <CardTitle>Recent Activities</CardTitle>
-        <p className="text-sm text-muted-foreground">
-          Latest member activities across the platform
+                <p className="text-sm text-green-600">
+          Latest member activities and system updates
         </p>
       </CardHeader>
       <CardContent>
@@ -107,11 +107,11 @@ export function RecentActivities({ data }: RecentActivitiesProps) {
                       {activity.activity_type.replace('_', ' ')}
                     </Badge>
                   </div>
-                  <span className="text-sm text-muted-foreground">
-                    {formatTimeAgo(activity.created_at)}
+                                    <span className="text-sm text-green-600">
+                    {new Date(activity.created_at).toLocaleDateString()}
                   </span>
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm text-green-600 mt-1">
                   {activity.description}
                 </p>
               </div>

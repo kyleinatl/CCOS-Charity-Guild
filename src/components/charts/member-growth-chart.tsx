@@ -18,7 +18,7 @@ export function MemberGrowthChart({ data }: MemberGrowthChartProps) {
           <CardTitle>Member Growth</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-center h-64 text-muted-foreground">
+          <div className="flex items-center justify-center h-64 text-green-600">
             No data available
           </div>
         </CardContent>
@@ -91,19 +91,19 @@ export function MemberGrowthChart({ data }: MemberGrowthChartProps) {
               <div className="text-2xl font-bold text-blue-600">
                 {data[data.length - 1]?.total_members || 0}
               </div>
-              <div className="text-sm text-muted-foreground">Current Total</div>
+              <div className="text-sm text-green-600">Current Total</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-green-600">
                 {data.reduce((sum, item) => sum + item.new_members, 0)}
               </div>
-              <div className="text-sm text-muted-foreground">Total New</div>
+              <div className="text-sm text-green-600">Total New</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-purple-600">
                 {(data.reduce((sum, item) => sum + item.new_members, 0) / data.length).toFixed(1)}
               </div>
-              <div className="text-sm text-muted-foreground">Avg/Month</div>
+              <div className="text-sm text-green-600">Avg/Month</div>
             </div>
           </div>
         </div>

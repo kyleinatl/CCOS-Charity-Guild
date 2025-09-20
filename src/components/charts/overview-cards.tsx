@@ -121,7 +121,7 @@ export function OverviewCards({ data, monthlyComparison }: OverviewCardsProps) {
       {cards.map((card, index) => (
         <Card key={index} className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+            <CardTitle className="text-sm font-medium text-green-800">
               {card.title}
             </CardTitle>
             <span className="text-2xl">{card.icon}</span>
@@ -133,7 +133,7 @@ export function OverviewCards({ data, monthlyComparison }: OverviewCardsProps) {
                 <GrowthIndicator value={card.growth} />
               )}
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+                        <p className="text-xs text-green-600 mt-1">
               {card.subtitle}
             </p>
           </CardContent>

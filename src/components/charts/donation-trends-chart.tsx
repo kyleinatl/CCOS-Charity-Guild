@@ -19,7 +19,7 @@ export function DonationTrendsChart({ data }: DonationTrendsChartProps) {
           <CardTitle>Donation Trends</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-center h-64 text-muted-foreground">
+          <div className="flex items-center justify-center h-64 text-green-600">
             No data available
           </div>
         </CardContent>
@@ -101,25 +101,25 @@ export function DonationTrendsChart({ data }: DonationTrendsChartProps) {
               <div className="text-lg font-bold text-emerald-600">
                 {formatCurrency(data.reduce((sum, item) => sum + item.total_amount, 0))}
               </div>
-              <div className="text-sm text-muted-foreground">Total Raised</div>
+              <div className="text-sm text-green-600">Total Raised</div>
             </div>
             <div className="text-center">
               <div className="text-lg font-bold text-orange-600">
                 {data.reduce((sum, item) => sum + item.donation_count, 0)}
               </div>
-              <div className="text-sm text-muted-foreground">Total Donations</div>
+              <div className="text-sm text-green-600">Total Donations</div>
             </div>
             <div className="text-center">
               <div className="text-lg font-bold text-blue-600">
                 {formatCurrency(data.reduce((sum, item) => sum + item.average_amount, 0) / data.length)}
               </div>
-              <div className="text-sm text-muted-foreground">Avg Amount</div>
+              <div className="text-sm text-green-600">Avg Amount</div>
             </div>
             <div className="text-center">
               <div className="text-lg font-bold text-purple-600">
                 {(data.reduce((sum, item) => sum + item.donation_count, 0) / data.length).toFixed(1)}
               </div>
-              <div className="text-sm text-muted-foreground">Avg/Month</div>
+              <div className="text-sm text-green-600">Avg/Month</div>
             </div>
           </div>
         </div>
