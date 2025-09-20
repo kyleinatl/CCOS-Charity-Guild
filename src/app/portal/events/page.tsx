@@ -82,7 +82,7 @@ const events = [
 ];
 
 const categories = [
-  { id: 'all', name: 'All Events', color: 'bg-gray-100 text-gray-800' },
+  { id: 'all', name: 'All Events', color: 'bg-green-100 text-green-800' },
   { id: 'fundraising', name: 'Fundraising', color: 'bg-green-100 text-green-800' },
   { id: 'volunteer', name: 'Volunteer', color: 'bg-blue-100 text-blue-800' },
   { id: 'social', name: 'Social', color: 'bg-purple-100 text-purple-800' },
@@ -90,7 +90,7 @@ const categories = [
 
 const statusColors = {
   upcoming: 'bg-green-100 text-green-800',
-  past: 'bg-gray-100 text-gray-800',
+  past: 'bg-amber-100 text-amber-800',
   cancelled: 'bg-red-100 text-red-800',
 };
 

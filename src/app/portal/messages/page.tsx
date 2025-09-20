@@ -91,7 +91,7 @@ export default function MessagesPage() {
       case 'event': return 'bg-green-100 text-green-800';
       case 'donation': return 'bg-amber-100 text-amber-800';
       case 'volunteer': return 'bg-purple-100 text-purple-800';
-      default: return 'bg-gray-100 text-gray-800';
+      default: return 'bg-green-100 text-green-800';
     }
   };
 
