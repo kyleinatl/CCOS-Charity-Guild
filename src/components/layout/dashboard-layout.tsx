@@ -76,13 +76,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   href={item.href}
                   onClick={() => setSidebarOpen(false)}
                   className={cn(
-                    "flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all",
+                    "flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 hover:translate-x-1",
                     isActive
-                      ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg"
-                      : "text-green-700 hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 hover:shadow-md"
+                      ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/30 scale-105"
+                      : "text-green-700 hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 hover:shadow-md hover:shadow-green-200/50"
                   )}
                 >
-                  <item.icon className="h-5 w-5" />
+                  <item.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                   <span>{item.name}</span>
                 </Link>
               );
@@ -177,7 +177,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         </div>
 
         {/* Page content */}
-        <main className="flex-1">
+        <main className="flex-1 bg-gradient-to-br from-green-50/50 via-amber-50/30 to-emerald-100/50 min-h-screen">
           {children}
         </main>
       </div>

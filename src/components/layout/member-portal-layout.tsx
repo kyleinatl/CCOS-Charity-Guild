@@ -308,7 +308,7 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
         </div>
 
         {/* Page content */}
-        <div className="p-4 sm:p-6 lg:p-8">
+        <div className="p-4 sm:p-6 lg:p-8 bg-gradient-to-br from-green-50/40 via-amber-50/20 to-emerald-100/40 min-h-screen">
           {children}
         </div>
       </div>
