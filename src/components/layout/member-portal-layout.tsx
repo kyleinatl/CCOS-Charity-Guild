@@ -154,9 +154,11 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
 
                 <div className="flex h-16 items-center px-6 bg-gradient-to-r from-green-600 to-emerald-600">
                   <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-amber-400 rounded-full flex items-center justify-center shadow-lg">
-                      <Heart className="h-5 w-5 text-white" />
-                    </div>
+                    <img 
+                      src="/logo.png" 
+                      alt="CCOS Guild Logo" 
+                      className="h-8 w-auto filter brightness-0 invert"
+                    />
                     <span className="text-xl font-bold text-white">Member Portal</span>
                   </div>
                 </div>
@@ -219,9 +221,11 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
         <div className="flex h-full flex-col bg-white/95 backdrop-blur-sm shadow-2xl border-r border-green-100">
           <div className="flex h-16 items-center px-6 bg-gradient-to-r from-green-600 to-emerald-600">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-amber-400 rounded-full flex items-center justify-center shadow-lg">
-                <Heart className="h-5 w-5 text-white" />
-              </div>
+              <img 
+                src="/logo.png" 
+                alt="CCOS Guild Logo" 
+                className="h-8 w-auto filter brightness-0 invert"
+              />
               <span className="text-xl font-bold text-white">Member Portal</span>
             </div>
           </div>

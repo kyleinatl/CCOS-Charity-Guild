@@ -49,9 +49,11 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center space-x-3 mb-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-emerald-700 rounded-full flex items-center justify-center shadow-lg">
-              <Shield className="h-7 h-7 text-amber-200" />
-            </div>
+            <img 
+              src="/logo.png" 
+              alt="CCOS Guild Logo" 
+              className="h-12 w-auto"
+            />
             <div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
                 CCOS Charity Guild
