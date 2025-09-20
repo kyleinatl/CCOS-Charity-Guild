@@ -114,11 +114,13 @@ function MemberDashboard() {
 
   if (loading) {
     return (
-      <div className="container mx-auto p-6">
-        <div className="flex items-center justify-center h-64">
-          <div className="text-center">
-            <div className="animate-spin w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-            <p className="text-muted-foreground">Loading your dashboard...</p>
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-emerald-100">
+        <div className="container mx-auto p-6">
+          <div className="flex items-center justify-center h-64">
+            <div className="text-center">
+              <div className="animate-spin w-8 h-8 border-4 border-green-600 border-t-transparent rounded-full mx-auto mb-4"></div>
+              <p className="text-green-700 font-medium">Loading your member dashboard...</p>
+            </div>
           </div>
         </div>
       </div>
@@ -138,247 +140,252 @@ function MemberDashboard() {
   const memberProfile = user?.member_profile;
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
-      {/* Welcome Section */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">
-            Welcome back, {memberProfile?.first_name}!
-          </h1>
-          <p className="text-gray-600 mt-1">
-            Member since {formatDate(dashboardData.stats.memberSince)}
-          </p>
-        </div>
-        <div className="text-right">
-          <div className="text-2xl font-bold text-blue-600">
-            {formatCurrency(dashboardData.stats.totalDonated)}
-          </div>
-          <p className="text-sm text-gray-600">Total contributed</p>
-        </div>
-      </div>
-
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="hover:shadow-lg transition-shadow">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Total Donated
-            </CardTitle>
-            <DollarSign className="h-4 w-4 text-green-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{formatCurrency(dashboardData.stats.totalDonated)}</div>
-            <p className="text-xs text-muted-foreground">
-              {dashboardData.stats.donationCount} donations
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="hover:shadow-lg transition-shadow">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Events Attended
-            </CardTitle>
-            <Calendar className="h-4 w-4 text-blue-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{dashboardData.stats.eventsAttended}</div>
-            <p className="text-xs text-muted-foreground">
-              This year
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="hover:shadow-lg transition-shadow">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Messages
-            </CardTitle>
-            <MessageSquare className="h-4 w-4 text-purple-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{dashboardData.stats.messagesReceived}</div>
-            <p className="text-xs text-muted-foreground">
-              Unread: {dashboardData.recentMessages.filter(m => !m.read).length}
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="hover:shadow-lg transition-shadow">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Engagement Score
-            </CardTitle>
-            <Trophy className="h-4 w-4 text-yellow-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{dashboardData.stats.engagementScore}%</div>
-            <p className="text-xs text-muted-foreground">
-              Above average
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Tier Progress */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-blue-600" />
-            Membership Tier Progress
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Badge variant="default" className="capitalize">
-                {dashboardData.tierProgress.currentTier} Member
-              </Badge>
-              <span className="text-gray-400">→</span>
-              <Badge variant="outline" className="capitalize">
-                {dashboardData.tierProgress.nextTier} Member
-              </Badge>
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-emerald-100">
+      <div className="container mx-auto p-6 space-y-6">
+        {/* Welcome Section */}
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-green-100">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
+                Welcome back, {memberProfile?.first_name}!
+              </h1>
+              <p className="text-green-600 mt-2 font-medium">
+                Country Club of the South Charity Guild Member since {formatDate(dashboardData.stats.memberSince)}
+              </p>
             </div>
             <div className="text-right">
-              <div className="text-sm font-medium">
-                {formatCurrency(dashboardData.tierProgress.currentAmount)} / {formatCurrency(dashboardData.tierProgress.nextTierAmount)}
+              <div className="text-3xl font-bold bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">
+                {formatCurrency(dashboardData.stats.totalDonated)}
               </div>
-              <div className="text-xs text-gray-500">
-                {formatCurrency(dashboardData.tierProgress.nextTierAmount - dashboardData.tierProgress.currentAmount)} to go
-              </div>
+              <p className="text-green-700 font-semibold">Total contributed</p>
             </div>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
-              className="bg-blue-600 h-2 rounded-full transition-all"
-              style={{ width: `${dashboardData.tierProgress.progressPercentage}%` }}
-            ></div>
-          </div>
-        </CardContent>
-      </Card>
+        </div>
 
-      {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Recent Donations */}
-        <Card>
-          <CardHeader>
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <Card className="bg-gradient-to-br from-green-600 to-emerald-700 text-white hover:shadow-2xl transition-all hover:scale-105 border-0">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-semibold text-green-100">
+                Total Donated
+              </CardTitle>
+              <DollarSign className="h-5 w-5 text-amber-300" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-white">{formatCurrency(dashboardData.stats.totalDonated)}</div>
+              <p className="text-xs text-green-200">
+                {dashboardData.stats.donationCount} donations
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-br from-amber-500 to-yellow-600 text-white hover:shadow-2xl transition-all hover:scale-105 border-0">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-semibold text-amber-100">
+                Events Attended
+              </CardTitle>
+              <Calendar className="h-5 w-5 text-white" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-white">{dashboardData.stats.eventsAttended}</div>
+              <p className="text-xs text-amber-200">
+                This year
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-br from-emerald-500 to-teal-600 text-white hover:shadow-2xl transition-all hover:scale-105 border-0">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-semibold text-emerald-100">
+                Messages
+              </CardTitle>
+              <MessageSquare className="h-5 w-5 text-white" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-white">{dashboardData.stats.messagesReceived}</div>
+              <p className="text-xs text-emerald-200">
+                Unread: {dashboardData.recentMessages.filter(m => !m.read).length}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-br from-yellow-500 to-orange-500 text-white hover:shadow-2xl transition-all hover:scale-105 border-0">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-semibold text-yellow-100">
+                Engagement Score
+              </CardTitle>
+              <Trophy className="h-5 w-5 text-white" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-white">{dashboardData.stats.engagementScore}%</div>
+              <p className="text-xs text-yellow-200">
+                Above average
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Tier Progress */}
+        <Card className="bg-white/90 backdrop-blur-sm border border-green-100 shadow-xl">
+          <CardHeader className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-t-lg">
             <CardTitle className="flex items-center gap-2">
-              <Heart className="h-5 w-5 text-red-500" />
-              Recent Donations
+              <TrendingUp className="h-5 w-5 text-amber-200" />
+              Membership Tier Progress
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {dashboardData.recentDonations.map((donation) => (
-                <div key={donation.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                      <DollarSign className="h-5 w-5 text-green-600" />
-                    </div>
-                    <div>
-                      <div className="font-medium">{donation.campaign}</div>
-                      <div className="text-sm text-gray-500">{formatDate(donation.date)}</div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="font-semibold">{formatCurrency(donation.amount)}</div>
-                    <div className="text-xs text-gray-500">{donation.method}</div>
-                  </div>
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <Badge className="capitalize bg-gradient-to-r from-amber-500 to-yellow-600 text-white">
+                  {dashboardData.tierProgress.currentTier} Member
+                </Badge>
+                <span className="text-green-400 font-bold">→</span>
+                <Badge variant="outline" className="capitalize border-green-300 text-green-700">
+                  {dashboardData.tierProgress.nextTier} Member
+                </Badge>
+              </div>
+              <div className="text-right">
+                <div className="text-sm font-semibold text-green-800">
+                  {formatCurrency(dashboardData.tierProgress.currentAmount)} / {formatCurrency(dashboardData.tierProgress.nextTierAmount)}
                 </div>
-              ))}
-              <Button variant="outline" className="w-full mt-4">
-                View All Donations
-              </Button>
+                <div className="text-xs text-green-600">
+                  {formatCurrency(dashboardData.tierProgress.nextTierAmount - dashboardData.tierProgress.currentAmount)} to next tier
+                </div>
+              </div>
+            </div>
+            <div className="w-full bg-green-100 rounded-full h-3 shadow-inner">
+              <div 
+                className="bg-gradient-to-r from-green-500 to-emerald-600 h-3 rounded-full transition-all shadow-sm"
+                style={{ width: `${dashboardData.tierProgress.progressPercentage}%` }}
+              ></div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Upcoming Events */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Calendar className="h-5 w-5 text-blue-600" />
-              Upcoming Events
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {dashboardData.upcomingEvents.map((event) => (
-                <div key={event.id} className="p-3 bg-gray-50 rounded-lg">
-                  <div className="flex items-start justify-between mb-2">
-                    <h4 className="font-medium">{event.title}</h4>
-                    <Badge 
-                      variant={event.registrationStatus === 'registered' ? 'default' : 'outline'}
-                      className="text-xs"
-                    >
-                      {event.registrationStatus === 'registered' ? 'Registered' : 'Available'}
-                    </Badge>
-                  </div>
-                  <div className="text-sm text-gray-600 space-y-1">
-                    <div className="flex items-center gap-2">
-                      <Clock className="h-3 w-3" />
-                      {formatDate(event.date)} at {event.time}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-3 w-3" />
-                      {event.location}
-                    </div>
-                    {event.fee > 0 && (
-                      <div className="flex items-center gap-2">
-                        <DollarSign className="h-3 w-3" />
-                        {formatCurrency(event.fee)}
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Recent Donations */}
+          <Card className="bg-white/90 backdrop-blur-sm border border-green-100 shadow-xl">
+            <CardHeader className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-t-lg">
+              <CardTitle className="flex items-center gap-2">
+                <Heart className="h-5 w-5 text-amber-200" />
+                Recent Donations
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                {dashboardData.recentDonations.map((donation) => (
+                  <div key={donation.id} className="flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-100 hover:shadow-md transition-all">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                        <DollarSign className="h-6 w-6 text-white" />
                       </div>
+                      <div>
+                        <div className="font-semibold text-green-800">{donation.campaign}</div>
+                        <div className="text-sm text-green-600">{formatDate(donation.date)}</div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="font-bold text-amber-600">{formatCurrency(donation.amount)}</div>
+                      <div className="text-xs text-green-500 font-medium">{donation.method}</div>
+                    </div>
+                  </div>
+                ))}
+                <Button className="w-full mt-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:from-green-700 hover:to-emerald-700">
+                  View All Donations
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Upcoming Events */}
+          <Card className="bg-white/90 backdrop-blur-sm border border-amber-100 shadow-xl">
+            <CardHeader className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white rounded-t-lg">
+              <CardTitle className="flex items-center gap-2">
+                <Calendar className="h-5 w-5 text-white" />
+                Upcoming Events
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                {dashboardData.upcomingEvents.map((event) => (
+                  <div key={event.id} className="p-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl border border-amber-100 hover:shadow-md transition-all">
+                    <div className="flex items-start justify-between mb-3">
+                      <h4 className="font-semibold text-green-800">{event.title}</h4>
+                      <Badge 
+                        className={event.registrationStatus === 'registered' ? 
+                          'bg-gradient-to-r from-green-500 to-emerald-600 text-white' : 
+                          'border-amber-300 text-amber-700 bg-white'}
+                      >
+                        {event.registrationStatus === 'registered' ? 'Registered' : 'Available'}
+                      </Badge>
+                    </div>
+                    <div className="text-sm text-green-700 space-y-2">
+                      <div className="flex items-center gap-2">
+                        <Clock className="h-4 w-4 text-amber-600" />
+                        {formatDate(event.date)} at {event.time}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4 text-amber-600" />
+                        {event.location}
+                      </div>
+                      {event.fee > 0 && (
+                        <div className="flex items-center gap-2">
+                          <DollarSign className="h-4 w-4 text-amber-600" />
+                          {formatCurrency(event.fee)}
+                        </div>
+                      )}
+                    </div>
+                    {event.registrationStatus !== 'registered' && (
+                      <Button size="sm" className="mt-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-white hover:from-amber-600 hover:to-yellow-700">
+                        Register Now
+                      </Button>
                     )}
                   </div>
-                  {event.registrationStatus !== 'registered' && (
-                    <Button size="sm" className="mt-3">
-                      Register Now
-                    </Button>
-                  )}
+                ))}
+                <Button className="w-full mt-4 bg-gradient-to-r from-amber-500 to-yellow-600 text-white hover:from-amber-600 hover:to-yellow-700">
+                  View All Events
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Recent Messages */}
+        <Card className="bg-white/90 backdrop-blur-sm border border-emerald-100 shadow-xl">
+          <CardHeader className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-t-lg">
+            <CardTitle className="flex items-center gap-2">
+              <MessageSquare className="h-5 w-5 text-white" />
+              Recent Messages
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-6">
+            <div className="space-y-3">
+              {dashboardData.recentMessages.map((message) => (
+                <div key={message.id} className={`p-4 rounded-xl border transition-all hover:shadow-md ${!message.read ? 'bg-gradient-to-r from-emerald-50 to-teal-50 border-emerald-200' : 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-100'}`}>
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <h4 className={`font-semibold text-green-800 ${!message.read ? 'font-bold' : ''}`}>
+                          {message.subject}
+                        </h4>
+                        {!message.read && (
+                          <Badge className="text-xs bg-gradient-to-r from-emerald-500 to-teal-600 text-white">New</Badge>
+                        )}
+                      </div>
+                      <p className="text-sm text-green-700 mt-1">{message.preview}</p>
+                    </div>
+                    <div className="text-xs text-green-600 font-medium">{formatDate(message.date)}</div>
+                  </div>
                 </div>
               ))}
-              <Button variant="outline" className="w-full mt-4">
-                View All Events
+              <Button className="w-full mt-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white hover:from-emerald-600 hover:to-teal-700">
+                View All Messages
               </Button>
             </div>
           </CardContent>
         </Card>
       </div>
-
-      {/* Recent Messages */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <MessageSquare className="h-5 w-5 text-purple-600" />
-            Recent Messages
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            {dashboardData.recentMessages.map((message) => (
-              <div key={message.id} className={`p-3 rounded-lg border ${!message.read ? 'bg-blue-50 border-blue-200' : 'bg-gray-50'}`}>
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <h4 className={`font-medium ${!message.read ? 'font-semibold' : ''}`}>
-                        {message.subject}
-                      </h4>
-                      {!message.read && (
-                        <Badge variant="default" className="text-xs">New</Badge>
-                      )}
-                    </div>
-                    <p className="text-sm text-gray-600 mt-1">{message.preview}</p>
-                  </div>
-                  <div className="text-xs text-gray-500">{formatDate(message.date)}</div>
-                </div>
-              </div>
-            ))}
-            <Button variant="outline" className="w-full mt-4">
-              View All Messages
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 }

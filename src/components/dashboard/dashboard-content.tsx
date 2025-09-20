@@ -76,21 +76,21 @@ export function DashboardContent() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-3xl font-bold text-green-800">Dashboard</h1>
+          <p className="mt-2 text-green-600">
             Welcome back! Here's what's happening with your charity guild.
           </p>
         </div>
         <div className="mt-4 sm:mt-0 flex space-x-3">
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" className="border-green-200 text-green-700 hover:bg-green-50">
             <Filter className="h-4 w-4 mr-2" />
             Filter
           </Button>
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" className="border-green-200 text-green-700 hover:bg-green-50">
             <Download className="h-4 w-4 mr-2" />
             Export
           </Button>
-          <Button size="sm">
+          <Button size="sm" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg">
             <Plus className="h-4 w-4 mr-2" />
             Quick Add
           </Button>
@@ -99,15 +99,17 @@ export function DashboardContent() {
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card>
+        <Card className="bg-gradient-to-br from-green-50 to-emerald-100 border-green-200 shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Members</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-green-800">Total Members</CardTitle>
+            <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
+              <Users className="h-4 w-4 text-white" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">426</div>
-            <p className="text-xs text-muted-foreground">
-              <span className="inline-flex items-center text-green-600">
+            <div className="text-2xl font-bold text-green-900">426</div>
+            <p className="text-xs text-green-600">
+              <span className="inline-flex items-center text-emerald-600">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 +8.2%
               </span>{' '}
@@ -116,15 +118,17 @@ export function DashboardContent() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-gradient-to-br from-amber-50 to-yellow-100 border-amber-200 shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Donations</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-amber-800">Total Donations</CardTitle>
+            <div className="w-8 h-8 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-lg flex items-center justify-center">
+              <DollarSign className="h-4 w-4 text-white" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$184,290</div>
-            <p className="text-xs text-muted-foreground">
-              <span className="inline-flex items-center text-green-600">
+            <div className="text-2xl font-bold text-amber-900">$184,290</div>
+            <p className="text-xs text-amber-600">
+              <span className="inline-flex items-center text-emerald-600">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 +12.5%
               </span>{' '}
@@ -133,29 +137,33 @@ export function DashboardContent() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-gradient-to-br from-emerald-50 to-teal-100 border-emerald-200 shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Events</CardTitle>
-            <Calendar className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-emerald-800">Active Events</CardTitle>
+            <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+              <Calendar className="h-4 w-4 text-white" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">8</div>
-            <p className="text-xs text-muted-foreground">
-              <span className="inline-flex items-center text-blue-600">
+            <div className="text-2xl font-bold text-emerald-900">8</div>
+            <p className="text-xs text-emerald-600">
+              <span className="inline-flex items-center text-teal-600">
                 3 upcoming this month
               </span>
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-gradient-to-br from-green-50 to-amber-100 border-green-200 shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg. Donation</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-green-800">Avg. Donation</CardTitle>
+            <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-amber-600 rounded-lg flex items-center justify-center">
+              <TrendingUp className="h-4 w-4 text-white" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$432</div>
-            <p className="text-xs text-muted-foreground">
+            <div className="text-2xl font-bold text-green-900">$432</div>
+            <p className="text-xs text-green-600">
               <span className="inline-flex items-center text-red-600">
                 <ArrowDownRight className="h-3 w-3 mr-1" />
                 -2.1%
@@ -169,10 +177,10 @@ export function DashboardContent() {
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Donation Trends */}
-        <Card>
+        <Card className="bg-white/80 backdrop-blur-sm border-green-200 shadow-lg">
           <CardHeader>
-            <CardTitle>Donation Trends</CardTitle>
-            <CardDescription>Monthly donation amounts and donor count</CardDescription>
+            <CardTitle className="text-green-800">Donation Trends</CardTitle>
+            <CardDescription className="text-green-600">Monthly donation amounts and donor count</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="h-80">
@@ -200,10 +208,10 @@ export function DashboardContent() {
         </Card>
 
         {/* Member Growth */}
-        <Card>
+        <Card className="bg-white/80 backdrop-blur-sm border-amber-200 shadow-lg">
           <CardHeader>
-            <CardTitle>Member Growth</CardTitle>
-            <CardDescription>Total members and new members per month</CardDescription>
+            <CardTitle className="text-amber-800">Member Growth</CardTitle>
+            <CardDescription className="text-amber-600">Total members and new members per month</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="h-80">
@@ -237,10 +245,10 @@ export function DashboardContent() {
       {/* Bottom Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Member Tier Distribution */}
-        <Card>
+        <Card className="bg-white/80 backdrop-blur-sm border-emerald-200 shadow-lg">
           <CardHeader>
-            <CardTitle>Member Tiers</CardTitle>
-            <CardDescription>Distribution of members by tier</CardDescription>
+            <CardTitle className="text-emerald-800">Member Tiers</CardTitle>
+            <CardDescription className="text-emerald-600">Distribution of members by tier</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="h-64">
@@ -284,29 +292,29 @@ export function DashboardContent() {
         </Card>
 
         {/* Recent Activities */}
-        <Card className="lg:col-span-2">
+        <Card className="lg:col-span-2 bg-white/80 backdrop-blur-sm border-green-200 shadow-lg">
           <CardHeader>
-            <CardTitle>Recent Activities</CardTitle>
-            <CardDescription>Latest member activities and donations</CardDescription>
+            <CardTitle className="text-green-800">Recent Activities</CardTitle>
+            <CardDescription className="text-green-600">Latest member activities and donations</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {recentActivities.map((activity) => (
                 <div key={activity.id} className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                      <activity.icon className="w-4 h-4 text-blue-600" />
+                    <div className="w-8 h-8 bg-gradient-to-r from-green-100 to-emerald-100 rounded-full flex items-center justify-center">
+                      <activity.icon className="w-4 h-4 text-green-600" />
                     </div>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-green-800">
                       {activity.member}
                     </p>
-                    <p className="text-sm text-gray-500">{activity.time}</p>
+                    <p className="text-sm text-green-600">{activity.time}</p>
                   </div>
                   {activity.amount && (
                     <div className="flex-shrink-0">
-                      <span className="text-sm font-medium text-green-600">
+                      <span className="text-sm font-medium text-amber-600">
                         {activity.amount}
                       </span>
                     </div>
@@ -319,35 +327,35 @@ export function DashboardContent() {
       </div>
 
       {/* AI Insights Section */}
-      <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
+      <Card className="bg-gradient-to-r from-green-50 to-amber-50 border-green-200 shadow-lg">
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
-            <Sparkles className="h-5 w-5 text-blue-600" />
-            <span>AI Insights</span>
+            <Sparkles className="h-5 w-5 text-amber-600" />
+            <span className="text-green-800">AI Insights</span>
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-green-600">
             Smart recommendations based on your charity's data
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 bg-white rounded-lg border border-blue-100">
+            <div className="p-4 bg-white/80 backdrop-blur-sm rounded-lg border border-green-100 shadow-md">
               <div className="flex items-start space-x-3">
-                <Heart className="h-5 w-5 text-red-500 mt-0.5" />
+                <Heart className="h-5 w-5 text-amber-600 mt-0.5" />
                 <div>
-                  <h4 className="font-medium text-gray-900">Engagement Opportunity</h4>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <h4 className="font-medium text-green-800">Engagement Opportunity</h4>
+                  <p className="text-sm text-green-600 mt-1">
                     23 members haven't attended events in 6+ months. Consider sending a re-engagement campaign.
                   </p>
                 </div>
               </div>
             </div>
-            <div className="p-4 bg-white rounded-lg border border-blue-100">
+            <div className="p-4 bg-white/80 backdrop-blur-sm rounded-lg border border-green-100 shadow-md">
               <div className="flex items-start space-x-3">
-                <TrendingUp className="h-5 w-5 text-green-500 mt-0.5" />
+                <TrendingUp className="h-5 w-5 text-emerald-600 mt-0.5" />
                 <div>
-                  <h4 className="font-medium text-gray-900">Donation Pattern</h4>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <h4 className="font-medium text-green-800">Donation Pattern</h4>
+                  <p className="text-sm text-green-600 mt-1">
                     August donations are 15% higher than usual. Consider launching a matching campaign.
                   </p>
                 </div>
