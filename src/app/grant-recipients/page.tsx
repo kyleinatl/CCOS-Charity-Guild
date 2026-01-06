@@ -15,9 +15,12 @@ export default function GrantRecipientsPage() {
         {/* Back Button */}
         <button
           onClick={() => window.history.back()}
-          className="mb-8 px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-300 shadow-md"
+          className="mb-8 flex items-center gap-2 text-green-600 hover:text-green-700 font-medium transition-colors"
         >
-          ← Back
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          Back
         </button>
 
         {/* Header */}
