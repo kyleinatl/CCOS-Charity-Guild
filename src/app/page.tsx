@@ -57,7 +57,7 @@ export default function Home() {
                 <p className="text-[10px] sm:text-xs lg:text-sm text-green-600 font-medium">Charity Guild</p>
               </div>
             </div>
-            <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-4 flex-shrink-0" ref={menuRef}>
+            <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-4 flex-shrink-0">
               <a
                 href="/donate"
                 className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-2 sm:px-4 lg:px-6 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-xs lg:text-base font-medium hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
@@ -66,7 +66,7 @@ export default function Home() {
               </a>
               <a
                 href="/sponsor"
-                className="hidden sm:inline-block bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-2 sm:px-4 lg:px-6 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-xs lg:text-base font-medium hover:from-amber-600 hover:to-yellow-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
+                className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-2 sm:px-4 lg:px-6 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-xs lg:text-base font-medium hover:from-amber-600 hover:to-yellow-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
               >
                 Sponsor
               </a>
@@ -98,7 +98,7 @@ export default function Home() {
 
           {/* Dropdown Menu */}
           {menuOpen && (
-            <div className="absolute right-4 sm:right-6 lg:right-8 top-20 sm:top-24 bg-white rounded-xl shadow-2xl border border-green-100 py-2 min-w-[200px] animate-in fade-in slide-in-from-top-2 duration-200">
+            <div ref={menuRef} className="absolute right-4 sm:right-6 lg:right-8 top-20 sm:top-24 bg-white rounded-xl shadow-2xl border border-green-100 py-2 min-w-[200px] animate-in fade-in slide-in-from-top-2 duration-200">
               <a
                 href="/"
                 className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
