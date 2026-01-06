@@ -48,7 +48,7 @@ export default function Home() {
               <img 
                 src="/ccos-logo.png" 
                 alt="CCOS Charity Guild Logo" 
-                className="h-12 sm:h-14 lg:h-16 w-auto flex-shrink-0"
+                className="h-10 sm:h-12 lg:h-16 w-auto flex-shrink-0"
               />
               <div className="min-w-0">
                 <h1 className="text-xs sm:text-base lg:text-xl xl:text-2xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent truncate">
