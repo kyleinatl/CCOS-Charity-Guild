@@ -1,3 +1,5 @@
+'use client';
+
 export default function DonatePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-emerald-100">
