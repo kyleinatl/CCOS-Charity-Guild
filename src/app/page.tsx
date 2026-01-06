@@ -224,6 +224,12 @@ export default function Home() {
             >
               Join/Donate
             </a>
+            <a
+              href="/sponsor"
+              className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:from-amber-600 hover:to-yellow-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
+            >
+              Become a Sponsor
+            </a>
           </div>
 
           {/* Stats Bar */}
