@@ -16,7 +16,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "CCOS Charity Guild - Nonprofit Management System",
+  title: "Charity Guild",
   description: "Comprehensive nonprofit management system for CCOS Charity Guild featuring member management, donation tracking, event management, and AI-powered insights.",
   icons: {
     icon: '/ccos-logo.png',
