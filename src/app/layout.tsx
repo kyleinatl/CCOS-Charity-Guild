@@ -17,22 +17,22 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "Charity Guild",
-  description: "Comprehensive nonprofit management system for CCOS Charity Guild featuring member management, donation tracking, event management, and AI-powered insights.",
+  description: "Country Club of the South Charity Guild - Supporting Atlanta area non-profits through volunteer-based fundraising and community grants.",
   icons: {
     icon: '/ccos-logo.png',
     shortcut: '/ccos-logo.png',
     apple: '/ccos-logo.png',
   },
   openGraph: {
-    title: "CCOS Charity Guild - Nonprofit Management System",
-    description: "Comprehensive nonprofit management system for CCOS Charity Guild featuring member management, donation tracking, event management, and AI-powered insights.",
+    title: "Charity Guild",
+    description: "Country Club of the South Charity Guild - Supporting Atlanta area non-profits through volunteer-based fundraising and community grants.",
     images: ['/ccos-logo.png'],
     siteName: "CCOS Charity Guild",
   },
   twitter: {
     card: 'summary_large_image',
-    title: "CCOS Charity Guild - Nonprofit Management System",
-    description: "Comprehensive nonprofit management system for CCOS Charity Guild featuring member management, donation tracking, event management, and AI-powered insights.",
+    title: "Charity Guild",
+    description: "Country Club of the South Charity Guild - Supporting Atlanta area non-profits through volunteer-based fundraising and community grants.",
     images: ['/logo.png'],
   },
 };
