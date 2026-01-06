@@ -19,14 +19,14 @@ export const metadata: Metadata = {
   title: "CCOS Charity Guild - Nonprofit Management System",
   description: "Comprehensive nonprofit management system for CCOS Charity Guild featuring member management, donation tracking, event management, and AI-powered insights.",
   icons: {
-    icon: '/logo.png',
-    shortcut: '/logo.png',
-    apple: '/logo.png',
+    icon: '/ccos-logo.png',
+    shortcut: '/ccos-logo.png',
+    apple: '/ccos-logo.png',
   },
   openGraph: {
     title: "CCOS Charity Guild - Nonprofit Management System",
     description: "Comprehensive nonprofit management system for CCOS Charity Guild featuring member management, donation tracking, event management, and AI-powered insights.",
-    images: ['/logo.png'],
+    images: ['/ccos-logo.png'],
     siteName: "CCOS Charity Guild",
   },
   twitter: {
