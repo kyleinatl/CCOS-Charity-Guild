@@ -1,32 +1,110 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-emerald-100">
       {/* Header */}
-      <header className="bg-white/95 backdrop-blur-sm shadow-lg border-b border-green-100">
+      <header className="bg-white/95 backdrop-blur-sm shadow-lg border-b border-green-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-3">
+          <div className="flex justify-between items-center py-4 sm:py-6">
+            <div className="flex items-center space-x-2 sm:space-x-3">
               <img 
                 src="/logo.png" 
                 alt="CCOS Charity Guild Logo" 
-                className="h-12 w-auto"
+                className="h-10 sm:h-12 w-auto"
               />
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
+                <h1 className="text-base sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
                   Country Club of the South
                 </h1>
-                <p className="text-sm text-green-600 font-medium">Charity Guild</p>
+                <p className="text-xs sm:text-sm text-green-600 font-medium">Charity Guild</p>
               </div>
             </div>
-            <div className="flex space-x-4">
+            <div className="flex items-center space-x-3 sm:space-x-4">
               <a
                 href="/donate"
-                className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-2 rounded-lg font-medium hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl"
+                className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 sm:px-6 py-2 rounded-lg text-sm sm:text-base font-medium hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl"
               >
                 Join/Donate
               </a>
+              
+              {/* Hamburger Menu */}
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="p-2 rounded-lg hover:bg-green-50 transition-colors"
+                aria-label="Menu"
+              >
+                <svg
+                  className="w-6 h-6 text-green-700"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  {menuOpen ? (
+                    <path d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
             </div>
           </div>
+
+          {/* Dropdown Menu */}
+          {menuOpen && (
+            <div className="absolute right-4 sm:right-6 lg:right-8 top-20 sm:top-24 bg-white rounded-xl shadow-2xl border border-green-100 py-2 min-w-[200px] animate-in fade-in slide-in-from-top-2 duration-200">
+              <a
+                href="/"
+                className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
+                Home
+              </a>
+              <a
+                href="#how-we-operate"
+                className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
+                How We Operate
+              </a>
+              <a
+                href="#our-impact"
+                className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
+                Our Impact
+              </a>
+              <a
+                href="/donate"
+                className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
+                Become a Member
+              </a>
+              <div className="border-t border-green-100 my-2"></div>
+              <a
+                href="/portal"
+                className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
+                Member Portal
+              </a>
+              <a
+                href="/auth/login"
+                className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
+                Staff Login
+              </a>
+            </div>
+          )}
         </div>
       </header>
 
