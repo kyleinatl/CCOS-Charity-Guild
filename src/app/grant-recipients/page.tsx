@@ -51,17 +51,6 @@ export default function GrantRecipientsPage() {
             </div>
           ))}
         </div>
-
-        {/* Additional Info Section */}
-        <div className="mt-16 bg-white rounded-xl shadow-lg p-8 border-2 border-green-200">
-          <h2 className="text-3xl font-bold text-green-800 mb-4">About Our Grant Program</h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            The Cobb County Charity Guild is proud to support local organizations through our grant program. 
-            These grants help fund vital services and programs that make a positive impact in our community. 
-            Each year, we carefully review applications and select organizations whose missions align with 
-            our values of compassion, service, and community support.
-          </p>
-        </div>
       </div>
     </div>
   );
