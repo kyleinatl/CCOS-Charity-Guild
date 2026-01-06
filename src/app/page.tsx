@@ -20,16 +20,10 @@ export default function Home() {
             </div>
             <div className="flex space-x-4">
               <a
-                href="/auth/login"
-                className="text-green-700 hover:text-emerald-600 font-medium transition-colors px-4 py-2 rounded-lg hover:bg-green-50"
-              >
-                Staff Sign In
-              </a>
-              <a
-                href="/portal"
+                href="/donate"
                 className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-2 rounded-lg font-medium hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl"
               >
-                Member Portal
+                Join/Donate
               </a>
             </div>
           </div>
@@ -58,16 +52,10 @@ export default function Home() {
           </div>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
             <a
-              href="/portal"
+              href="/donate"
               className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
             >
-              Member Sign In
-            </a>
-            <a
-              href="/auth/login"
-              className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:from-amber-600 hover:to-yellow-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
-            >
-              Admin Sign In
+              Join/Donate
             </a>
           </div>
         </div>
