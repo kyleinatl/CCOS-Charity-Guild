@@ -1,10 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [otherMenuOpen, setOtherMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+        setOtherMenuOpen(false);
+      }
+    };
+
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuOpen]);
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
@@ -23,39 +42,39 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-emerald-100 animate-fadeIn">
       {/* Header */}
       <header className="bg-white/95 backdrop-blur-sm shadow-lg border-b border-green-100 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4 sm:py-6">
-            <div className="flex items-center space-x-2 sm:space-x-3">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+          <div className="flex justify-between items-center py-3 sm:py-4 lg:py-6">
+            <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-3 min-w-0">
               <img 
                 src="/logo.png" 
                 alt="CCOS Charity Guild Logo" 
-                className="h-10 sm:h-12 w-auto"
+                className="h-8 sm:h-10 lg:h-12 w-auto flex-shrink-0"
               />
-              <div>
-                <h1 className="text-base sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
+              <div className="min-w-0">
+                <h1 className="text-xs sm:text-base lg:text-xl xl:text-2xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent truncate">
                   Country Club of the South
                 </h1>
-                <p className="text-xs sm:text-sm text-green-600 font-medium">Charity Guild</p>
+                <p className="text-[10px] sm:text-xs lg:text-sm text-green-600 font-medium">Charity Guild</p>
               </div>
             </div>
-            <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-4 flex-shrink-0" ref={menuRef}>
               <a
                 href="/donate"
-                className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 sm:px-6 py-2 rounded-lg text-xs sm:text-base font-medium hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
+                className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-2 sm:px-4 lg:px-6 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-xs lg:text-base font-medium hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
               >
                 Join/Donate
               </a>
               <a
                 href="/sponsor"
-                className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-3 sm:px-6 py-2 rounded-lg text-xs sm:text-base font-medium hover:from-amber-600 hover:to-yellow-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
+                className="hidden sm:inline-block bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-2 sm:px-4 lg:px-6 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-xs lg:text-base font-medium hover:from-amber-600 hover:to-yellow-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
               >
-                Become a Sponsor
+                Sponsor
               </a>
               
               {/* Hamburger Menu */}
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="p-2 rounded-lg hover:bg-green-50 transition-colors"
+                className="p-1.5 sm:p-2 rounded-lg hover:bg-green-50 transition-colors flex-shrink-0"
                 aria-label="Menu"
               >
                 <svg
