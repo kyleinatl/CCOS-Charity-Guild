@@ -82,6 +82,55 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          {/* Our Sponsors Section */}
+          <div className="mt-12 sm:mt-16 px-4">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
+                Our Sponsors
+              </h3>
+              <p className="text-green-700 mt-3 text-base sm:text-lg">
+                Thank you to our generous business sponsors who make our work possible
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8">
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-green-100 flex items-center justify-center">
+                <img 
+                  src="/diane-johnson.png" 
+                  alt="Diane Johnson Sponsor" 
+                  className="w-full h-auto object-contain max-h-32"
+                />
+              </div>
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-green-100 flex items-center justify-center">
+                <img 
+                  src="/aesthetic-center.png" 
+                  alt="Aesthetic Center Sponsor" 
+                  className="w-full h-auto object-contain max-h-32"
+                />
+              </div>
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-green-100 flex items-center justify-center">
+                <img 
+                  src="/kayc-carper.avif" 
+                  alt="Kayc Carper Sponsor" 
+                  className="w-full h-auto object-contain max-h-32"
+                />
+              </div>
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-green-100 flex items-center justify-center">
+                <img 
+                  src="/mibab.png" 
+                  alt="MIBAB Sponsor" 
+                  className="w-full h-auto object-contain max-h-32"
+                />
+              </div>
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-green-100 flex items-center justify-center">
+                <img 
+                  src="/mighty-dog.png" 
+                  alt="Mighty Dog Sponsor" 
+                  className="w-full h-auto object-contain max-h-32"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* How We Operate Section */}
