@@ -5,8 +5,21 @@ import { useState } from 'react';
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      setMenuOpen(false);
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      setMenuOpen(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-emerald-100">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-emerald-100 animate-fadeIn">
       {/* Header */}
       <header className="bg-white/95 backdrop-blur-sm shadow-lg border-b border-green-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,21 +76,21 @@ export default function Home() {
               <a
                 href="/"
                 className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => handleNavigation(e, '/')}
               >
                 Home
               </a>
               <a
                 href="#how-we-operate"
                 className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => handleNavigation(e, '#how-we-operate')}
               >
                 How We Operate
               </a>
               <a
                 href="#our-impact"
                 className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => handleNavigation(e, '#our-impact')}
               >
                 Our Impact
               </a>
@@ -87,21 +100,6 @@ export default function Home() {
                 onClick={() => setMenuOpen(false)}
               >
                 Become a Member
-              </a>
-              <div className="border-t border-green-100 my-2"></div>
-              <a
-                href="/portal"
-                className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
-                onClick={() => setMenuOpen(false)}
-              >
-                Member Portal
-              </a>
-              <a
-                href="/auth/login"
-                className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
-                onClick={() => setMenuOpen(false)}
-              >
-                Staff Login
               </a>
             </div>
           )}
