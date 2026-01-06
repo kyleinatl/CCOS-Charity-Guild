@@ -141,6 +141,13 @@ export default function Home() {
                     >
                       Gallery
                     </a>
+                    <a
+                      href="/sponsor"
+                      className="block px-8 py-2 text-green-600 hover:bg-green-100 transition-colors"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Become a Sponsor
+                    </a>
                   </div>
                 )}
               </div>
