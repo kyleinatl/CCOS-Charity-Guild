@@ -167,6 +167,13 @@ export default function Home() {
                     >
                       Become a Sponsor
                     </a>
+                    <a
+                      href="/donor-list"
+                      className="block px-8 py-2 text-green-600 hover:bg-green-100 transition-colors"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Donor List
+                    </a>
                   </div>
                 )}
               </div>
