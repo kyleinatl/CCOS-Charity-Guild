@@ -107,6 +107,13 @@ export default function Home() {
                 Home
               </a>
               <a
+                href="#who-we-serve"
+                className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
+                onClick={(e) => handleNavigation(e, '#who-we-serve')}
+              >
+                Who We Serve
+              </a>
+              <a
                 href="#how-we-operate"
                 className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
                 onClick={(e) => handleNavigation(e, '#how-we-operate')}
@@ -244,7 +251,7 @@ export default function Home() {
           </div>
 
           {/* Who We Serve Section */}
-          <div className="mt-12 sm:mt-16 px-4">
+          <div id="who-we-serve" className="mt-12 sm:mt-16 px-4">
             <div className="text-center mb-8">
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
                 Who We Serve
