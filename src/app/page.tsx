@@ -243,6 +243,69 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Who We Serve Section */}
+          <div className="mt-12 sm:mt-16 px-4">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
+                Who We Serve
+              </h3>
+              <p className="text-green-700 mt-3 text-base sm:text-lg">
+                Organizations we proudly support through our charitable giving
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-green-100 flex items-center justify-center">
+                <img 
+                  src="/camp-sunshine.avif" 
+                  alt="Camp Sunshine" 
+                  className="w-full h-auto object-contain max-h-32"
+                />
+              </div>
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-green-100 flex items-center justify-center">
+                <img 
+                  src="/wellspring-living.avif" 
+                  alt="Wellspring Living" 
+                  className="w-full h-auto object-contain max-h-32"
+                />
+              </div>
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-green-100 flex items-center justify-center">
+                <img 
+                  src="/curing-kids-cancer.avif" 
+                  alt="Curing Kids Cancer" 
+                  className="w-full h-auto object-contain max-h-32"
+                />
+              </div>
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-green-100 flex items-center justify-center">
+                <img 
+                  src="/canine-assistants.avif" 
+                  alt="Canine Assistants" 
+                  className="w-full h-auto object-contain max-h-32"
+                />
+              </div>
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-green-100 flex items-center justify-center">
+                <img 
+                  src="/humane-society.avif" 
+                  alt="Humane Society" 
+                  className="w-full h-auto object-contain max-h-32"
+                />
+              </div>
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-green-100 flex items-center justify-center">
+                <img 
+                  src="/atlanta-spectrum.avif" 
+                  alt="Atlanta Spectrum" 
+                  className="w-full h-auto object-contain max-h-32"
+                />
+              </div>
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-green-100 flex items-center justify-center">
+                <img 
+                  src="/nfcc.avif" 
+                  alt="NFCC" 
+                  className="w-full h-auto object-contain max-h-32"
+                />
+              </div>
+            </div>
+          </div>
+
           {/* Our Sponsors Section */}
           <div className="mt-12 sm:mt-16 px-4">
             <div className="text-center mb-8">
