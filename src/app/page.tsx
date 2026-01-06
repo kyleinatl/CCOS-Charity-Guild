@@ -216,6 +216,13 @@ export default function Home() {
             </span>
             <span className="block text-2xl sm:text-3xl md:text-4xl text-amber-600 font-light mt-2">Charity Guild</span>
           </h2>
+          <div className="flex justify-center mb-8 sm:mb-10">
+            <img 
+              src="/ccos-logo.png" 
+              alt="CCOS Logo" 
+              className="h-16 sm:h-20 w-auto opacity-90"
+            />
+          </div>
           <div className="max-w-4xl mx-auto mb-8 sm:mb-12 px-2">
             <h3 className="text-xl sm:text-2xl font-semibold text-green-800 mb-4 sm:mb-6">Our Mission</h3>
             <p className="text-base sm:text-lg lg:text-xl text-green-700 leading-relaxed mb-6 sm:mb-8">
