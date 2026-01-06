@@ -129,6 +129,13 @@ export default function Home() {
                   className="w-full h-auto object-contain max-h-32"
                 />
               </div>
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-green-100 flex items-center justify-center">
+                <img 
+                  src="/grapes-and-grains.png" 
+                  alt="Grapes and Grains Sponsor" 
+                  className="w-full h-auto object-contain max-h-32"
+                />
+              </div>
             </div>
           </div>
         </div>
