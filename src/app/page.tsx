@@ -58,6 +58,30 @@ export default function Home() {
               Join/Donate
             </a>
           </div>
+
+          {/* Stats Bar */}
+          <div className="mt-12 sm:mt-16 px-4">
+            <div className="bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 rounded-2xl shadow-2xl overflow-hidden">
+              <div className="grid grid-cols-2 lg:grid-cols-4 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-amber-600/30">
+                <div className="p-6 sm:p-8 text-center">
+                  <div className="text-blue-600 text-sm sm:text-base font-semibold mb-2">Year Established</div>
+                  <div className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold">1988</div>
+                </div>
+                <div className="p-6 sm:p-8 text-center">
+                  <div className="text-blue-600 text-sm sm:text-base font-semibold mb-2">Charities Funded</div>
+                  <div className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold">86</div>
+                </div>
+                <div className="p-6 sm:p-8 text-center">
+                  <div className="text-blue-600 text-sm sm:text-base font-semibold mb-2">Money Donated</div>
+                  <div className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold">$6 Million</div>
+                </div>
+                <div className="p-6 sm:p-8 text-center">
+                  <div className="text-blue-600 text-sm sm:text-base font-semibold mb-2">Number of Paid Employees</div>
+                  <div className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* How We Operate Section */}
