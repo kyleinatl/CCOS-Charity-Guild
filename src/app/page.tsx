@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [otherMenuOpen, setOtherMenuOpen] = useState(false);
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
@@ -100,6 +101,50 @@ export default function Home() {
                 onClick={() => setMenuOpen(false)}
               >
                 Become a Member
+              </a>
+              
+              {/* Other submenu */}
+              <div className="relative">
+                <button
+                  onClick={() => setOtherMenuOpen(!otherMenuOpen)}
+                  className="w-full text-left px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium flex items-center justify-between"
+                >
+                  Other
+                  <svg
+                    className={`w-4 h-4 transition-transform ${otherMenuOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {otherMenuOpen && (
+                  <div className="bg-green-50/50">
+                    <a
+                      href="#heart-to-heart"
+                      className="block px-8 py-2 text-green-600 hover:bg-green-100 transition-colors"
+                      onClick={(e) => handleNavigation(e, '#heart-to-heart')}
+                    >
+                      Heart to Heart
+                    </a>
+                    <a
+                      href="#gallery"
+                      className="block px-8 py-2 text-green-600 hover:bg-green-100 transition-colors"
+                      onClick={(e) => handleNavigation(e, '#gallery')}
+                    >
+                      Gallery
+                    </a>
+                  </div>
+                )}
+              </div>
+              
+              <a
+                href="/contact"
+                className="block px-6 py-3 text-green-700 hover:bg-green-50 transition-colors font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
+                Contact
               </a>
             </div>
           )}
@@ -346,6 +391,60 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Heart to Heart Section */}
+        <section id="heart-to-heart" className="mb-12 sm:mb-20">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl border border-green-100">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent mb-6">
+                Heart to Heart
+              </h3>
+              <div className="max-w-3xl mx-auto">
+                <p className="text-base sm:text-lg text-green-700 leading-relaxed mb-6">
+                  Do you know someone who has experienced illness, surgery, or death within their family? 
+                  The Charity Guild is here to help! Heart to Heart was established to bring sunshine to 
+                  those in need within our community.
+                </p>
+                <p className="text-base sm:text-lg text-green-700 leading-relaxed mb-8">
+                  Click the link below to contact our Heart to Heart program volunteer, Andee Blauser, for more information.
+                </p>
+                <a
+                  href="mailto:heart-to-heart@charityguild.org"
+                  className="inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  heart-to-heart@charityguild.org
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Gallery Section */}
+        <section id="gallery" className="mb-12 sm:mb-20">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent mb-4">
+              Gallery
+            </h3>
+            <p className="text-green-700 text-base sm:text-lg">
+              Moments from our fundraising events and community impact
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {/* Placeholder images - will be replaced with actual photos */}
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+              <div key={item} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow border border-green-100">
+                <div className="aspect-square bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center">
+                  <svg className="w-16 h-16 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
