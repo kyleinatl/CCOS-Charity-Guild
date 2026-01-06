@@ -38,12 +38,18 @@ export default function Home() {
                 <p className="text-xs sm:text-sm text-green-600 font-medium">Charity Guild</p>
               </div>
             </div>
-            <div className="flex items-center space-x-3 sm:space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               <a
                 href="/donate"
-                className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 sm:px-6 py-2 rounded-lg text-sm sm:text-base font-medium hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl"
+                className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 sm:px-6 py-2 rounded-lg text-xs sm:text-base font-medium hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
               >
                 Join/Donate
+              </a>
+              <a
+                href="/sponsor"
+                className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-3 sm:px-6 py-2 rounded-lg text-xs sm:text-base font-medium hover:from-amber-600 hover:to-yellow-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
+              >
+                Become a Sponsor
               </a>
               
               {/* Hamburger Menu */}
