@@ -26,7 +26,7 @@ export default function GrantRecipientsPage() {
             Grant Recipients
           </h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Organizations supported by the Cobb County Charity Guild through our grant program
+            Organizations supported by the Country Club of the South Charity Guild through our grant program
           </p>
         </div>
 
