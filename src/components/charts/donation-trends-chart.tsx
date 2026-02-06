@@ -66,7 +66,7 @@ export function DonationTrendsChart({ data }: DonationTrendsChartProps) {
                   {/* Total amount bar */}
                   <div 
                     className="w-4/5 bg-blue-500 rounded-t transition-all hover:bg-blue-600"
-                    style={{{ 
+                    style={{ 
                       height: `${(item.total_amount / maxAmount) * 200}px`,
                       minHeight: '4px'
                     }}
@@ -76,7 +76,7 @@ export function DonationTrendsChart({ data }: DonationTrendsChartProps) {
                   {/* Donation count bar */}
                   <div 
                     className="w-2/5 bg-sky-500 rounded transition-all hover:bg-sky-600"
-                    style={{{ 
+                    style={{ 
                       height: `${(item.donation_count / maxCount) * 40}px`,
                       minHeight: item.donation_count > 0 ? '2px' : '0px'
                     }}

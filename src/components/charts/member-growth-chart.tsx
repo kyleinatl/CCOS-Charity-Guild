@@ -66,7 +66,7 @@ export function MemberGrowthChart({ data }: MemberGrowthChartProps) {
                   {/* New members bar */}
                   <div 
                     className="w-full bg-sky-500 rounded transition-all hover:bg-sky-600"
-                    style={{{ 
+                    style={{ 
                       height: `${(item.new_members / maxNew) * 40}px`,
                       minHeight: item.new_members > 0 ? '2px' : '0px'
                     }}
