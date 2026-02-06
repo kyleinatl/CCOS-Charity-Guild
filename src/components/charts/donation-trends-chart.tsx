@@ -19,7 +19,7 @@ export function DonationTrendsChart({ data }: DonationTrendsChartProps) {
           <CardTitle>Donation Trends</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-center h-64 text-green-600">
+          <div className="flex items-center justify-center h-64 text-blue-600">
             No data available
           </div>
         </CardContent>
@@ -49,11 +49,11 @@ export function DonationTrendsChart({ data }: DonationTrendsChartProps) {
           {/* Legend */}
           <div className="flex gap-4 text-sm">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-emerald-500 rounded"></div>
+              <div className="w-3 h-3 bg-blue-500 rounded"></div>
               <span>Total Amount</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-orange-500 rounded"></div>
+              <div className="w-3 h-3 bg-sky-500 rounded"></div>
               <span>Donation Count</span>
             </div>
           </div>
@@ -65,8 +65,8 @@ export function DonationTrendsChart({ data }: DonationTrendsChartProps) {
                 <div key={index} className="flex-1 flex flex-col items-center gap-1">
                   {/* Total amount bar */}
                   <div 
-                    className="w-4/5 bg-emerald-500 rounded-t transition-all hover:bg-emerald-600"
-                    style={{ 
+                    className="w-4/5 bg-blue-500 rounded-t transition-all hover:bg-blue-600"
+                    style={{{ 
                       height: `${(item.total_amount / maxAmount) * 200}px`,
                       minHeight: '4px'
                     }}
@@ -75,8 +75,8 @@ export function DonationTrendsChart({ data }: DonationTrendsChartProps) {
                   
                   {/* Donation count bar */}
                   <div 
-                    className="w-2/5 bg-orange-500 rounded transition-all hover:bg-orange-600"
-                    style={{ 
+                    className="w-2/5 bg-sky-500 rounded transition-all hover:bg-sky-600"
+                    style={{{ 
                       height: `${(item.donation_count / maxCount) * 40}px`,
                       minHeight: item.donation_count > 0 ? '2px' : '0px'
                     }}
@@ -98,28 +98,28 @@ export function DonationTrendsChart({ data }: DonationTrendsChartProps) {
           {/* Summary stats */}
           <div className="grid grid-cols-4 gap-4 pt-4 border-t">
             <div className="text-center">
-              <div className="text-lg font-bold text-emerald-600">
+              <div className="text-lg font-bold text-blue-600">
                 {formatCurrency(data.reduce((sum, item) => sum + item.total_amount, 0))}
               </div>
-              <div className="text-sm text-green-600">Total Raised</div>
+              <div className="text-sm text-blue-600">Total Raised</div>
             </div>
             <div className="text-center">
-              <div className="text-lg font-bold text-orange-600">
+              <div className="text-lg font-bold text-sky-600">
                 {data.reduce((sum, item) => sum + item.donation_count, 0)}
               </div>
-              <div className="text-sm text-green-600">Total Donations</div>
+              <div className="text-sm text-blue-600">Total Donations</div>
             </div>
             <div className="text-center">
-              <div className="text-lg font-bold text-blue-600">
+              <div className="text-lg font-bold" style={{color: '#e5c366'}}>
                 {formatCurrency(data.reduce((sum, item) => sum + item.average_amount, 0) / data.length)}
               </div>
-              <div className="text-sm text-green-600">Avg Amount</div>
+              <div className="text-sm text-blue-600">Avg Amount</div>
             </div>
             <div className="text-center">
-              <div className="text-lg font-bold text-purple-600">
+              <div className="text-lg font-bold" style={{color: '#e5c366'}}>
                 {(data.reduce((sum, item) => sum + item.donation_count, 0) / data.length).toFixed(1)}
               </div>
-              <div className="text-sm text-green-600">Avg/Month</div>
+              <div className="text-sm text-blue-600">Avg/Month</div>
             </div>
           </div>
         </div>

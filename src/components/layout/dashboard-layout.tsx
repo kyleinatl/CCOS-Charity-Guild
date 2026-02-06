@@ -41,20 +41,20 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-emerald-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-sky-100">
       {/* Mobile sidebar */}
       <div className={cn(
         "fixed inset-0 z-50 lg:hidden",
         sidebarOpen ? "block" : "hidden"
       )}>
-        <div className="fixed inset-0 bg-green-900/75 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
+        <div className="fixed inset-0 bg-blue-900/75 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
         <div className="fixed inset-y-0 left-0 w-64 bg-white/95 backdrop-blur-sm shadow-2xl">
-          <div className="flex h-16 items-center justify-between px-6 bg-gradient-to-r from-green-600 to-emerald-600">
+          <div className="flex h-16 items-center justify-between px-6 bg-gradient-to-r from-blue-600 to-sky-600">
             <div className="flex items-center space-x-3">
               <img 
-                src="/logo.png" 
+                src="/ccos-logo-transparent.png" 
                 alt="CCOS Guild Logo" 
-                className="h-8 w-auto filter brightness-0 invert"
+                className="h-8 w-auto"
               />
               <span className="text-xl font-bold text-white">CCOS Guild</span>
             </div>
@@ -78,8 +78,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   className={cn(
                     "flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 hover:translate-x-1",
                     isActive
-                      ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/30 scale-105"
-                      : "text-green-700 hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 hover:shadow-md hover:shadow-green-200/50"
+                      ? "bg-gradient-to-r from-blue-500 to-sky-600 text-white shadow-lg shadow-blue-500/30 scale-105"
+                      : "text-blue-700 hover:bg-gradient-to-r hover:from-blue-100 hover:to-sky-100 hover:shadow-md hover:shadow-blue-200/50"
                   )}
                 >
                   <item.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
@@ -93,13 +93,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
       {/* Desktop sidebar */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:w-64 lg:block">
-        <div className="flex h-full flex-col bg-white/95 backdrop-blur-sm shadow-2xl border-r border-green-100">
-          <div className="flex h-16 items-center px-6 bg-gradient-to-r from-green-600 to-emerald-600">
+        <div className="flex h-full flex-col bg-white/95 backdrop-blur-sm shadow-2xl border-r border-blue-100">
+          <div className="flex h-16 items-center px-6 bg-gradient-to-r from-blue-600 to-sky-600">
             <div className="flex items-center space-x-3">
               <img 
-                src="/logo.png" 
+                src="/ccos-logo-transparent.png" 
                 alt="CCOS Guild Logo" 
-                className="h-8 w-auto filter brightness-0 invert"
+                className="h-8 w-auto"
               />
               <span className="text-xl font-bold text-white">CCOS Guild</span>
             </div>
@@ -114,8 +114,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   className={cn(
                     "flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all",
                     isActive
-                      ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg"
-                      : "text-green-700 hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 hover:shadow-md"
+                      ? "bg-gradient-to-r from-blue-500 to-sky-600 text-white shadow-lg"
+                      : "text-blue-700 hover:bg-gradient-to-r hover:from-blue-100 hover:to-sky-100 hover:shadow-md"
                   )}
                 >
                   <item.icon className="h-5 w-5" />
@@ -124,14 +124,14 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               );
             })}
           </nav>
-          <div className="p-4 border-t border-green-100">
-            <div className="flex items-center space-x-3 px-4 py-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl">
-              <div className="h-10 w-10 rounded-full bg-gradient-to-r from-amber-500 to-yellow-600 flex items-center justify-center shadow-lg">
+          <div className="p-4 border-t border-blue-100">
+            <div className="flex items-center space-x-3 px-4 py-3 bg-gradient-to-r from-blue-50 to-sky-50 rounded-xl">
+              <div className="h-10 w-10 rounded-full flex items-center justify-center shadow-lg" style={{background: 'linear-gradient(to right, #e5c366, #d4b356)'}}>
                 <User className="h-5 w-5 text-white" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-green-800">Admin User</p>
-                <p className="text-xs text-green-600 truncate">admin@ccoscharityguild.org</p>
+                <p className="text-sm font-semibold text-blue-800">Admin User</p>
+                <p className="text-xs text-blue-600 truncate">admin@ccoscharityguild.org</p>
               </div>
             </div>
           </div>
@@ -141,34 +141,34 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Main content */}
       <div className="lg:pl-64">
         {/* Top header */}
-        <div className="sticky top-0 z-40 bg-gradient-to-r from-green-50/95 to-emerald-50/95 backdrop-blur-sm shadow-lg border-b border-green-200">
+        <div className="sticky top-0 z-40 bg-gradient-to-r from-blue-50/95 to-sky-50/95 backdrop-blur-sm shadow-lg border-b border-blue-200">
           <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
             <div className="flex items-center space-x-4">
               <Button
                 variant="ghost"
                 size="icon"
-                className="lg:hidden text-green-600 hover:text-green-800 hover:bg-white/50"
+                className="lg:hidden text-blue-600 hover:text-blue-800 hover:bg-white/50"
                 onClick={() => setSidebarOpen(true)}
               >
                 <Menu className="h-6 w-6" />
               </Button>
               <div className="hidden sm:flex items-center space-x-4 bg-white/50 rounded-xl px-4 py-2 backdrop-blur-sm">
-                <Search className="h-5 w-5 text-green-600" />
+                <Search className="h-5 w-5 text-blue-600" />
                 <input
                   type="text"
                   placeholder="Search members, donations, events..."
-                  className="border-0 bg-transparent text-sm text-green-800 placeholder-green-500 focus:outline-none focus:ring-0 min-w-0 flex-1"
+                  className="border-0 bg-transparent text-sm text-blue-800 placeholder-blue-500 focus:outline-none focus:ring-0 min-w-0 flex-1"
                 />
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="icon" className="relative text-green-600 hover:text-green-800 hover:bg-white/50">
+              <Button variant="ghost" size="icon" className="relative text-blue-600 hover:text-blue-800 hover:bg-white/50">
                 <Bell className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 h-4 w-4 bg-amber-500 rounded-full text-xs text-white flex items-center justify-center shadow-lg">
+                <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full text-xs text-white flex items-center justify-center shadow-lg" style={{backgroundColor: '#e5c366'}}>
                   3
                 </span>
               </Button>
-              <Button className="hidden sm:flex bg-gradient-to-r from-amber-500 to-yellow-600 text-white hover:from-amber-600 hover:to-yellow-700 shadow-lg">
+              <Button className="hidden sm:flex text-white shadow-lg" style={{background: 'linear-gradient(to right, #e5c366, #d4b356)'}}>
                 <Sparkles className="h-4 w-4 mr-2" />
                 AI Assistant
               </Button>
@@ -177,7 +177,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         </div>
 
         {/* Page content */}
-        <main className="flex-1 bg-gradient-to-br from-green-50/50 via-amber-50/30 to-emerald-100/50 min-h-screen">
+        <main className="flex-1 bg-gradient-to-br from-blue-50/50 via-yellow-50/30 to-sky-100/50 min-h-screen">
           {children}
         </main>
       </div>

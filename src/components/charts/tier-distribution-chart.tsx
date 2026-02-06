@@ -19,7 +19,7 @@ export function TierDistributionChart({ data }: TierDistributionChartProps) {
           <CardTitle>Member Tier Distribution</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-center h-64 text-green-600">
+          <div className="flex items-center justify-center h-64 text-blue-600">
             No data available
           </div>
         </CardContent>
@@ -102,7 +102,7 @@ export function TierDistributionChart({ data }: TierDistributionChartProps) {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-2xl font-bold">{total}</div>
-                  <div className="text-sm text-green-600">Members</div>
+                  <div className="text-sm text-blue-600">Members</div>
                 </div>
               </div>
             </div>
@@ -132,16 +132,16 @@ export function TierDistributionChart({ data }: TierDistributionChartProps) {
           {/* Summary */}
           <div className="grid grid-cols-2 gap-4 pt-4 border-t">
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600">
+              <div className="text-2xl font-bold" style={{color: '#e5c366'}}>
                 {formatCurrency(data.reduce((sum, item) => sum + item.total_donated, 0))}
               </div>
-              <div className="text-sm text-green-600">Total Donated</div>
+              <div className="text-sm text-blue-600">Total Donated</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-600">
+              <div className="text-2xl font-bold text-blue-600">
                 {formatCurrency(data.reduce((sum, item) => sum + item.total_donated, 0) / total)}
               </div>
-              <div className="text-sm text-green-600">Avg per Member</div>
+              <div className="text-sm text-blue-600">Avg per Member</div>
             </div>
           </div>
         </div>

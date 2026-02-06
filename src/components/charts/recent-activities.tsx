@@ -33,8 +33,8 @@ export function RecentActivities({ data }: RecentActivitiesProps) {
 
   const getActivityColor = (type: string) => {
     const colors = {
-      donation: 'bg-green-500',
-      event_registration: 'bg-blue-500',
+      donation: 'bg-blue-500',
+      event_registration: 'bg-sky-500',
       communication_sent: 'bg-purple-500',
       profile_update: 'bg-orange-500',
       tier_upgrade: 'bg-yellow-500',
@@ -68,7 +68,7 @@ export function RecentActivities({ data }: RecentActivitiesProps) {
           <CardTitle>Recent Activities</CardTitle>
         </CardHeader>
         <CardContent>
-                    <div className="flex items-center justify-center h-64 text-green-600">
+                    <div className="flex items-center justify-center h-64 text-blue-600">
             No activities available
           </div>
         </CardContent>
@@ -80,7 +80,7 @@ export function RecentActivities({ data }: RecentActivitiesProps) {
     <Card>
       <CardHeader>
         <CardTitle>Recent Activities</CardTitle>
-                <p className="text-sm text-green-600">
+                <p className="text-sm text-blue-600">
           Latest member activities and system updates
         </p>
       </CardHeader>
@@ -107,11 +107,11 @@ export function RecentActivities({ data }: RecentActivitiesProps) {
                       {activity.activity_type.replace('_', ' ')}
                     </Badge>
                   </div>
-                                    <span className="text-sm text-green-600">
+                                    <span className="text-sm text-blue-600">
                     {new Date(activity.created_at).toLocaleDateString()}
                   </span>
                 </div>
-                <p className="text-sm text-green-600 mt-1">
+                <p className="text-sm text-blue-600 mt-1">
                   {activity.description}
                 </p>
               </div>

@@ -18,7 +18,7 @@ export function MemberGrowthChart({ data }: MemberGrowthChartProps) {
           <CardTitle>Member Growth</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-center h-64 text-green-600">
+          <div className="flex items-center justify-center h-64 text-blue-600">
             No data available
           </div>
         </CardContent>
@@ -43,7 +43,7 @@ export function MemberGrowthChart({ data }: MemberGrowthChartProps) {
               <span>Total Members</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-500 rounded"></div>
+              <div className="w-3 h-3 bg-sky-500 rounded"></div>
               <span>New Members</span>
             </div>
           </div>
@@ -65,8 +65,8 @@ export function MemberGrowthChart({ data }: MemberGrowthChartProps) {
                   
                   {/* New members bar */}
                   <div 
-                    className="w-full bg-green-500 rounded transition-all hover:bg-green-600"
-                    style={{ 
+                    className="w-full bg-sky-500 rounded transition-all hover:bg-sky-600"
+                    style={{{ 
                       height: `${(item.new_members / maxNew) * 40}px`,
                       minHeight: item.new_members > 0 ? '2px' : '0px'
                     }}
@@ -91,19 +91,19 @@ export function MemberGrowthChart({ data }: MemberGrowthChartProps) {
               <div className="text-2xl font-bold text-blue-600">
                 {data[data.length - 1]?.total_members || 0}
               </div>
-              <div className="text-sm text-green-600">Current Total</div>
+              <div className="text-sm text-blue-600">Current Total</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-600">
+              <div className="text-2xl font-bold text-sky-600">
                 {data.reduce((sum, item) => sum + item.new_members, 0)}
               </div>
-              <div className="text-sm text-green-600">Total New</div>
+              <div className="text-sm text-blue-600">Total New</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600">
+              <div className="text-2xl font-bold" style={{color: '#e5c366'}}>
                 {(data.reduce((sum, item) => sum + item.new_members, 0) / data.length).toFixed(1)}
               </div>
-              <div className="text-sm text-green-600">Avg/Month</div>
+              <div className="text-sm text-blue-600">Avg/Month</div>
             </div>
           </div>
         </div>
