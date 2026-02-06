@@ -104,7 +104,7 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
   const tierEmoji = tierEmojis[memberProfile?.tier as keyof typeof tierEmojis] || tierEmojis.bronze;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-emerald-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-sky-100">
       {/* Mobile sidebar */}
       <Transition.Root show={mobileMenuOpen} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setMobileMenuOpen}>
@@ -117,7 +117,7 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-green-900/75 backdrop-blur-sm" />
+            <div className="fixed inset-0 bg-blue-900/75 backdrop-blur-sm" />
           </Transition.Child>
 
           <div className="fixed inset-0 z-40 flex">
@@ -152,29 +152,29 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
                   </div>
                 </Transition.Child>
 
-                <div className="flex h-16 items-center px-6 bg-gradient-to-r from-green-600 to-emerald-600">
+                <div className="flex h-16 items-center px-6 bg-gradient-to-r from-blue-600 to-sky-600">
                   <div className="flex items-center space-x-3">
                     <img 
-                      src="/logo.png" 
+                      src="/ccos-logo-transparent.png" 
                       alt="CCOS Guild Logo" 
-                      className="h-8 w-auto filter brightness-0 invert"
+                      className="h-8 w-auto"
                     />
                     <span className="text-xl font-bold text-white">Member Portal</span>
                   </div>
                 </div>
 
                 {/* Member Info */}
-                <div className="p-6 border-b border-green-100 bg-gradient-to-r from-green-50 to-emerald-50">
+                <div className="p-6 border-b border-blue-100 bg-gradient-to-r from-blue-50 to-sky-50">
                   <div className="flex items-center space-x-3">
                     <div className={`h-14 w-14 rounded-full bg-gradient-to-r ${tierColor} flex items-center justify-center text-white text-xl shadow-lg`}>
                       {tierEmoji}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-green-800">
+                      <p className="text-sm font-semibold text-blue-800">
                         {memberProfile?.first_name} {memberProfile?.last_name}
                       </p>
-                      <p className="text-xs text-green-600 capitalize font-medium">{memberProfile?.tier} Member</p>
-                      <p className="text-xs text-amber-600 font-semibold">
+                      <p className="text-xs text-blue-600 capitalize font-medium">{memberProfile?.tier} Member</p>
+                      <p className="text-xs text-sky-600 font-semibold">
                         ${memberProfile?.total_donated?.toLocaleString()} donated
                       </p>
                     </div>
@@ -191,8 +191,8 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
                         className={cn(
                           "flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all",
                           isActive
-                            ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg"
-                            : "text-green-700 hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 hover:shadow-md"
+                            ? "bg-gradient-to-r from-blue-500 to-sky-600 text-white shadow-lg"
+                            : "text-blue-700 hover:bg-gradient-to-r hover:from-blue-100 hover:to-sky-100 hover:shadow-md"
                         )}
                         onClick={() => setMobileMenuOpen(false)}
                       >
@@ -203,10 +203,10 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
                   })}
                 </nav>
 
-                <div className="p-4 border-t border-green-100">
+                <div className="p-4 border-t border-blue-100">
                   <Button
                     onClick={handleSignOut}
-                    className="w-full justify-start bg-gradient-to-r from-amber-500 to-yellow-600 text-white hover:from-amber-600 hover:to-yellow-700 shadow-lg"
+                    className="w-full justify-start bg-gradient-to-r from-blue-600 to-sky-600 text-white hover:from-blue-700 hover:to-sky-700 shadow-lg"
                   >
                     <LogOut className="h-4 w-4 mr-2" />
                     Sign Out
@@ -218,30 +218,30 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
         </Dialog>
       </Transition.Root>      {/* Desktop sidebar */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:w-64 lg:block">
-        <div className="flex h-full flex-col bg-white/95 backdrop-blur-sm shadow-2xl border-r border-green-100">
-          <div className="flex h-16 items-center px-6 bg-gradient-to-r from-green-600 to-emerald-600">
+        <div className="flex h-full flex-col bg-white/95 backdrop-blur-sm shadow-2xl border-r border-blue-100">
+          <div className="flex h-16 items-center px-6 bg-gradient-to-r from-blue-600 to-sky-600">
             <div className="flex items-center space-x-3">
               <img 
-                src="/logo.png" 
+                src="/ccos-logo-transparent.png" 
                 alt="CCOS Guild Logo" 
-                className="h-8 w-auto filter brightness-0 invert"
+                className="h-8 w-auto"
               />
               <span className="text-xl font-bold text-white">Member Portal</span>
             </div>
           </div>
 
           {/* Member Info */}
-          <div className="p-6 border-b border-green-100 bg-gradient-to-r from-green-50 to-emerald-50">
+          <div className="p-6 border-b border-blue-100 bg-gradient-to-r from-blue-50 to-sky-50">
             <div className="flex items-center space-x-3">
               <div className={`h-14 w-14 rounded-full bg-gradient-to-r ${tierColor} flex items-center justify-center text-white text-xl shadow-lg`}>
                 {tierEmoji}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-green-800">
+                <p className="text-sm font-semibold text-blue-800">
                   {memberProfile?.first_name} {memberProfile?.last_name}
                 </p>
-                <p className="text-xs text-green-600 capitalize font-medium">{memberProfile?.tier} Member</p>
-                <p className="text-xs text-amber-600 font-semibold">
+                <p className="text-xs text-blue-600 capitalize font-medium">{memberProfile?.tier} Member</p>
+                <p className="text-xs text-sky-600 font-semibold">
                   ${memberProfile?.total_donated?.toLocaleString()} donated
                 </p>
               </div>
@@ -258,8 +258,8 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
                   className={cn(
                     "flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all",
                     isActive
-                      ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg"
-                      : "text-green-700 hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 hover:shadow-md"
+                      ? "bg-gradient-to-r from-blue-500 to-sky-600 text-white shadow-lg"
+                      : "text-blue-700 hover:bg-gradient-to-r hover:from-blue-100 hover:to-sky-100 hover:shadow-md"
                   )}
                 >
                   <item.icon className="h-5 w-5" />
@@ -269,10 +269,10 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
             })}
           </nav>
 
-          <div className="p-4 border-t border-green-100">
+          <div className="p-4 border-t border-blue-100">
             <Button
               onClick={handleSignOut}
-              className="w-full justify-start bg-gradient-to-r from-amber-500 to-yellow-600 text-white hover:from-amber-600 hover:to-yellow-700 shadow-lg"
+              className="w-full justify-start bg-gradient-to-r from-blue-600 to-sky-600 text-white hover:from-blue-700 hover:to-sky-700 shadow-lg"
             >
               <LogOut className="h-4 w-4 mr-2" />
               Sign Out
@@ -284,23 +284,23 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
       {/* Main content */}
       <div className="lg:pl-64">
         {/* Top bar */}
-        <div className="sticky top-0 z-10 bg-gradient-to-r from-green-50/95 to-emerald-50/95 backdrop-blur-sm shadow-lg border-b border-green-200 px-4 py-3 sm:px-6 lg:px-8">
+        <div className="sticky top-0 z-10 bg-gradient-to-r from-blue-50/95 to-sky-50/95 backdrop-blur-sm shadow-lg border-b border-blue-200 px-4 py-3 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <button
                 type="button"
-                className="lg:hidden -ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-xl text-green-600 hover:text-green-800 hover:bg-white/50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500 transition-all"
+                className="lg:hidden -ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-xl text-blue-600 hover:text-blue-800 hover:bg-white/50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-all"
                 onClick={() => setMobileMenuOpen(true)}
               >
                 <span className="sr-only">Open sidebar</span>
                 <Menu className="h-6 w-6" />
               </button>
-              <h1 className="ml-4 text-2xl font-bold text-green-800 lg:ml-0">
+              <h1 className="ml-2 text-lg sm:text-xl md:text-2xl font-bold text-blue-800 lg:ml-0">
                 Welcome back, {memberProfile?.first_name}
               </h1>
             </div>
             <div className="flex items-center space-x-4">
-              <Badge className="hidden sm:inline-flex bg-gradient-to-r from-amber-500 to-yellow-600 text-white shadow-lg border-0">
+              <Badge className="hidden sm:inline-flex bg-gradient-to-r from-blue-500 to-sky-600 text-white shadow-lg border-0">
                 {memberProfile?.tier} Member
               </Badge>
             </div>
@@ -308,7 +308,7 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
         </div>
 
         {/* Page content */}
-        <div className="p-4 sm:p-6 lg:p-8 bg-gradient-to-br from-green-50/40 via-amber-50/20 to-emerald-100/40 min-h-screen">
+        <div className="px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10 bg-gradient-to-br from-blue-50/40 via-yellow-50/20 to-sky-100/40 min-h-screen">
           {children}
         </div>
       </div>

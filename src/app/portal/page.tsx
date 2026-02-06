@@ -114,12 +114,12 @@ function MemberDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-emerald-100">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-sky-100">
         <div className="container mx-auto p-6">
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
-              <div className="animate-spin w-8 h-8 border-4 border-green-600 border-t-transparent rounded-full mx-auto mb-4"></div>
-              <p className="text-green-700 font-medium">Loading your member dashboard...</p>
+              <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
+              <p className="text-blue-700 font-medium">Loading your member dashboard...</p>
             </div>
           </div>
         </div>
@@ -140,70 +140,70 @@ function MemberDashboard() {
   const memberProfile = user?.member_profile;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-emerald-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-sky-100">
       <div className="container mx-auto p-6 space-y-6">
         {/* Welcome Section */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-green-100">
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-blue-100">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-700 to-sky-600 bg-clip-text text-transparent">
                 Welcome back, {memberProfile?.first_name}!
               </h1>
-              <p className="text-green-600 mt-2 font-medium">
+              <p className="text-blue-600 mt-2 font-medium">
                 Country Club of the South Charity Guild Member since {formatDate(dashboardData.stats.memberSince)}
               </p>
             </div>
             <div className="text-right">
-              <div className="text-3xl font-bold bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">
+              <div className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-sky-600 bg-clip-text text-transparent">
                 {formatCurrency(dashboardData.stats.totalDonated)}
               </div>
-              <p className="text-green-700 font-semibold">Total contributed</p>
+              <p className="text-blue-700 font-semibold">Total contributed</p>
             </div>
           </div>
         </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="bg-gradient-to-br from-green-600 to-emerald-700 text-white hover:shadow-2xl transition-all hover:scale-105 border-0">
+          <Card className="bg-gradient-to-br from-blue-600 to-sky-700 text-white hover:shadow-2xl transition-all hover:scale-105 border-0">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-green-100">
+              <CardTitle className="text-sm font-semibold text-blue-100">
                 Total Donated
               </CardTitle>
-              <DollarSign className="h-5 w-5 text-amber-300" />
+              <DollarSign className="h-5 w-5 text-yellow-300" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-white">{formatCurrency(dashboardData.stats.totalDonated)}</div>
-              <p className="text-xs text-green-200">
+              <p className="text-xs text-blue-200">
                 {dashboardData.stats.donationCount} donations
               </p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-amber-500 to-yellow-600 text-white hover:shadow-2xl transition-all hover:scale-105 border-0">
+          <Card className="bg-gradient-to-br from-sky-500 to-blue-600 text-white hover:shadow-2xl transition-all hover:scale-105 border-0">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-amber-100">
+              <CardTitle className="text-sm font-semibold text-sky-100">
                 Events Attended
               </CardTitle>
               <Calendar className="h-5 w-5 text-white" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-white">{dashboardData.stats.eventsAttended}</div>
-              <p className="text-xs text-amber-200">
+              <p className="text-xs text-sky-200">
                 This year
               </p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-emerald-500 to-teal-600 text-white hover:shadow-2xl transition-all hover:scale-105 border-0">
+          <Card className="bg-gradient-to-br from-blue-500 to-indigo-600 text-white hover:shadow-2xl transition-all hover:scale-105 border-0">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-emerald-100">
+              <CardTitle className="text-sm font-semibold text-blue-100">
                 Messages
               </CardTitle>
               <MessageSquare className="h-5 w-5 text-white" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-white">{dashboardData.stats.messagesReceived}</div>
-              <p className="text-xs text-emerald-200">
+              <p className="text-xs text-blue-200">
                 Unread: {dashboardData.recentMessages.filter(m => !m.read).length}
               </p>
             </CardContent>

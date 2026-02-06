@@ -181,7 +181,7 @@ function MemberResourcesContent() {
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'minutes': return 'bg-blue-100 text-blue-700';
-      case 'form': return 'bg-green-100 text-green-700';
+      case 'form': return 'bg-sky-100 text-sky-700';
       case 'policy': return 'bg-purple-100 text-purple-700';
       default: return 'bg-gray-100 text-gray-700';
     }
