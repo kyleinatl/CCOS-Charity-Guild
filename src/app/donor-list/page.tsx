@@ -77,7 +77,7 @@ export default function DonorListPage() {
 
           {/* Gold */}
           <div className="mb-8">
-            <h4 className="text-2xl font-bold text-yellow-600 mb-4 border-b-2 border-yellow-600 pb-2">Gold Patron ($1,000-$4,999)</h4>
+            <h4 className="text-2xl font-bold text-[#e5c366] mb-4 border-b-2 border-[#e5c366] pb-2">Gold Patron ($1,000-$4,999)</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
               {['Jan and Bruce Alonso', 'Mary Baird and David Nelson', 'Judy and John Bardis', 'Becky and Roger Brown', 'Pam and Larry Buckley', 'Joyce and Vince Connolly', 'Mary and Lance Cunha', 'Ruchi and Manish Dave', 'Julia and David DeCook', 'Irma Rodriguez and Fred Fernandez', 'Kerri and Mark Friedman', 'Jennifer and Gary Gabriel', 'Ken Gary', 'Kim and John Gehrhardt', 'Susie and Michael Greenberg', 'Beth Hausmann', 'Candace and Todd Hickman', 'Marjorie and Michael Keith', 'Diane and Michael Koehler', 'Jill and Richard Levine', 'Lani and Richard Lusk', 'Joyce and Larry Mays', 'Jennifer and Barry Meyrowitz', 'Konni and Jon Minter', 'Stephanie and Dan Moody', 'Tracie and Jeff Nolde', 'Lori and Larry Payne', 'Joy and Bill Prettyman', 'Marianne and Winfried Johnson-Rank', 'Zamira and John Rasper', 'Tracy and Michael Reidenbach', 'Julie Samsel', 'Beth and John Scarbrough', 'Pat and Mark Seal', 'Kathy and Scott Solomon', 'Salli LeVan and Michael Steck', 'Barbara and Scott Stevens', 'Halina and Aleksander Szlam', 'Chantel and Rob Taylor', 'LuAnn and Tom Via', 'Rhonda and Russell Welch'].map((name, i) => (
                 <p key={i} className="text-blue-800">{name}</p>
@@ -125,7 +125,7 @@ export default function DonorListPage() {
 
           {/* Gold */}
           <div className="mb-8">
-            <h5 className="text-xl font-bold text-yellow-600 mb-4 border-b-2 border-yellow-600 pb-2">Gold Patron ($5,000-$9,999)</h5>
+            <h5 className="text-xl font-bold text-[#e5c366] mb-4 border-b-2 border-[#e5c366] pb-2">Gold Patron ($5,000-$9,999)</h5>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
               {['Judy and John Bardis', 'Cathy and Glen Bradley', 'Melissa Dickens', 'Kristin and Tom Golub', 'Betsy and Rod Odom', 'Marianne and Winfried Johnson-Rank', 'Beth and Andy Wren'].map((name, i) => (
                 <p key={i} className="text-blue-800">{name}</p>

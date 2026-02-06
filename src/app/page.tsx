@@ -66,7 +66,7 @@ export default function Home() {
               </a>
               <a
                 href="/sponsor"
-                className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-2 sm:px-4 lg:px-6 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-xs lg:text-base font-medium hover:from-yellow-600 hover:to-yellow-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
+                className="bg-[#e5c366] text-white px-2 sm:px-4 lg:px-6 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-xs lg:text-base font-medium hover:bg-[#d4b356] transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
               >
                 Sponsor
               </a>
@@ -214,7 +214,7 @@ export default function Home() {
             <span className="bg-gradient-to-r from-blue-700 via-sky-600 to-blue-800 bg-clip-text text-transparent">
               Country Club of the South
             </span>
-            <span className="block text-2xl sm:text-3xl md:text-4xl text-amber-600 font-light mt-2">Charity Guild</span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl text-[#e5c366] font-light mt-2">Charity Guild</span>
           </h2>
           <div className="flex justify-center mb-8 sm:mb-10">
             <img 
@@ -240,7 +240,7 @@ export default function Home() {
             </a>
             <a
               href="/sponsor"
-              className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:from-yellow-600 hover:to-yellow-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
+              className="bg-[#e5c366] text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:bg-[#d4b356] transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
             >
               Become a Sponsor
             </a>
@@ -248,8 +248,8 @@ export default function Home() {
 
           {/* Stats Bar */}
           <div className="mt-12 sm:mt-16 px-4">
-            <div className="bg-gradient-to-r from-yellow-500 via-amber-600 to-yellow-600 rounded-2xl shadow-2xl overflow-hidden">
-              <div className="grid grid-cols-2 lg:grid-cols-4 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-amber-700/30">
+            <div className="bg-gradient-to-r from-[#e5c366] via-[#d4b356] to-[#e5c366] rounded-2xl shadow-2xl overflow-hidden">
+              <div className="grid grid-cols-2 lg:grid-cols-4 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-[#d4b356]/30">
                 <div className="p-6 sm:p-8 text-center">
                   <div className="text-blue-700 text-sm sm:text-base font-semibold mb-2">Year Established</div>
                   <div className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold">1988</div>
@@ -445,7 +445,7 @@ export default function Home() {
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <div className="w-16 h-16 bg-[#e5c366] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                   </svg>
@@ -480,7 +480,7 @@ export default function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-                <div className="w-14 h-14 bg-amber-400 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                <div className="w-14 h-14 bg-[#e5c366] rounded-xl flex items-center justify-center mb-6 shadow-lg">
                   <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
                   </svg>
@@ -493,7 +493,7 @@ export default function Home() {
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-                <div className="w-14 h-14 bg-yellow-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                <div className="w-14 h-14 bg-[#e5c366] rounded-xl flex items-center justify-center mb-6 shadow-lg">
                   <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                   </svg>
@@ -528,7 +528,7 @@ export default function Home() {
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <div className="w-16 h-16 bg-[#e5c366] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -615,7 +615,7 @@ export default function Home() {
                 alt="CCOS Logo" 
                 className="h-10 w-auto"
               />
-              <h4 className="text-2xl font-bold bg-gradient-to-r from-yellow-300 to-yellow-400 bg-clip-text text-transparent">
+              <h4 className="text-2xl font-bold text-[#e5c366]">
                 Country Club of the South
               </h4>
             </div>

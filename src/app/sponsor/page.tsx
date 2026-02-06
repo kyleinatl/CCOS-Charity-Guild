@@ -112,7 +112,7 @@ export default function SponsorPage() {
               href="https://www.charityguild.org/sponsorship#:~:text=Click%20here%20to%20Sponsor,Bronze%20Sponosr%20%241%2C000"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-8 py-4 rounded-xl text-lg font-bold hover:from-yellow-600 hover:to-yellow-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 text-center"
+              className="inline-block bg-gradient-to-r from-[#e5c366] to-[#d4b356] text-white px-8 py-4 rounded-xl text-lg font-bold hover:from-[#d4b356] hover:to-[#c4a346] transition-all shadow-lg hover:shadow-xl hover:scale-105 text-center"
             >
               Click here to Sponsor
             </a>
@@ -123,11 +123,11 @@ export default function SponsorPage() {
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-blue-100">
           <h3 className="text-2xl font-bold text-blue-900 mb-6 text-center">Sponsorship Levels</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 text-center shadow-lg">
+            <div className="bg-gradient-to-br from-[#e5c366] to-[#d4b356] rounded-xl p-6 text-center shadow-lg">
               <h4 className="text-2xl font-bold text-white mb-2">Presenting Sponsor</h4>
               <p className="text-3xl font-bold text-white">$5,000+</p>
             </div>
-            <div className="bg-gradient-to-br from-yellow-500 to-yellow-500 rounded-xl p-6 text-center shadow-lg">
+            <div className="bg-gradient-to-br from-[#e5c366] to-[#e5c366] rounded-xl p-6 text-center shadow-lg">
               <h4 className="text-2xl font-bold text-white mb-2">Gold Sponsor</h4>
               <p className="text-3xl font-bold text-white">$5,000</p>
             </div>
@@ -135,7 +135,7 @@ export default function SponsorPage() {
               <h4 className="text-2xl font-bold text-white mb-2">Silver Sponsor</h4>
               <p className="text-3xl font-bold text-white">$2,500</p>
             </div>
-            <div className="bg-gradient-to-br from-yellow-700 to-yellow-800 rounded-xl p-6 text-center shadow-lg">
+            <div className="bg-gradient-to-br from-[#c4a346] to-[#b39336] rounded-xl p-6 text-center shadow-lg">
               <h4 className="text-2xl font-bold text-white mb-2">Bronze Sponsor</h4>
               <p className="text-3xl font-bold text-white">$1,000</p>
             </div>

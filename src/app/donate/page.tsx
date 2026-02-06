@@ -122,7 +122,7 @@ export default function DonatePage() {
               href="https://countryclubofthesouth.kindful.com/?campaign=1177635"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-8 py-4 rounded-xl text-lg font-bold hover:from-yellow-600 hover:to-yellow-700 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+              className="inline-block bg-gradient-to-r from-[#e5c366] to-[#d4b356] text-white px-8 py-4 rounded-xl text-lg font-bold hover:from-[#d4b356] hover:to-[#c4a346] transition-all shadow-lg hover:shadow-xl hover:scale-105"
             >
               Join/Donate
             </a>
