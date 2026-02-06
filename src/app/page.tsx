@@ -135,8 +135,42 @@ export default function Home() {
                 Become a Member
               </a>
               
+              {/* Member Resources - Password Protected */}
+              <div className="border-t border-blue-100 mt-2 pt-2">
+                <a
+                  href="/auth/login"
+                  className="block px-6 py-3 text-blue-700 hover:bg-blue-50 transition-colors font-medium flex items-center"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                  </svg>
+                  Member Login
+                </a>
+                <a
+                  href="/portal"
+                  className="block px-6 py-3 text-blue-700 hover:bg-blue-50 transition-colors font-medium flex items-center"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  Member Portal
+                </a>
+                <a
+                  href="/portal/resources"
+                  className="block px-6 py-3 text-blue-700 hover:bg-blue-50 transition-colors font-medium flex items-center"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                  Member Resources
+                </a>
+              </div>
+              
               {/* Other submenu */}
-              <div className="relative">
+              <div className="relative border-t border-blue-100 mt-2 pt-2">
                 <button
                   onClick={() => setOtherMenuOpen(!otherMenuOpen)}
                   className="w-full text-left px-6 py-3 text-blue-700 hover:bg-blue-50 transition-colors font-medium flex items-center justify-between"
