@@ -46,7 +46,7 @@ export default function Home() {
           <div className="flex justify-between items-center py-3 sm:py-4 lg:py-6">
             <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-3 min-w-0">
               <img 
-                src="/ccos-logo.png" 
+                src="/ccos-logo-transparent.png" 
                 alt="CCOS Charity Guild Logo" 
                 className="h-10 sm:h-12 lg:h-16 w-auto flex-shrink-0"
               />
@@ -257,7 +257,7 @@ export default function Home() {
             </h2>
             <div className="flex justify-center mb-8 sm:mb-10">
               <img 
-                src="/ccos-logo.png" 
+                src="/ccos-logo-transparent.png" 
                 alt="CCOS Logo" 
                 className="h-16 sm:h-20 w-auto drop-shadow-2xl"
               />
@@ -656,7 +656,7 @@ export default function Home() {
           <div className="text-center">
             <div className="flex justify-center items-center space-x-3 mb-6">
               <img 
-                src="/ccos-logo.png" 
+                src="/ccos-logo-transparent.png" 
                 alt="CCOS Logo" 
                 className="h-10 w-auto"
               />
