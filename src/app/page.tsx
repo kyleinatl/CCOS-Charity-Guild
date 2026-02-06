@@ -205,49 +205,60 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
-        <div className="text-center mb-12 sm:mb-20">
-          <div className="inline-flex items-center bg-white/80 backdrop-blur-sm px-3 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg border border-blue-200 mb-6 sm:mb-8">
-            <span className="text-blue-700 font-semibold text-xs sm:text-sm">🏆 100% Volunteer-Based • Supporting Atlanta Non-Profits</span>
+      <div className="relative bg-cover bg-center" style={{backgroundImage: "url('/guild-hero.avif')"}}>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+        
+        {/* Content */}
+        <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+          <div className="text-center mb-12 sm:mb-20">
+            <div className="inline-flex items-center bg-white/20 backdrop-blur-md px-3 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg border border-white/30 mb-6 sm:mb-8">
+              <span className="text-white font-semibold text-xs sm:text-sm drop-shadow-lg">🏆 100% Volunteer-Based • Supporting Atlanta Non-Profits</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8">
+              <span className="text-white drop-shadow-2xl">
+                Country Club of the South
+              </span>
+              <span className="block text-2xl sm:text-3xl md:text-4xl text-[#e5c366] font-light mt-2 drop-shadow-lg">Charity Guild</span>
+            </h2>
+            <div className="flex justify-center mb-8 sm:mb-10">
+              <img 
+                src="/ccos-logo.png" 
+                alt="CCOS Logo" 
+                className="h-16 sm:h-20 w-auto drop-shadow-2xl"
+              />
+            </div>
+            <div className="max-w-4xl mx-auto mb-8 sm:mb-12 px-2">
+              <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6 drop-shadow-lg">Our Mission</h3>
+              <p className="text-base sm:text-lg lg:text-xl text-white/95 leading-relaxed mb-6 sm:mb-8 drop-shadow-lg">
+                The mission of the Country Club of the South Charity Guild is to support Atlanta area non-profits. 
+                Our 100% volunteer-based group is dedicated to raising funds and awarding grants to improve the 
+                quality of life for those in our community facing hardship.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
+              <a
+                href="/donate"
+                className="bg-gradient-to-r from-blue-600 to-sky-600 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:from-blue-700 hover:to-sky-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
+              >
+                Join/Donate
+              </a>
+              <a
+                href="/sponsor"
+                className="bg-[#e5c366] text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:bg-[#d4b356] transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
+              >
+                Become a Sponsor
+              </a>
+            </div>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8">
-            <span className="bg-gradient-to-r from-blue-700 via-sky-600 to-blue-800 bg-clip-text text-transparent">
-              Country Club of the South
-            </span>
-            <span className="block text-2xl sm:text-3xl md:text-4xl text-[#e5c366] font-light mt-2">Charity Guild</span>
-          </h2>
-          <div className="flex justify-center mb-8 sm:mb-10">
-            <img 
-              src="/ccos-logo.png" 
-              alt="CCOS Logo" 
-              className="h-16 sm:h-20 w-auto opacity-90"
-            />
-          </div>
-          <div className="max-w-4xl mx-auto mb-8 sm:mb-12 px-2">
-            <h3 className="text-xl sm:text-2xl font-semibold text-blue-800 mb-4 sm:mb-6">Our Mission</h3>
-            <p className="text-base sm:text-lg lg:text-xl text-blue-700 leading-relaxed mb-6 sm:mb-8">
-              The mission of the Country Club of the South Charity Guild is to support Atlanta area non-profits. 
-              Our 100% volunteer-based group is dedicated to raising funds and awarding grants to improve the 
-              quality of life for those in our community facing hardship.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
-            <a
-              href="/donate"
-              className="bg-gradient-to-r from-blue-600 to-sky-600 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:from-blue-700 hover:to-sky-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
-            >
-              Join/Donate
-            </a>
-            <a
-              href="/sponsor"
-              className="bg-[#e5c366] text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:bg-[#d4b356] transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
-            >
-              Become a Sponsor
-            </a>
-          </div>
+        </main>
+      </div>
 
+      {/* Main Content Below Hero */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="py-8 sm:py-12">
           {/* Stats Bar */}
-          <div className="mt-12 sm:mt-16 px-4">
+          <div className="px-4">
             <div className="bg-gradient-to-r from-[#e5c366] via-[#d4b356] to-[#e5c366] rounded-2xl shadow-2xl overflow-hidden">
               <div className="grid grid-cols-2 lg:grid-cols-4 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-[#d4b356]/30">
                 <div className="p-6 sm:p-8 text-center">
@@ -594,8 +605,8 @@ export default function Home() {
             {/* Placeholder images - will be replaced with actual photos */}
             {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
               <div key={item} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow border border-blue-100">
-                <div className="aspect-square bg-gradient-to-br from-green-100 to-sky-100 flex items-center justify-center">
-                  <svg className="w-16 h-16 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="aspect-square bg-gradient-to-br from-blue-100 to-sky-100 flex items-center justify-center">
+                  <svg className="w-16 h-16 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 </div>
@@ -603,6 +614,7 @@ export default function Home() {
             ))}
           </div>
         </section>
+        </div>
       </main>
 
       {/* Footer */}
