@@ -210,7 +210,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
         
         {/* Content */}
-        <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
           <div className="text-center mb-12 sm:mb-20">
             <div className="inline-flex items-center bg-white/20 backdrop-blur-md px-3 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg border border-white/30 mb-6 sm:mb-8">
               <span className="text-white font-semibold text-xs sm:text-sm drop-shadow-lg">🏆 100% Volunteer-Based • Supporting Atlanta Non-Profits</span>
@@ -251,12 +251,12 @@ export default function Home() {
               </a>
             </div>
           </div>
-        </main>
+        </div>
       </div>
 
       {/* Main Content Below Hero */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-8 sm:py-12">
+      <main className="py-8 sm:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
           {/* Stats Bar */}
           <div className="px-4">
             <div className="bg-gradient-to-r from-[#e5c366] via-[#d4b356] to-[#e5c366] rounded-2xl shadow-2xl overflow-hidden">
@@ -428,7 +428,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
 
         {/* How We Operate Section */}
         <section id="how-we-operate" className="mb-12 sm:mb-20">
