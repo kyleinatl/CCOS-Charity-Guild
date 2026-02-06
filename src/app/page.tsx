@@ -89,7 +89,7 @@ export default function Home() {
                   {menuOpen ? (
                     <path d="M6 18L18 6M6 6l12 12" />
                   ) : (
-                    <path d="M4 6h16M4 12h16M4 18h16" />
+                    <path d="M12 4v16M4 12h16" />
                   )}
                 </svg>
               </button>
