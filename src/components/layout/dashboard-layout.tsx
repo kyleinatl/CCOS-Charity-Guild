@@ -41,7 +41,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-sky-100">
+    <div className="min-h-screen bg-white" style={{background: 'linear-gradient(to bottom right, #eff6ff, #fefce8, #e0f2fe)', backgroundColor: '#ffffff'}}>      
       {/* Mobile sidebar */}
       <div className={cn(
         "fixed inset-0 z-50 lg:hidden",

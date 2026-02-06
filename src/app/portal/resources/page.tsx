@@ -208,16 +208,16 @@ function MemberResourcesContent() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6 w-full">
       {/* Header */}
-      <div className="flex flex-col space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center">
-              <Lock className="h-8 w-8 mr-3 text-blue-600" />
-              Member Resources
+      <div className="flex flex-col space-y-3 sm:space-y-3 sm:space-y-4">
+        <div className="flex items-start sm:items-center">
+          <div className="w-full">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 flex items-center">
+              <Lock className="h-6 w-6 sm:h-8 sm:w-8 mr-2 sm:mr-3 text-blue-600 flex-shrink-0" />
+              <span className="truncate">Member Resources</span>
             </h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2">
               Access board minutes, forms, and member-only documents
             </p>
           </div>
@@ -225,12 +225,12 @@ function MemberResourcesContent() {
 
         {/* Security Notice */}
         <Card className="border-blue-200 bg-blue-50">
-          <CardContent className="py-4">
-            <div className="flex items-start space-x-3">
-              <Shield className="h-5 w-5 text-blue-600 mt-0.5" />
-              <div className="flex-1">
-                <h3 className="font-semibold text-blue-900">Protected Content</h3>
-                <p className="text-sm text-blue-700 mt-1">
+          <CardContent className="p-3 sm:py-4">
+            <div className="flex items-start space-x-2 sm:space-x-3">
+              <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+              <div className="flex-1 min-w-0">
+                <h3 className="text-sm sm:text-base font-semibold text-blue-900">Protected Content</h3>
+                <p className="text-xs sm:text-sm text-blue-700 mt-1">
                   This section contains confidential member documents and board materials. 
                   Please do not share these documents outside the organization.
                 </p>
@@ -241,9 +241,9 @@ function MemberResourcesContent() {
       </div>
 
       {/* Search and Filters */}
-      <Card>
-        <CardContent className="pt-6">
-          <div className="space-y-4">
+      <Card className="w-full">
+        <CardContent className="p-3 sm:pt-6">
+          <div className="space-y-3 sm:space-y-4">
             {/* Search Bar */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -279,7 +279,7 @@ function MemberResourcesContent() {
       </Card>
 
       {/* Documents List */}
-      <div className="grid gap-4">
+      <div className="grid gap-3 sm:gap-4 w-full">
         {filteredDocuments.length === 0 ? (
           <Card>
             <CardContent className="py-12 text-center">
@@ -292,9 +292,9 @@ function MemberResourcesContent() {
           </Card>
         ) : (
           filteredDocuments.map((doc) => (
-            <Card key={doc.id} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between">
+            <Card key={doc.id} className="hover:shadow-lg transition-shadow w-full">
+              <CardContent className="p-3 sm:p-4 md:p-6">
+                <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
                   <div className="flex items-start space-x-4 flex-1">
                     <div className="p-3 bg-blue-100 rounded-lg">
                       <FileText className="h-6 w-6 text-blue-600" />
@@ -309,11 +309,11 @@ function MemberResourcesContent() {
                         </Badge>
                       </div>
                       {doc.description && (
-                        <p className="text-gray-600 text-sm mb-3">
+                        <p className="text-gray-600 text-xs sm:text-sm mb-2 sm:mb-3 break-words">
                           {doc.description}
                         </p>
                       )}
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500">
                         <span className="flex items-center">
                           <Calendar className="h-4 w-4 mr-1" />
                           {formatDate(doc.date)}
@@ -327,7 +327,8 @@ function MemberResourcesContent() {
                   </div>
                   <Button
                     onClick={() => handleDownload(doc)}
-                    className="ml-4 flex items-center"
+                    className="w-full sm:w-auto sm:ml-0 flex items-center justify-center flex-shrink-0 text-sm"
+                    size="sm"
                   >
                     <Download className="h-4 w-4 mr-2" />
                     Download

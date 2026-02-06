@@ -308,7 +308,7 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
         </div>
 
         {/* Page content */}
-        <div className="p-3 sm:p-6 lg:p-8 bg-gradient-to-br from-blue-50/40 via-yellow-50/20 to-sky-100/40 min-h-screen">
+        <div className="p-3 sm:p-6 lg:p-8 bg-white min-h-screen" style={{background: 'linear-gradient(to bottom right, rgba(239, 246, 255, 0.6), rgba(254, 252, 232, 0.3), rgba(224, 242, 254, 0.6))', backgroundColor: '#ffffff'}}>
           {children}
         </div>
       </div>
