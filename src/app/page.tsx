@@ -98,7 +98,7 @@ export default function Home() {
 
           {/* Dropdown Menu */}
           {menuOpen && (
-            <div ref={menuRef} className="absolute right-4 sm:right-6 lg:right-8 top-20 sm:top-24 bg-white rounded-xl shadow-2xl border border-blue-100 py-2 min-w-[200px] animate-in fade-in slide-in-from-top-2 duration-200">
+            <div ref={menuRef} className="absolute right-4 sm:right-6 lg:right-8 top-20 sm:top-24 bg-white rounded-xl shadow-2xl border border-blue-100 py-2 min-w-[200px] max-h-[calc(100vh-6rem)] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
               <a
                 href="/"
                 className="block px-6 py-3 text-blue-700 hover:bg-blue-50 transition-colors font-medium"
