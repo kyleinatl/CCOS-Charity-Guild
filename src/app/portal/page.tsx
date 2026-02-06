@@ -209,16 +209,16 @@ function MemberDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-yellow-500 to-orange-500 text-white hover:shadow-2xl transition-all hover:scale-105 border-0">
+          <Card className="text-white hover:shadow-2xl transition-all hover:scale-105 border-0" style={{background: 'linear-gradient(to bottom right, #e5c366, #d4b356)'}}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-semibold text-yellow-100">
+              <CardTitle className="text-sm font-semibold text-white">
                 Engagement Score
               </CardTitle>
               <Trophy className="h-5 w-5 text-white" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-white">{dashboardData.stats.engagementScore}%</div>
-              <p className="text-xs text-yellow-200">
+              <p className="text-xs text-white/80">
                 Above average
               </p>
             </CardContent>
@@ -226,26 +226,26 @@ function MemberDashboard() {
         </div>
 
         {/* Tier Progress */}
-        <Card className="bg-white/90 backdrop-blur-sm border border-green-100 shadow-xl">
-          <CardHeader className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-t-lg">
+        <Card className="bg-white/90 backdrop-blur-sm border border-blue-100 shadow-xl">
+          <CardHeader className="text-white rounded-t-lg" style={{background: 'linear-gradient(to right, #3b82f6, #0ea5e9)'}}>
             <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-amber-200" />
+              <TrendingUp className="h-5 w-5" style={{color: '#e5c366'}} />
               Membership Tier Progress
             </CardTitle>
           </CardHeader>
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <Badge className="capitalize bg-gradient-to-r from-amber-500 to-yellow-600 text-white">
+                <Badge className="capitalize text-white" style={{background: 'linear-gradient(to right, #e5c366, #d4b356)', border: 'none'}}>
                   {dashboardData.tierProgress.currentTier} Member
                 </Badge>
-                <span className="text-green-400 font-bold">→</span>
-                <Badge variant="outline" className="capitalize border-green-300 text-green-700">
+                <span className="font-bold" style={{color: '#3b82f6'}}>→</span>
+                <Badge variant="outline" className="capitalize border-blue-300 text-blue-700">
                   {dashboardData.tierProgress.nextTier} Member
                 </Badge>
               </div>
               <div className="text-right">
-                <div className="text-sm font-semibold text-green-800">
+                <div className="text-sm font-semibold text-blue-800">
                   {formatCurrency(dashboardData.tierProgress.currentAmount)} / {formatCurrency(dashboardData.tierProgress.nextTierAmount)}
                 </div>
                 <div className="text-xs text-green-600">
@@ -287,11 +287,11 @@ function MemberDashboard() {
                     </div>
                     <div className="text-right">
                       <div className="font-bold text-amber-600">{formatCurrency(donation.amount)}</div>
-                      <div className="text-xs text-green-500 font-medium">{donation.method}</div>
+                      <div className="text-xs text-blue-500 font-medium">{donation.method}</div>
                     </div>
                   </div>
                 ))}
-                <Button className="w-full mt-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:from-green-700 hover:to-emerald-700">
+                <Button className="w-full mt-4 bg-gradient-to-r from-blue-600 to-sky-600 text-white hover:from-blue-700 hover:to-sky-700">
                   View All Donations
                 </Button>
               </div>
@@ -299,8 +299,8 @@ function MemberDashboard() {
           </Card>
 
           {/* Upcoming Events */}
-          <Card className="bg-white/90 backdrop-blur-sm border border-amber-100 shadow-xl">
-            <CardHeader className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white rounded-t-lg">
+          <Card className="bg-white/90 backdrop-blur-sm border border-blue-100 shadow-xl">
+            <CardHeader className="text-white rounded-t-lg" style={{background: 'linear-gradient(to right, #e5c366, #d4b356)'}}>
               <CardTitle className="flex items-center gap-2">
                 <Calendar className="h-5 w-5 text-white" />
                 Upcoming Events
@@ -309,41 +309,41 @@ function MemberDashboard() {
             <CardContent className="p-6">
               <div className="space-y-4">
                 {dashboardData.upcomingEvents.map((event) => (
-                  <div key={event.id} className="p-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl border border-amber-100 hover:shadow-md transition-all">
+                  <div key={event.id} className="p-4 bg-gradient-to-r from-blue-50 to-sky-50 rounded-xl border border-blue-100 hover:shadow-md transition-all">
                     <div className="flex items-start justify-between mb-3">
-                      <h4 className="font-semibold text-green-800">{event.title}</h4>
+                      <h4 className="font-semibold text-blue-800">{event.title}</h4>
                       <Badge 
                         className={event.registrationStatus === 'registered' ? 
-                          'bg-gradient-to-r from-green-500 to-emerald-600 text-white' : 
-                          'border-amber-300 text-amber-700 bg-white'}
+                          'bg-gradient-to-r from-blue-500 to-sky-600 text-white' : 
+                          'border-blue-300 text-blue-700 bg-white'}
                       >
                         {event.registrationStatus === 'registered' ? 'Registered' : 'Available'}
                       </Badge>
                     </div>
-                    <div className="text-sm text-green-700 space-y-2">
+                    <div className="text-sm text-blue-700 space-y-2">
                       <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4 text-amber-600" />
+                        <Clock className="h-4 w-4" style={{color: '#e5c366'}} />
                         {formatDate(event.date)} at {event.time}
                       </div>
                       <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-amber-600" />
+                        <MapPin className="h-4 w-4" style={{color: '#e5c366'}} />
                         {event.location}
                       </div>
                       {event.fee > 0 && (
                         <div className="flex items-center gap-2">
-                          <DollarSign className="h-4 w-4 text-amber-600" />
+                          <DollarSign className="h-4 w-4" style={{color: '#e5c366'}} />
                           {formatCurrency(event.fee)}
                         </div>
                       )}
                     </div>
                     {event.registrationStatus !== 'registered' && (
-                      <Button size="sm" className="mt-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-white hover:from-amber-600 hover:to-yellow-700">
+                      <Button size="sm" className="mt-3 text-white" style={{background: 'linear-gradient(to right, #e5c366, #d4b356)'}}>
                         Register Now
                       </Button>
                     )}
                   </div>
                 ))}
-                <Button className="w-full mt-4 bg-gradient-to-r from-amber-500 to-yellow-600 text-white hover:from-amber-600 hover:to-yellow-700">
+                <Button className="w-full mt-4 text-white" style={{background: 'linear-gradient(to right, #e5c366, #d4b356)'}}>
                   View All Events
                 </Button>
               </div>

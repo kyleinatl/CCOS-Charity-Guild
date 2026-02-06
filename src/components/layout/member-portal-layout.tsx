@@ -284,23 +284,23 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
       {/* Main content */}
       <div className="lg:pl-64">
         {/* Top bar */}
-        <div className="sticky top-0 z-10 bg-gradient-to-r from-blue-50/95 to-sky-50/95 backdrop-blur-sm shadow-lg border-b border-blue-200 px-4 py-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
+        <div className="sticky top-0 z-10 bg-gradient-to-r from-blue-50/95 to-sky-50/95 backdrop-blur-sm shadow-lg border-b border-blue-200 px-3 py-2 sm:px-6 sm:py-3 lg:px-8">
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 min-w-0 flex-1">
               <button
                 type="button"
-                className="lg:hidden -ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-xl text-blue-600 hover:text-blue-800 hover:bg-white/50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-all"
+                className="lg:hidden flex-shrink-0 h-10 w-10 inline-flex items-center justify-center rounded-xl text-blue-600 hover:text-blue-800 hover:bg-white/50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-all"
                 onClick={() => setMobileMenuOpen(true)}
               >
                 <span className="sr-only">Open sidebar</span>
-                <Menu className="h-6 w-6" />
+                <Menu className="h-5 w-5" />
               </button>
-              <h1 className="ml-2 text-lg sm:text-xl md:text-2xl font-bold text-blue-800 lg:ml-0">
+              <h1 className="text-base sm:text-xl md:text-2xl font-bold text-blue-800 lg:ml-0 truncate">
                 Welcome back, {memberProfile?.first_name}
               </h1>
             </div>
-            <div className="flex items-center space-x-4">
-              <Badge className="hidden sm:inline-flex bg-gradient-to-r from-blue-500 to-sky-600 text-white shadow-lg border-0">
+            <div className="flex items-center flex-shrink-0">
+              <Badge className="hidden sm:inline-flex text-xs px-2 py-1" style={{background: 'linear-gradient(to right, #e5c366, #d4b356)', color: 'white', border: 'none', boxShadow: '0 4px 6px rgba(0,0,0,0.1)'}}>
                 {memberProfile?.tier} Member
               </Badge>
             </div>
@@ -308,7 +308,7 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
         </div>
 
         {/* Page content */}
-        <div className="px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10 bg-gradient-to-br from-blue-50/40 via-yellow-50/20 to-sky-100/40 min-h-screen">
+        <div className="p-3 sm:p-6 lg:p-8 bg-gradient-to-br from-blue-50/40 via-yellow-50/20 to-sky-100/40 min-h-screen">
           {children}
         </div>
       </div>

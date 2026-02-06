@@ -157,22 +157,22 @@ function MemberDonations() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-900">{formatCurrency(summary.totalDonated)}</div>
-            <p className="text-xs text-green-600">
+            <p className="text-xs text-blue-600">
               Lifetime contributions
             </p>
           </CardContent>
         </Card>
 
-        <Card className="hover:shadow-lg transition-shadow bg-white/80 backdrop-blur-sm border-amber-200">
+        <Card className="hover:shadow-lg transition-shadow bg-white/80 backdrop-blur-sm border-blue-200">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-amber-800">
+            <CardTitle className="text-sm font-medium text-blue-800">
               Total Donations
             </CardTitle>
-            <Receipt className="h-4 w-4 text-amber-600" />
+            <Receipt className="h-4 w-4 text-blue-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-amber-900">{summary.donationCount}</div>
-            <p className="text-xs text-amber-600">
+            <div className="text-2xl font-bold text-blue-900">{summary.donationCount}</div>
+            <p className="text-xs text-blue-600">
               Individual donations
             </p>
           </CardContent>
@@ -187,22 +187,22 @@ function MemberDonations() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-emerald-900">{formatCurrency(summary.averageDonation)}</div>
-            <p className="text-xs text-emerald-600">
+            <p className="text-xs text-sky-600">
               Per donation
             </p>
           </CardContent>
         </Card>
 
-        <Card className="hover:shadow-lg transition-shadow bg-white/80 backdrop-blur-sm border-yellow-200">
+        <Card className="hover:shadow-lg transition-shadow bg-white/80 backdrop-blur-sm" style={{borderColor: '#e5c366'}}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-yellow-800">
+            <CardTitle className="text-sm font-medium" style={{color: '#e5c366'}}>
               Last Donation
             </CardTitle>
-            <Calendar className="h-4 w-4 text-yellow-600" />
+            <Calendar className="h-4 w-4" style={{color: '#e5c366'}} />
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold text-yellow-900">{formatDate(summary.lastDonation)}</div>
-            <p className="text-xs text-yellow-600">
+            <div className="text-lg font-bold" style={{color: '#d4b356'}}>{formatDate(summary.lastDonation)}</div>
+            <p className="text-xs" style={{color: '#e5c366'}}>
               Most recent
             </p>
           </CardContent>

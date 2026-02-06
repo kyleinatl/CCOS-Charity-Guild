@@ -172,32 +172,32 @@ export default function AnalyticsPage() {
   return (
     <div className="container mx-auto p-6 space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-green-800">Analytics Dashboard</h1>
-          <p className="text-green-600">
+          <h1 className="text-2xl sm:text-3xl font-bold text-blue-800">Analytics Dashboard</h1>
+          <p className="text-blue-600 text-sm sm:text-base">
             Comprehensive insights into your organization's performance
           </p>
         </div>
 
         {/* Date Range Filter */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <Input
             type="date"
             value={dateFrom}
             onChange={(e) => setDateFrom(e.target.value)}
-            className="w-auto border-green-200 focus:border-green-500"
+            className="w-auto border-blue-200 focus:border-blue-500"
           />
-          <span className="text-green-600">to</span>
+          <span className="text-blue-600">to</span>
           <Input
             type="date"
             value={dateTo}
             onChange={(e) => setDateTo(e.target.value)}
-            className="w-auto border-green-200 focus:border-green-500"
+            className="w-auto border-blue-200 focus:border-blue-500"
           />
           <Button 
             onClick={handleDateRangeUpdate} 
-            className="bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:from-green-700 hover:to-emerald-700"
+            className="bg-gradient-to-r from-blue-600 to-sky-600 text-white hover:from-blue-700 hover:to-sky-700"
           >
             Update
           </Button>
@@ -224,25 +224,25 @@ export default function AnalyticsPage() {
       {/* Additional Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Top Donors */}
-        <Card className="bg-white/80 backdrop-blur-sm border-green-200 shadow-lg">
+        <Card className="bg-white/80 backdrop-blur-sm border-blue-200 shadow-lg">
           <CardHeader>
-            <CardTitle className="text-green-800">Top Donors</CardTitle>
+            <CardTitle className="text-blue-800">Top Donors</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
               {analyticsData.top_donors.slice(0, 5).map((donor, index) => (
-                <div key={donor.member_id} className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-green-50 to-emerald-50">
+                <div key={donor.member_id} className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-blue-50 to-sky-50">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm" style={{background: 'linear-gradient(to right, #e5c366, #d4b356)'}}>
                       #{index + 1}
                     </div>
                     <div>
-                      <div className="font-medium text-green-800">Member {donor.member_id.slice(-6)}</div>
-                      <div className="text-sm text-green-600 capitalize">{donor.tier} Tier</div>
+                      <div className="font-medium text-blue-800">Member {donor.member_id.slice(-6)}</div>
+                      <div className="text-sm text-blue-600 capitalize">{donor.tier} Tier</div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="font-semibold text-amber-700">{formatCurrency(donor.total_donated)}</div>
+                    <div className="font-semibold" style={{color: '#e5c366'}}>{formatCurrency(donor.total_donated)}</div>
                   </div>
                 </div>
               ))}
@@ -251,24 +251,24 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Donations by Method */}
-        <Card className="bg-white/80 backdrop-blur-sm border-amber-200 shadow-lg">
+        <Card className="bg-white/80 backdrop-blur-sm border-sky-200 shadow-lg">
           <CardHeader>
-            <CardTitle className="text-amber-800">Donations by Method</CardTitle>
+            <CardTitle className="text-blue-800">Donations by Method</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
               {Object.entries(analyticsData.donations_by_method).map(([method, amount]) => (
-                <div key={method} className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-amber-50 to-yellow-50">
+                <div key={method} className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-sky-50 to-blue-50">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white text-sm">
+                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-sky-600 rounded-full flex items-center justify-center text-white text-sm">
                       {method === 'credit_card' ? '💳' : 
                        method === 'paypal' ? '🏦' :
                        method === 'bank_transfer' ? '🏛️' : '💰'}
                     </div>
-                    <span className="font-medium capitalize text-amber-800">{method.replace('_', ' ')}</span>
+                    <span className="font-medium capitalize text-blue-800">{method.replace('_', ' ')}</span>
                   </div>
                   <div className="text-right">
-                    <div className="font-semibold text-green-700">{formatCurrency(amount)}</div>
+                    <div className="font-semibold text-blue-700">{formatCurrency(amount)}</div>
                   </div>
                 </div>
               ))}
