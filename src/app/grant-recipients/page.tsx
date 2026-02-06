@@ -15,7 +15,7 @@ export default function GrantRecipientsPage() {
         {/* Back Button */}
         <button
           onClick={() => window.history.back()}
-          className="mb-8 flex items-center gap-2 text-green-600 hover:text-green-700 font-medium transition-colors"
+          className="mb-8 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -25,7 +25,7 @@ export default function GrantRecipientsPage() {
 
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold text-green-800 mb-4">
+          <h1 className="text-5xl md:text-6xl font-bold text-blue-800 mb-4">
             Grant Recipients
           </h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
@@ -38,7 +38,7 @@ export default function GrantRecipientsPage() {
           {grantRecipients.map((recipient, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 border-2 border-green-200 hover:border-green-500 transform hover:-translate-y-2"
+              className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 border-2 border-blue-200 hover:border-blue-500 transform hover:-translate-y-2"
             >
               <div className="relative w-full h-40 mb-4 flex items-center justify-center">
                 <Image
