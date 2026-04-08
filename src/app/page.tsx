@@ -38,6 +38,30 @@ export default function Home() {
     }
   };
 
+  const featuredEvents = [
+    {
+      title: 'Hope Awards 2026',
+      dateLocation: '2026 Event Gallery',
+      description: 'View highlights from the Hope Awards 2026 event.',
+      image: '/events/hope-awards-2026/3BB03035-7ADC-4C5D-BC4A-52029223CC9A_1_105_c.jpeg',
+      href: '/events/hope-awards-2026',
+    },
+    {
+      title: 'Hope for the Holidays',
+      dateLocation: 'Seasonal Fundraiser',
+      description: 'Community celebration and fundraising event details coming soon.',
+      image: null,
+      href: null,
+    },
+    {
+      title: 'Spring Member Social',
+      dateLocation: 'Member Engagement Event',
+      description: 'An evening to connect, celebrate impact, and support local charities.',
+      image: null,
+      href: null,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-sky-100 animate-fadeIn">
       {/* Header */}
@@ -326,21 +350,50 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {/* Event placeholders - will be replaced with actual event images */}
-              {[1, 2, 3].map((item) => (
-                <div key={item} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all border border-blue-100 hover:scale-105 duration-300">
-                  <div className="aspect-video bg-gradient-to-br from-blue-100 to-sky-100 flex items-center justify-center">
-                    <svg className="w-20 h-20 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+              {featuredEvents.map((event) => {
+                const cardClasses = 'bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all border border-blue-100 hover:scale-105 duration-300 block';
+
+                const content = (
+                  <>
+                    <div className="aspect-video bg-gradient-to-br from-blue-100 to-sky-100 flex items-center justify-center overflow-hidden">
+                      {event.image ? (
+                        <img
+                          src={event.image}
+                          alt={event.title}
+                          className="w-full h-full object-contain bg-white p-1"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <svg className="w-20 h-20 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      )}
+                    </div>
+                    <div className="p-6">
+                      <h4 className="text-xl font-bold text-blue-800 mb-2">{event.title}</h4>
+                      <p className="text-blue-600 text-sm mb-4">{event.dateLocation}</p>
+                      <p className="text-gray-600 text-sm">{event.description}</p>
+                      {event.href ? (
+                        <p className="mt-4 text-sm font-semibold text-blue-700">View Gallery</p>
+                      ) : null}
+                    </div>
+                  </>
+                );
+
+                if (event.href) {
+                  return (
+                    <a key={event.title} href={event.href} className={cardClasses}>
+                      {content}
+                    </a>
+                  );
+                }
+
+                return (
+                  <div key={event.title} className={cardClasses}>
+                    {content}
                   </div>
-                  <div className="p-6">
-                    <h4 className="text-xl font-bold text-blue-800 mb-2">Event Title</h4>
-                    <p className="text-blue-600 text-sm mb-4">Date & Location</p>
-                    <p className="text-gray-600 text-sm">Event description will appear here</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
