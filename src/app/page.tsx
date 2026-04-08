@@ -263,7 +263,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <div className="relative bg-cover bg-center" style={{backgroundImage: "url('/guild-hero.avif')"}}>
+      <div className="relative bg-cover bg-center" style={{backgroundImage: "url('/2026-small-grant-recipients-hero.png')"}}>
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
         
