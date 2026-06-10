@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-// import { useAuth } from '@/lib/auth/auth-context';
-import { MemberPortalLayout } from '@/components/layout/member-portal-layout';
+import { useAuth } from '@/lib/auth/auth-context';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -22,14 +21,7 @@ import {
 } from 'lucide-react';
 
 function MemberDonations() {
-  // Mock user for demo - in production this would come from useAuth()
-  const user = {
-    id: 'demo-user-id',
-    member_profile: {
-      first_name: 'John',
-      last_name: 'Doe'
-    }
-  };
+  const { user } = useAuth();
   const [donationsData, setDonationsData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -37,16 +29,19 @@ function MemberDonations() {
 
   useEffect(() => {
     const loadDonations = async () => {
-      if (user?.id) {
-        try {
-          logDataSource('Donations Data');
-          const data = await dataService.getDonations(user.id);
-          setDonationsData(data);
-        } catch (error) {
-          console.error('Failed to load donations:', error);
-        } finally {
-          setLoading(false);
-        }
+      if (!user?.id) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        logDataSource('Donations Data');
+        const data = await dataService.getDonations(user.id);
+        setDonationsData(data);
+      } catch (error) {
+        console.error('Failed to load donations:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -361,9 +356,5 @@ function MemberDonations() {
 }
 
 export default function MemberDonationsPage() {
-  return (
-    <MemberPortalLayout>
-      <MemberDonations />
-    </MemberPortalLayout>
-  );
+  return <MemberDonations />;
 }

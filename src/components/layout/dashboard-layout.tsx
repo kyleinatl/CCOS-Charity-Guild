@@ -27,7 +27,7 @@ interface DashboardLayoutProps {
 }
 
 const navigation = [
-  { name: 'Dashboard', href: '/', icon: Home },
+  { name: 'Dashboard', href: '/analytics', icon: Home },
   { name: 'Members', href: '/members', icon: Users },
   { name: 'Donations', href: '/donations', icon: DollarSign },
   { name: 'Events', href: '/events', icon: Calendar },
@@ -56,7 +56,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 alt="CCOS Guild Logo" 
                 className="h-8 w-auto"
               />
-              <span className="text-xl font-bold text-white">CCOS Guild</span>
+              <span className="text-xl font-bold text-white">Admin Dashboard</span>
             </div>
             <Button
               variant="ghost"
@@ -101,7 +101,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 alt="CCOS Guild Logo" 
                 className="h-8 w-auto"
               />
-              <span className="text-xl font-bold text-white">CCOS Guild</span>
+              <span className="text-xl font-bold text-white">Admin Dashboard</span>
             </div>
           </div>
           <nav className="flex-1 px-4 py-6 space-y-2">

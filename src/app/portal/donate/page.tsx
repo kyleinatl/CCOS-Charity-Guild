@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-// import { useAuth } from '@/lib/auth/auth-context';
-import { MemberPortalLayout } from '@/components/layout/member-portal-layout';
+import { useAuth } from '@/lib/auth/auth-context';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import DonationForm from '@/components/payments/donation-form';
@@ -18,15 +17,7 @@ import {
 const quickDonationAmounts = [25, 50, 100, 250];
 
 export default function PortalDonationPage() {
-  // Mock user for demo - in production this would come from useAuth()
-  const user = {
-    id: 'demo-user-id',
-    member_profile: {
-      first_name: 'John',
-      last_name: 'Doe',
-      tier: 'gold'
-    }
-  };
+  const { user } = useAuth();
   const [showDonationForm, setShowDonationForm] = useState(false);
   const [selectedAmount, setSelectedAmount] = useState<number | undefined>();
   const [selectedDesignation, setSelectedDesignation] = useState<string | undefined>();
@@ -45,25 +36,32 @@ export default function PortalDonationPage() {
     // Here you could show a success message, refresh data, etc.
   };
 
+  if (!user?.id) {
+    return (
+      <div className="container mx-auto p-6">
+        <Card>
+          <CardContent className="p-6 text-gray-700">Please sign in to make a donation from the member portal.</CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   if (showDonationForm) {
     return (
-      <MemberPortalLayout>
-        <div className="container mx-auto p-6">
-          <DonationForm
-            memberId={user?.id}
-            preselectedAmount={selectedAmount}
-            preselectedDesignation={selectedDesignation}
-            onSuccess={handleDonationSuccess}
-            onCancel={() => setShowDonationForm(false)}
-          />
-        </div>
-      </MemberPortalLayout>
+      <div className="container mx-auto p-6">
+        <DonationForm
+          memberId={user?.id}
+          preselectedAmount={selectedAmount}
+          preselectedDesignation={selectedDesignation}
+          onSuccess={handleDonationSuccess}
+          onCancel={() => setShowDonationForm(false)}
+        />
+      </div>
     );
   }
 
   return (
-    <MemberPortalLayout>
-      <div className="container mx-auto p-6 space-y-6">
+    <div className="container mx-auto p-6 space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -272,6 +270,5 @@ export default function PortalDonationPage() {
           </CardContent>
         </Card>
       </div>
-    </MemberPortalLayout>
   );
 }

@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-// import { useAuth } from '@/lib/auth/auth-context';
-import { MemberPortalLayout } from '@/components/layout/member-portal-layout';
+import { useAuth } from '@/lib/auth/auth-context';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -33,20 +32,10 @@ interface Document {
 
 function MemberResourcesContent() {
   const router = useRouter();
+  const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [loading, setLoading] = useState(true);
-
-  // Mock user authentication - in production use useAuth()
-  const user = {
-    id: 'demo-user-id',
-    email: 'john.doe@example.com',
-    member_profile: {
-      first_name: 'John',
-      last_name: 'Doe',
-      tier: 'gold',
-    }
-  };
 
   useEffect(() => {
     // Simulate loading
@@ -58,7 +47,6 @@ function MemberResourcesContent() {
     }
   }, [user, router]);
 
-  // Mock documents data - in production, fetch from database
   const documents: Document[] = [
     {
       id: 1,
@@ -116,21 +104,21 @@ function MemberResourcesContent() {
     },
     {
       id: 7,
-      title: 'Member Handbook 2026',
+      title: 'Sponsorship Overview 2026',
       type: 'policy',
       date: '2026-01-01',
-      size: '1.2 MB',
-      url: '/documents/member-handbook-2026.pdf',
-      description: 'Complete guide to guild policies, procedures, and member benefits'
+      size: 'PDF',
+      url: 'https://www.charityguild.org/_files/ugd/a80fd7_48c5f30d7c134d0aaf54a650684cd90e.pdf',
+      description: 'Current sponsorship overview and participation details'
     },
     {
       id: 8,
-      title: 'Code of Conduct',
+      title: 'Live Donor List',
       type: 'policy',
-      date: '2024-06-01',
-      size: '98 KB',
-      url: '/documents/code-of-conduct.pdf',
-      description: 'Guild code of conduct and ethical guidelines'
+      date: '2026-06-10',
+      size: 'Web',
+      url: 'https://www.charityguild.org/list-of-donors',
+      description: 'Current donor roster published on the live site'
     },
     {
       id: 9,
@@ -168,9 +156,7 @@ function MemberResourcesContent() {
   });
 
   const handleDownload = (doc: Document) => {
-    // In production, this would trigger actual file download
-    console.log('Downloading:', doc.title);
-    alert(`Download started: ${doc.title}\n\nIn production, this would download the actual file.`);
+    window.open(doc.url, '_blank', 'noopener,noreferrer');
   };
 
   const formatDate = (dateString: string) => {
@@ -376,9 +362,5 @@ function MemberResourcesContent() {
 }
 
 export default function MemberResourcesPage() {
-  return (
-    <MemberPortalLayout>
-      <MemberResourcesContent />
-    </MemberPortalLayout>
-  );
+  return <MemberResourcesContent />;
 }

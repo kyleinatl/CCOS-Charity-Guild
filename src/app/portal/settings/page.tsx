@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAuth } from '@/lib/auth/auth-context';
+import { dataService } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -21,6 +23,7 @@ import {
 } from 'lucide-react';
 
 export default function SettingsPage() {
+  const { user } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [settings, setSettings] = useState({
     // Profile Settings
@@ -48,11 +51,46 @@ export default function SettingsPage() {
     timezone: 'America/New_York',
   });
 
-  const handleSave = () => {
-    // In a real app, this would save to the backend
-    console.log('Settings saved:', settings);
-    alert('Settings saved successfully!');
+  useEffect(() => {
+    const loadSettings = async () => {
+      if (!user?.id) return;
+      try {
+        const profile = await dataService.getProfileData(user.id);
+        setSettings((prev) => ({
+          ...prev,
+          firstName: profile?.personalInfo?.firstName || prev.firstName,
+          lastName: profile?.personalInfo?.lastName || prev.lastName,
+          email: profile?.personalInfo?.email || prev.email,
+          phone: profile?.personalInfo?.phone || prev.phone,
+          newsletterSubscription: profile?.preferences?.newsletter ?? prev.newsletterSubscription,
+          emailNotifications: profile?.preferences?.emailNotifications ?? prev.emailNotifications,
+          eventReminders: profile?.preferences?.eventReminders ?? prev.eventReminders,
+          donationReceipts: profile?.preferences?.donationReceipts ?? prev.donationReceipts,
+        }));
+      } catch (error) {
+        console.error('Failed to load settings:', error);
+      }
+    };
+
+    loadSettings();
+  }, [user?.id]);
+
+  const handleSave = async () => {
+    if (!user?.id) return;
+
+    await dataService.updateProfile(user.id, {
+      firstName: settings.firstName,
+      lastName: settings.lastName,
+      email: settings.email,
+      phone: settings.phone,
+      newsletter: settings.newsletterSubscription,
+      emailNotifications: settings.emailNotifications,
+    });
   };
+
+  if (!user?.id) {
+    return <div className="p-8 text-green-700">Please sign in to manage your account settings.</div>;
+  }
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">

@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-// import { useAuth } from '@/lib/auth/auth-context';
-import { MemberPortalLayout } from '@/components/layout/member-portal-layout';
+import { useAuth } from '@/lib/auth/auth-context';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -64,33 +63,25 @@ interface DashboardData {
 }
 
 function MemberDashboard() {
-  // Mock user for demo - in production this would come from useAuth()
-  const user = {
-    id: 'demo-user-id',
-    email: 'john.doe@example.com',
-    member_profile: {
-      first_name: 'John',
-      last_name: 'Doe',
-      tier: 'gold',
-      total_donated: 1250,
-      engagement_score: 85
-    }
-  };
+  const { user } = useAuth();
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadDashboardData = async () => {
-      if (user?.id) {
-        try {
-          logDataSource('Portal Dashboard');
-          const data = await dataService.getDashboardData(user.id);
-          setDashboardData(data);
-        } catch (error) {
-          console.error('Failed to load dashboard data:', error);
-        } finally {
-          setLoading(false);
-        }
+      if (!user?.id) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        logDataSource('Portal Dashboard');
+        const data = await dataService.getDashboardData(user.id);
+        setDashboardData(data);
+      } catch (error) {
+        console.error('Failed to load dashboard data:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -391,9 +382,5 @@ function MemberDashboard() {
 }
 
 export default function MemberPortalPage() {
-  return (
-    <MemberPortalLayout>
-      <MemberDashboard />
-    </MemberPortalLayout>
-  );
+  return <MemberDashboard />;
 }

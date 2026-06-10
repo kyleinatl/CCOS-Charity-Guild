@@ -35,8 +35,17 @@ export default function AutomationPage() {
 
   const handleDeleteAutomation = (automation: Automation) => {
     if (confirm(`Are you sure you want to delete "${automation.name}"?`)) {
-      // TODO: Implement delete functionality
-      console.log('Delete automation:', automation.id);
+      fetch(`/api/automation/${automation.id}`, { method: 'DELETE' })
+        .then(async (response) => {
+          if (!response.ok) {
+            const payload = await response.json().catch(() => ({}));
+            throw new Error(payload.error || 'Failed to delete automation');
+          }
+        })
+        .catch((error) => {
+          console.error('Delete automation failed:', error);
+          alert('Failed to delete automation. Please try again.');
+        });
     }
   };
 

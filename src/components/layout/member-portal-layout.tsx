@@ -7,7 +7,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-// import { useAuth } from '@/lib/auth/auth-context';
+import { useAuth } from '@/lib/auth/auth-context';
 import {
   User,
   DollarSign,
@@ -59,24 +59,7 @@ export function MemberPortalLayout({ children }: MemberPortalLayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-  // Mock auth for demo - replace with actual auth
-  const loading = false;
-  const user = {
-    id: 'demo-user-id',
-    member_profile: {
-      id: 'profile-123',
-      first_name: 'John',
-      last_name: 'Doe',
-      tier: 'gold' as const,
-      total_donated: 2500,
-      engagement_score: 85
-    }
-  };
-  
-  const signOut = async () => {
-    console.log('Demo sign out');
-    router.push('/auth/login');
-  };
+  const { user, loading, signOut } = useAuth();
 
   const handleSignOut = async () => {
     await signOut();

@@ -48,6 +48,9 @@ export default function DonorListPage() {
           <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-700 to-sky-600 bg-clip-text text-transparent mb-4">
             Donor List
           </h2>
+          <p className="text-blue-700 text-sm sm:text-base">
+            Synced to the current donor roster published on charityguild.org/list-of-donors
+          </p>
         </div>
 
         {/* 2025 Donors */}

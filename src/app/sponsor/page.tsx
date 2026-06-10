@@ -1,8 +1,18 @@
 'use client';
 
-import { useState } from 'react';
-
 export default function SponsorPage() {
+  const sponsorLogos = [
+    { name: 'Diane Johnson', image: '/diane-johnson.png' },
+    { name: 'Aesthetic Center', image: '/aesthetic-center.png' },
+    { name: 'Kayc Carper', image: '/kayc-carper.avif' },
+    { name: 'MIBAB', image: '/mibab.png' },
+    { name: 'Mighty Dog', image: '/mighty-dog.png' },
+    { name: 'Grapes and Grains', image: '/grapes-and-grains.png' },
+    { name: 'Champions Community Foundation', image: 'https://static.wixstatic.com/media/a80fd7_46175305e5bf4d42b68734236271ec07~mv2.jpg/v1/fill/w_242,h_68,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/2022%20champions%20logo.jpg' },
+    { name: 'Shine the Light', image: 'https://static.wixstatic.com/media/a80fd7_ff35b4f5efac4853b872f54da1d11623~mv2.jpg/v1/fill/w_126,h_170,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Shine%20The%20Light_vert.jpg' },
+    { name: '1 Cure', image: 'https://static.wixstatic.com/media/a80fd7_df687faa292547bb8ded504de3d796fc~mv2.jpg/v1/crop/x_2,y_1,w_798,h_341/fill/w_232,h_104,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1-cure_logotype_pms.jpg' },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-sky-100">
       {/* Header */}
@@ -116,6 +126,26 @@ export default function SponsorPage() {
             >
               Click here to Sponsor
             </a>
+          </div>
+        </div>
+
+        {/* Current Sponsors */}
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-blue-100 mb-8">
+          <h3 className="text-2xl font-bold text-blue-900 mb-6 text-center">Current Sponsors & Partners</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {sponsorLogos.map((sponsor) => (
+              <div
+                key={sponsor.name}
+                className="bg-white rounded-xl shadow-sm border border-blue-100 p-5 flex items-center justify-center"
+              >
+                <img
+                  src={sponsor.image}
+                  alt={`${sponsor.name} logo`}
+                  className="w-full h-auto object-contain max-h-28"
+                  loading="lazy"
+                />
+              </div>
+            ))}
           </div>
         </div>
 

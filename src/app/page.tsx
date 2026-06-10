@@ -47,19 +47,58 @@ export default function Home() {
       href: '/events/hope-awards-2026',
     },
     {
-      title: 'Hope for the Holidays',
+      title: 'Hope for Holidays 2025',
       dateLocation: 'Seasonal Fundraiser',
-      description: 'Community celebration and fundraising event details coming soon.',
-      image: null,
-      href: null,
+      description: 'See updates and details from our Hope for the Holidays program.',
+      image: 'https://static.wixstatic.com/media/a80fd7_991bfc57aea54113b26a8faf580a4c01~mv2.jpg/v1/fill/w_768,h_511,al_c,lg_1,q_85,enc_avif,quality_auto/2022%20Volunteer%20Party%20Participants.jpg',
+      href: 'https://www.charityguild.org/hope-for-holidays-2025-more',
     },
     {
-      title: 'Spring Member Social',
-      dateLocation: 'Member Engagement Event',
-      description: 'An evening to connect, celebrate impact, and support local charities.',
-      image: null,
-      href: null,
+      title: 'Garden Party',
+      dateLocation: 'Spring Fundraising Event',
+      description: 'Highlights from this season\'s Garden Party community event.',
+      image: 'https://static.wixstatic.com/media/a80fd7_29acd73636da42aeba721a92f3d9c70b~mv2.jpeg/v1/fit/w_1120,h_840,q_90,enc_avif,quality_auto/a80fd7_29acd73636da42aeba721a92f3d9c70b~mv2.jpeg',
+      href: 'https://www.charityguild.org/garden-party',
     },
+  ];
+
+  const whoWeServeOrganizations = [
+    { name: 'Camp Sunshine', image: '/camp-sunshine.avif' },
+    { name: 'Wellspring Living', image: '/wellspring-living.avif' },
+    { name: 'Curing Kids Cancer', image: '/curing-kids-cancer.avif' },
+    { name: 'Canine Assistants', image: '/canine-assistants.avif' },
+    { name: 'Atlanta Humane Society', image: '/humane-society.avif' },
+    { name: 'Atlanta CASA', image: 'https://static.wixstatic.com/media/a80fd7_63d23cb80905494bb2289af3fc0d2a3b~mv2.png/v1/fill/w_188,h_184,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ATLANTA_v_RedBlue%20Wht%20bkg.png' },
+    { name: 'NFCC', image: '/nfcc.avif' },
+    { name: 'Family Promise', image: 'https://static.wixstatic.com/media/a80fd7_0a5eee0afce1481c93b47aa99fe412ed~mv2.jpg/v1/fill/w_390,h_104,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Family%20Promise.jpg' },
+    { name: 'Angels Among Us', image: 'https://static.wixstatic.com/media/a80fd7_b961059dafcc49a1b89384035809940c~mv2.jpg/v1/fill/w_200,h_124,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Angels%20Among%20Us%20Logo%20Half%20Rez.jpg' },
+    { name: 'Hire Heroes USA', image: 'https://static.wixstatic.com/media/a80fd7_d97dd976bddf42189484d15c58070880~mv2.jpg/v1/fill/w_174,h_144,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/HireHeroesUSA_logo_Vert_4C.jpg' },
+    { name: 'Children\'s Development Academy', image: 'https://static.wixstatic.com/media/a80fd7_4dd87b9c6d3149a1a34ad0e645068c98~mv2.png/v1/fill/w_126,h_124,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ACDS%20logo%20round%202wht%20bkg.png' },
+  ];
+
+  const sponsorHighlights = [
+    { name: 'Diane Johnson', image: '/diane-johnson.png' },
+    { name: 'Aesthetic Center', image: '/aesthetic-center.png' },
+    { name: 'Kayc Carper', image: '/kayc-carper.avif' },
+    { name: 'MIBAB', image: '/mibab.png' },
+    { name: 'Mighty Dog', image: '/mighty-dog.png' },
+    { name: 'Grapes and Grains', image: '/grapes-and-grains.png' },
+    { name: 'Champions Community Foundation', image: 'https://static.wixstatic.com/media/a80fd7_46175305e5bf4d42b68734236271ec07~mv2.jpg/v1/fill/w_242,h_68,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/2022%20champions%20logo.jpg' },
+    { name: 'Shine the Light', image: 'https://static.wixstatic.com/media/a80fd7_ff35b4f5efac4853b872f54da1d11623~mv2.jpg/v1/fill/w_126,h_170,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Shine%20The%20Light_vert.jpg' },
+    { name: '1 Cure', image: 'https://static.wixstatic.com/media/a80fd7_df687faa292547bb8ded504de3d796fc~mv2.jpg/v1/crop/x_2,y_1,w_798,h_341/fill/w_232,h_104,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1-cure_logotype_pms.jpg' },
+  ];
+
+  const galleryImages = [
+    '/events/hope-awards-2026/3BB03035-7ADC-4C5D-BC4A-52029223CC9A_1_105_c.jpeg',
+    '/events/hope-awards-2026/4DD64C75-96CB-403B-BCE7-5CF03C26CAE8_1_105_c.jpeg',
+    '/events/hope-awards-2026/A5EEF7FB-266D-4470-8835-5D6B22A0855C_4_5005_c.jpeg',
+    '/events/hope-awards-2026/A9DB46CC-87B4-411D-9EB3-32716E801EF7_4_5005_c.jpeg',
+    '/events/hope-awards-2026/BF89B2FE-9889-49ED-BBDE-B38B26DD34DA_4_5005_c.jpeg',
+    'https://static.wixstatic.com/media/a80fd7_991bfc57aea54113b26a8faf580a4c01~mv2.jpg/v1/fill/w_768,h_511,al_c,lg_1,q_85,enc_avif,quality_auto/2022%20Volunteer%20Party%20Participants.jpg',
+    'https://static.wixstatic.com/media/a80fd7_29acd73636da42aeba721a92f3d9c70b~mv2.jpeg/v1/fit/w_1120,h_840,q_90,enc_avif,quality_auto/a80fd7_29acd73636da42aeba721a92f3d9c70b~mv2.jpeg',
+    'https://static.wixstatic.com/media/a80fd7_2b7a15eed09f418698bd2e93c742cd73~mv2.jpeg/v1/fit/w_1120,h_840,q_90,enc_avif,quality_auto/a80fd7_2b7a15eed09f418698bd2e93c742cd73~mv2.jpeg',
+    'https://static.wixstatic.com/media/a80fd7_42426defadcd4961bed837ffa3dc4188~mv2.jpeg/v1/fit/w_1120,h_840,q_90,enc_avif,quality_auto/a80fd7_42426defadcd4961bed837ffa3dc4188~mv2.jpeg',
+    'https://static.wixstatic.com/media/a80fd7_fba65e2a1d694f178dcbda79f54058fa~mv2.jpeg/v1/fit/w_1120,h_840,q_90,enc_avif,quality_auto/a80fd7_fba65e2a1d694f178dcbda79f54058fa~mv2.jpeg',
   ];
 
   return (
@@ -408,55 +447,19 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center">
-                <img 
-                  src="/camp-sunshine.avif" 
-                  alt="Camp Sunshine" 
-                  className="w-full h-auto object-contain max-h-32"
-                />
-              </div>
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center">
-                <img 
-                  src="/wellspring-living.avif" 
-                  alt="Wellspring Living" 
-                  className="w-full h-auto object-contain max-h-32"
-                />
-              </div>
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center">
-                <img 
-                  src="/curing-kids-cancer.avif" 
-                  alt="Curing Kids Cancer" 
-                  className="w-full h-auto object-contain max-h-32"
-                />
-              </div>
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center">
-                <img 
-                  src="/canine-assistants.avif" 
-                  alt="Canine Assistants" 
-                  className="w-full h-auto object-contain max-h-32"
-                />
-              </div>
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center">
-                <img 
-                  src="/humane-society.avif" 
-                  alt="Humane Society" 
-                  className="w-full h-auto object-contain max-h-32"
-                />
-              </div>
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center">
-                <img 
-                  src="/atlanta-spectrum.avif" 
-                  alt="Atlanta Spectrum" 
-                  className="w-full h-auto object-contain max-h-32"
-                />
-              </div>
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center">
-                <img 
-                  src="/nfcc.avif" 
-                  alt="NFCC" 
-                  className="w-full h-auto object-contain max-h-32"
-                />
-              </div>
+              {whoWeServeOrganizations.map((organization) => (
+                <div
+                  key={organization.name}
+                  className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center"
+                >
+                  <img
+                    src={organization.image}
+                    alt={organization.name}
+                    className="w-full h-auto object-contain max-h-32"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
@@ -471,48 +474,19 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8">
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center">
-                <img 
-                  src="/diane-johnson.png" 
-                  alt="Diane Johnson Sponsor" 
-                  className="w-full h-auto object-contain max-h-32"
-                />
-              </div>
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center">
-                <img 
-                  src="/aesthetic-center.png" 
-                  alt="Aesthetic Center Sponsor" 
-                  className="w-full h-auto object-contain max-h-32"
-                />
-              </div>
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center">
-                <img 
-                  src="/kayc-carper.avif" 
-                  alt="Kayc Carper Sponsor" 
-                  className="w-full h-auto object-contain max-h-32"
-                />
-              </div>
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center">
-                <img 
-                  src="/mibab.png" 
-                  alt="MIBAB Sponsor" 
-                  className="w-full h-auto object-contain max-h-32"
-                />
-              </div>
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center">
-                <img 
-                  src="/mighty-dog.png" 
-                  alt="Mighty Dog Sponsor" 
-                  className="w-full h-auto object-contain max-h-32"
-                />
-              </div>
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center">
-                <img 
-                  src="/grapes-and-grains.png" 
-                  alt="Grapes and Grains Sponsor" 
-                  className="w-full h-auto object-contain max-h-32"
-                />
-              </div>
+              {sponsorHighlights.map((sponsor) => (
+                <div
+                  key={sponsor.name}
+                  className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border border-blue-100 flex items-center justify-center"
+                >
+                  <img
+                    src={sponsor.image}
+                    alt={`${sponsor.name} Sponsor`}
+                    className="w-full h-auto object-contain max-h-32"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
@@ -688,14 +662,14 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {/* Placeholder images - will be replaced with actual photos */}
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-              <div key={item} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow border border-blue-100">
-                <div className="aspect-square bg-gradient-to-br from-blue-100 to-sky-100 flex items-center justify-center">
-                  <svg className="w-16 h-16 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </div>
+            {galleryImages.map((image, index) => (
+              <div key={image} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow border border-blue-100">
+                <img
+                  src={image}
+                  alt={`Charity Guild event gallery image ${index + 1}`}
+                  className="aspect-square w-full object-cover"
+                  loading="lazy"
+                />
               </div>
             ))}
           </div>

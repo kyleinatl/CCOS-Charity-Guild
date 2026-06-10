@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # CCOS Charity Guild 🏛️
 
 A comprehensive nonprofit management system built with modern web technologies to streamline charity operations, member management, donation tracking, and community engagement.
@@ -213,6 +212,3 @@ npm run start
 ---
 
 **Built with ❤️ for nonprofits making a difference in the world.**
-=======
-# CCOS-Charity-Guild
->>>>>>> origin/main

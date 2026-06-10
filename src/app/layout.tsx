@@ -51,7 +51,9 @@ export default function RootLayout({
       <body
         className={`${bebasNeue.variable} ${montserrat.variable} antialiased bg-white`}
       >
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
         
         {/* Tawk.to Live Chat */}
         <Script

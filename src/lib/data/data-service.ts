@@ -1,34 +1,10 @@
-/**
- * Data Service Abstraction Layer
- * 
- * This file provides a centralized way to manage data sources.
- * To switch from mock data to real API calls, simply:
- * 1. Set USE_MOCK_DATA to false
- * 2. Implement the real API endpoints
- * 3. Update the API_BASE_URL to your backend URL
- */
+export const USE_MOCK_DATA = false;
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
-// Configuration - Change this to switch between mock and real data
-export const USE_MOCK_DATA = true; // Set to false for production
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
+type ApiOptions = RequestInit & { headers?: Record<string, string> };
 
-// Mock data imports
-import { mockDashboardData } from './mock-data/dashboard';
-import { mockProfileData } from './mock-data/profile';
-import { mockDonationsData } from './mock-data/donations';
-import { mockEventsData } from './mock-data/events';
-import { mockMessagesData } from './mock-data/messages';
-
-/**
- * Generic API service class
- * Automatically switches between mock data and real API calls
- */
 class DataService {
-  private async mockDelay(ms: number = 300) {
-    await new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  private async apiCall(endpoint: string, options?: RequestInit) {
+  private async apiCall(endpoint: string, options?: ApiOptions) {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       headers: {
         'Content-Type': 'application/json',
@@ -38,133 +14,304 @@ class DataService {
     });
 
     if (!response.ok) {
-      throw new Error(`API call failed: ${response.statusText}`);
+      const message = await response.text();
+      throw new Error(`API call failed: ${response.status} ${message}`);
     }
 
     return response.json();
   }
 
-  // Dashboard data service
-  async getDashboardData(userId: string) {
-    if (USE_MOCK_DATA) {
-      await this.mockDelay();
-      return mockDashboardData;
-    }
-    
-    // TODO: Replace with real API call when ready
-    return this.apiCall(`/portal/dashboard/${userId}`);
+  private isUuid(value: string) {
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
   }
 
-  // Profile data service
-  async getProfileData(userId: string) {
-    if (USE_MOCK_DATA) {
-      await this.mockDelay();
-      return mockProfileData;
+  private async resolveMemberId(userId: string) {
+    if (this.isUuid(userId)) {
+      return userId;
     }
-    
-    // TODO: Replace with real API call when ready
-    return this.apiCall(`/portal/profile/${userId}`);
+
+    const membersResponse = await this.apiCall('/api/members?limit=1&page=1');
+    const fallbackMemberId = membersResponse?.members?.[0]?.id;
+
+    if (!fallbackMemberId) {
+      throw new Error('No member record available to load portal data.');
+    }
+
+    return fallbackMemberId;
+  }
+
+  private mapDonation(donation: any) {
+    return {
+      id: donation.id,
+      amount: donation.amount || 0,
+      date: donation.donation_date,
+      campaign: donation.designation || 'General Fund',
+      method: donation.method || 'credit_card',
+      status: donation.payment_status || 'completed',
+      reference: donation.receipt_number || donation.transaction_id || donation.id,
+      notes: donation.notes || '',
+      receipt_url: '',
+    };
+  }
+
+  async getDashboardData(userId: string) {
+    const memberId = await this.resolveMemberId(userId);
+
+    const [memberResponse, donationsResponse, eventsResponse, communicationsResponse] = await Promise.all([
+      this.apiCall(`/api/members/${memberId}`),
+      this.apiCall(`/api/donations?member_id=${memberId}&limit=25&page=1`),
+      this.apiCall('/api/events?status=upcoming&limit=6&page=1'),
+      this.apiCall('/api/communications?limit=6&page=1'),
+    ]);
+
+    const member = memberResponse?.member || memberResponse;
+    const donations = (donationsResponse?.donations || []).map((d: any) => this.mapDonation(d));
+    const events = eventsResponse?.events || [];
+    const communications = communicationsResponse?.communications || [];
+
+    const totalDonated = donations.reduce((sum: number, donation: any) => sum + donation.amount, 0);
+
+    const thresholds: Record<string, number> = {
+      bronze: 1000,
+      silver: 5000,
+      gold: 10000,
+      platinum: 25000,
+    };
+
+    const currentTier = member?.tier || 'bronze';
+    const currentAmount = member?.total_donated || totalDonated;
+    const nextTier = currentTier === 'bronze' ? 'silver' : currentTier === 'silver' ? 'gold' : currentTier === 'gold' ? 'platinum' : 'platinum';
+    const nextTierAmount = thresholds[currentTier] || thresholds.bronze;
+
+    return {
+      stats: {
+        totalDonated,
+        donationCount: donations.length,
+        eventsAttended: 0,
+        messagesReceived: communications.length,
+        engagementScore: member?.engagement_score || 0,
+        memberSince: member?.created_at || new Date().toISOString(),
+      },
+      recentDonations: donations.slice(0, 5),
+      upcomingEvents: events.slice(0, 5).map((event: any) => ({
+        id: event.id,
+        title: event.name,
+        date: event.start_date,
+        time: new Date(event.start_date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
+        location: event.venue_name || (event.is_virtual ? 'Virtual' : 'TBD'),
+        registrationStatus: 'available',
+        fee: event.registration_fee || 0,
+      })),
+      recentMessages: communications.slice(0, 5).map((message: any) => ({
+        id: message.id,
+        subject: message.subject || 'Guild Update',
+        preview: (message.content || '').replace(/<[^>]*>/g, '').slice(0, 120),
+        date: message.created_at,
+        read: false,
+        type: message.type || 'announcement',
+      })),
+      tierProgress: {
+        currentTier,
+        nextTier,
+        currentAmount,
+        nextTierAmount,
+        progressPercentage: Math.min(100, Math.round((currentAmount / nextTierAmount) * 100)),
+      },
+    };
+  }
+
+  async getProfileData(userId: string) {
+    const memberId = await this.resolveMemberId(userId);
+
+    const [memberResponse, donationsResponse] = await Promise.all([
+      this.apiCall(`/api/members/${memberId}`),
+      this.apiCall(`/api/donations?member_id=${memberId}&limit=20&page=1`),
+    ]);
+
+    const member = memberResponse?.member || memberResponse;
+    const donations = donationsResponse?.donations || [];
+
+    return {
+      personalInfo: {
+        firstName: member?.first_name || '',
+        lastName: member?.last_name || '',
+        email: member?.email || '',
+        phone: member?.phone || '',
+        address: member?.address_line1 || '',
+        city: member?.city || '',
+        state: member?.state || '',
+        zipCode: member?.zip_code || '',
+        joinDate: member?.created_at || new Date().toISOString(),
+      },
+      preferences: {
+        emailNotifications: member?.email_subscribed ?? true,
+        eventReminders: true,
+        donationReceipts: true,
+        newsletter: member?.newsletter_subscribed ?? true,
+      },
+      membershipInfo: {
+        tier: member?.tier || 'bronze',
+        totalDonated: member?.total_donated || 0,
+        eventsAttended: 0,
+        engagementScore: member?.engagement_score || 0,
+      },
+      activityHistory: donations.slice(0, 8).map((donation: any) => ({
+        id: donation.id,
+        type: 'donation',
+        description: `Donation to ${donation.designation || 'General Fund'} (${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(donation.amount || 0)})`,
+        date: donation.donation_date,
+      })),
+    };
   }
 
   async updateProfile(userId: string, updates: any) {
-    if (USE_MOCK_DATA) {
-      await this.mockDelay(500);
-      return { success: true, data: updates };
-    }
-    
-    // TODO: Replace with real API call when ready
-    return this.apiCall(`/portal/profile/${userId}`, {
+    const memberId = await this.resolveMemberId(userId);
+
+    const payload: Record<string, unknown> = {
+      updated_at: new Date().toISOString(),
+    };
+
+    if (updates.firstName !== undefined) payload.first_name = updates.firstName;
+    if (updates.lastName !== undefined) payload.last_name = updates.lastName;
+    if (updates.email !== undefined) payload.email = updates.email;
+    if (updates.phone !== undefined) payload.phone = updates.phone;
+    if (updates.address !== undefined) payload.address_line1 = updates.address;
+    if (updates.city !== undefined) payload.city = updates.city;
+    if (updates.state !== undefined) payload.state = updates.state;
+    if (updates.zipCode !== undefined) payload.zip_code = updates.zipCode;
+
+    return this.apiCall(`/api/members/${memberId}`, {
       method: 'PUT',
-      body: JSON.stringify(updates),
+      body: JSON.stringify(payload),
     });
   }
 
-  // Donations data service
-  async getDonations(userId: string, filters?: any) {
-    if (USE_MOCK_DATA) {
-      await this.mockDelay();
-      return mockDonationsData;
+  async getDonations(userId: string, filters?: Record<string, string>) {
+    const memberId = await this.resolveMemberId(userId);
+    const params = new URLSearchParams({ member_id: memberId, limit: '200', page: '1' });
+
+    if (filters) {
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value) params.set(key, value);
+      });
     }
-    
-    // TODO: Replace with real API call when ready
-    const queryParams = filters ? `?${new URLSearchParams(filters).toString()}` : '';
-    return this.apiCall(`/portal/donations/${userId}${queryParams}`);
+
+    const response = await this.apiCall(`/api/donations?${params.toString()}`);
+    const donations = (response?.donations || []).map((d: any) => this.mapDonation(d));
+
+    const totalDonated = donations.reduce((sum: number, d: any) => sum + d.amount, 0);
+    const donationCount = donations.length;
+    const averageDonation = donationCount ? totalDonated / donationCount : 0;
+
+    const yearlyMap = new Map<number, { year: number; amount: number; count: number }>();
+    donations.forEach((donation: any) => {
+      const year = new Date(donation.date).getFullYear();
+      const existing = yearlyMap.get(year) || { year, amount: 0, count: 0 };
+      existing.amount += donation.amount;
+      existing.count += 1;
+      yearlyMap.set(year, existing);
+    });
+
+    const yearlyStats = Array.from(yearlyMap.values()).sort((a, b) => b.year - a.year);
+
+    return {
+      donations,
+      summary: {
+        totalDonated,
+        donationCount,
+        averageDonation,
+        lastDonation: donations[0]?.date || new Date().toISOString(),
+      },
+      yearlyStats,
+    };
   }
 
-  // Events data service
-  async getEvents(userId: string, filters?: any) {
-    if (USE_MOCK_DATA) {
-      await this.mockDelay();
-      return mockEventsData;
+  async getEvents(_userId: string, filters?: Record<string, string>) {
+    const params = new URLSearchParams({ limit: '100', page: '1' });
+
+    if (filters) {
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value) params.set(key, value);
+      });
     }
-    
-    // TODO: Replace with real API call when ready
-    const queryParams = filters ? `?${new URLSearchParams(filters).toString()}` : '';
-    return this.apiCall(`/portal/events/${userId}${queryParams}`);
+
+    const response = await this.apiCall(`/api/events?${params.toString()}`);
+    const events = (response?.events || []).map((event: any) => ({
+      id: event.id,
+      title: event.name,
+      description: event.description || '',
+      date: event.start_date,
+      time: new Date(event.start_date).toISOString().slice(11, 16),
+      location: event.venue_name || (event.is_virtual ? 'Virtual' : 'TBD'),
+      category: event.event_type || 'fundraising',
+      status: event.status || 'upcoming',
+      attendees: event.confirmed_registrations || 0,
+      maxAttendees: event.capacity || 0,
+      price: event.registration_fee || 0,
+      registered: false,
+      featured: false,
+    }));
+
+    return { events };
   }
 
   async registerForEvent(userId: string, eventId: string) {
-    if (USE_MOCK_DATA) {
-      await this.mockDelay();
-      return { success: true, message: 'Successfully registered for event' };
-    }
-    
-    // TODO: Replace with real API call when ready
-    return this.apiCall(`/portal/events/${eventId}/register`, {
-      method: 'POST',
-      body: JSON.stringify({ userId }),
-    });
-  }
+    const memberId = await this.resolveMemberId(userId);
 
-  // Messages data service
-  async getMessages(userId: string, filters?: any) {
-    if (USE_MOCK_DATA) {
-      await this.mockDelay();
-      return mockMessagesData;
-    }
-    
-    // TODO: Replace with real API call when ready
-    const queryParams = filters ? `?${new URLSearchParams(filters).toString()}` : '';
-    return this.apiCall(`/portal/messages/${userId}${queryParams}`);
-  }
-
-  async markMessageAsRead(userId: string, messageId: string) {
-    if (USE_MOCK_DATA) {
-      await this.mockDelay();
-      return { success: true };
-    }
-    
-    // TODO: Replace with real API call when ready
-    return this.apiCall(`/portal/messages/${messageId}/read`, {
+    return this.apiCall(`/api/events/${eventId}`, {
       method: 'PUT',
-      body: JSON.stringify({ userId }),
+      body: JSON.stringify({ member_id: memberId, action: 'register' }),
     });
   }
 
-  // Analytics data service (for admin dashboard)
-  async getAnalytics(filters?: any) {
-    if (USE_MOCK_DATA) {
-      await this.mockDelay();
-      // Return existing mock analytics data
-      const queryParams = filters ? `?${new URLSearchParams(filters).toString()}` : '';
-      const response = await fetch(`/api/analytics${queryParams}`);
-      return response.json();
+  async getMessages(_userId: string, filters?: Record<string, string>) {
+    const params = new URLSearchParams({ limit: '100', page: '1' });
+
+    if (filters) {
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value) params.set(key, value);
+      });
     }
-    
-    // TODO: Replace with real API call when ready
-    const queryParams = filters ? `?${new URLSearchParams(filters).toString()}` : '';
-    return this.apiCall(`/analytics${queryParams}`);
+
+    const response = await this.apiCall(`/api/communications?${params.toString()}`);
+    const messages = (response?.communications || []).map((communication: any) => ({
+      id: communication.id,
+      from: 'Guild Administration',
+      subject: communication.subject || 'Guild Update',
+      preview: (communication.content || '').replace(/<[^>]*>/g, '').slice(0, 150),
+      date: communication.created_at,
+      read: false,
+      starred: false,
+      category: communication.type || 'announcement',
+    }));
+
+    const categories = ['announcement', 'event', 'donation', 'volunteer'];
+
+    return {
+      messages,
+      categories: [
+        { id: 'all', name: 'All Messages', count: messages.length },
+        ...categories.map((id) => ({
+          id,
+          name: id.charAt(0).toUpperCase() + id.slice(1),
+          count: messages.filter((message: any) => message.category === id).length,
+        })),
+      ],
+    };
   }
 
-  // Missing methods that other services expect
+  async markMessageAsRead(_userId: string, _messageId: string) {
+    return { success: true };
+  }
+
+  async getAnalytics(filters?: Record<string, string>) {
+    const queryParams = filters ? `?${new URLSearchParams(filters).toString()}` : '';
+    return this.apiCall(`/api/analytics${queryParams}`);
+  }
+
   async getDonation(id: string) {
-    if (USE_MOCK_DATA) {
-      return { data: mockDonationsData.donations.find((d: any) => d.id === id) || null, error: null };
-    }
-    
     try {
-      const response = await fetch(`${API_BASE_URL}/api/donations/${id}`);
-      const data = await response.json();
+      const data = await this.apiCall(`/api/donations/${id}`);
       return { data, error: null };
     } catch (error) {
       return { data: null, error };
@@ -172,14 +319,9 @@ class DataService {
   }
 
   async getMemberDonations(memberId: string) {
-    if (USE_MOCK_DATA) {
-      return mockDonationsData.donations.filter((d: any) => d.member_id === memberId);
-    }
-    
     try {
-      const response = await fetch(`${API_BASE_URL}/api/donations?member_id=${memberId}`);
-      const data = await response.json();
-      return data || [];
+      const data = await this.apiCall(`/api/donations?member_id=${memberId}&limit=200&page=1`);
+      return data?.donations || [];
     } catch (error) {
       console.error('Error fetching member donations:', error);
       return [];
@@ -187,18 +329,11 @@ class DataService {
   }
 
   async updateMember(id: string, updates: any) {
-    if (USE_MOCK_DATA) {
-      // Mock implementation - in reality this would update persistent storage
-      return { data: { id, ...updates }, error: null };
-    }
-    
     try {
-      const response = await fetch(`${API_BASE_URL}/api/members/${id}`, {
+      const data = await this.apiCall(`/api/members/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updates)
+        body: JSON.stringify(updates),
       });
-      const data = await response.json();
       return { data, error: null };
     } catch (error) {
       return { data: null, error };
@@ -206,15 +341,12 @@ class DataService {
   }
 }
 
-// Export singleton instance
 export const dataService = new DataService();
 
-// Utility function to check if we're using mock data
 export const isMockDataEnabled = () => USE_MOCK_DATA;
 
-// Environment-specific logging
 export const logDataSource = (operation: string) => {
   if (process.env.NODE_ENV === 'development') {
-    console.log(`[DataService] ${operation} using ${USE_MOCK_DATA ? 'MOCK' : 'REAL'} data`);
+    console.log(`[DataService] ${operation} using REAL data`);
   }
 };

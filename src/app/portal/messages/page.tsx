@@ -1,89 +1,51 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
+import { useAuth } from '@/lib/auth/auth-context';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import {
-  MessageSquare,
-  Send,
-  Reply,
-  User,
-  Calendar,
-  Search,
-  Filter,
-  Archive,
-  Star,
-  Clock,
-  CheckCircle,
-} from 'lucide-react';
-
-// Mock messages data
-const messages = [
-  {
-    id: 1,
-    from: 'Guild Administration',
-    subject: 'Welcome to the CCOS Charity Guild',
-    preview: 'Thank you for joining our charity guild! Here are some important details to get you started...',
-    date: '2025-09-15',
-    read: false,
-    starred: true,
-    category: 'announcement',
-  },
-  {
-    id: 2,
-    from: 'Event Committee',
-    subject: 'Annual Gala - Save the Date',
-    preview: 'Our annual charity gala is scheduled for November 15th. We hope to see you there for an evening of...',
-    date: '2025-09-12',
-    read: true,
-    starred: false,
-    category: 'event',
-  },
-  {
-    id: 3,
-    from: 'Donation Committee',
-    subject: 'Monthly Donation Summary',
-    preview: 'Here is your monthly donation summary for August. Thank you for your continued support...',
-    date: '2025-09-01',
-    read: true,
-    starred: false,
-    category: 'donation',
-  },
-  {
-    id: 4,
-    from: 'Volunteer Coordinator',
-    subject: 'Volunteer Opportunity - Atlanta Food Bank',
-    preview: 'We have an exciting volunteer opportunity at the Atlanta Food Bank this Saturday...',
-    date: '2025-08-28',
-    read: false,
-    starred: false,
-    category: 'volunteer',
-  },
-];
-
-const categories = [
-  { id: 'all', name: 'All Messages', count: 4 },
-  { id: 'announcement', name: 'Announcements', count: 1 },
-  { id: 'event', name: 'Events', count: 1 },
-  { id: 'donation', name: 'Donations', count: 1 },
-  { id: 'volunteer', name: 'Volunteer', count: 1 },
-];
+import { dataService, logDataSource } from '@/lib/data';
+import { MessageSquare, Send, User, Calendar, Search, Star } from 'lucide-react';
 
 export default function MessagesPage() {
+  const { user } = useAuth();
+  const [messages, setMessages] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedMessage, setSelectedMessage] = useState<any>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isComposing, setIsComposing] = useState(false);
+  const [subject, setSubject] = useState('');
+  const [messageBody, setMessageBody] = useState('');
 
-  const filteredMessages = messages.filter(message => {
-    const matchesCategory = selectedCategory === 'all' || message.category === selectedCategory;
-    const matchesSearch = message.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         message.from.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  useEffect(() => {
+    const loadMessages = async () => {
+      if (!user?.id) return;
+
+      try {
+        logDataSource('Portal Messages');
+        const data = await dataService.getMessages(user.id);
+        setMessages(data?.messages || []);
+        setCategories(data?.categories || []);
+      } catch (error) {
+        console.error('Failed to load messages:', error);
+        setMessages([]);
+      }
+    };
+
+    loadMessages();
+  }, [user?.id]);
+
+  const filteredMessages = useMemo(() => {
+    return messages.filter((message) => {
+      const matchesCategory = selectedCategory === 'all' || message.category === selectedCategory;
+      const query = searchQuery.toLowerCase();
+      const matchesSearch = message.subject.toLowerCase().includes(query) || message.from.toLowerCase().includes(query);
+      return matchesCategory && matchesSearch;
+    });
+  }, [messages, selectedCategory, searchQuery]);
 
   const getCategoryColor = (category: string) => {
     switch (category) {
@@ -95,6 +57,29 @@ export default function MessagesPage() {
     }
   };
 
+  const handleSend = async () => {
+    if (!subject.trim() || !messageBody.trim()) return;
+
+    try {
+      await fetch('/api/communications', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'direct_email',
+          subject,
+          content: messageBody,
+          recipient_segments: ['all'],
+        }),
+      });
+
+      setIsComposing(false);
+      setSubject('');
+      setMessageBody('');
+    } catch (error) {
+      console.error('Failed to send message:', error);
+    }
+  };
+
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
       <div className="mb-6 sm:mb-8">
@@ -103,7 +88,6 @@ export default function MessagesPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6">
-        {/* Sidebar */}
         <div className="lg:col-span-1">
           <Card className="bg-white/80 backdrop-blur-sm border-green-200 shadow-lg mb-4">
             <CardHeader className="pb-4">
@@ -125,9 +109,7 @@ export default function MessagesPage() {
                 >
                   <div className="flex justify-between items-center">
                     <span>{category.name}</span>
-                    <Badge variant="secondary" className="ml-2 text-xs">
-                      {category.count}
-                    </Badge>
+                    <Badge variant="secondary" className="ml-2 text-xs">{category.count}</Badge>
                   </div>
                 </button>
               ))}
@@ -143,9 +125,7 @@ export default function MessagesPage() {
           </Button>
         </div>
 
-        {/* Messages List */}
         <div className="lg:col-span-3">
-          {/* Search and Filters */}
           <Card className="bg-white/80 backdrop-blur-sm border-green-200 shadow-lg mb-4">
             <CardContent className="p-4">
               <div className="flex flex-col sm:flex-row gap-4">
@@ -158,64 +138,37 @@ export default function MessagesPage() {
                     className="pl-10 border-green-200 focus:border-green-500"
                   />
                 </div>
-                <div className="flex gap-2">
-                  <Button variant="outline" size="sm" className="border-green-200 text-green-700">
-                    <Filter className="h-4 w-4 mr-2" />
-                    Filter
-                  </Button>
-                  <Button variant="outline" size="sm" className="border-green-200 text-green-700">
-                    <Archive className="h-4 w-4 mr-2" />
-                    Archive
-                  </Button>
-                </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Messages Cards */}
           <div className="space-y-4">
             {filteredMessages.map((message) => (
               <Card
                 key={message.id}
-                className={`bg-white/80 backdrop-blur-sm shadow-lg transition-all hover:shadow-xl cursor-pointer ${
+                className={`bg-white/80 backdrop-blur-sm shadow-lg transition-all hover:shadow-xl ${
                   !message.read ? 'border-l-4 border-l-amber-500' : 'border-green-200'
                 }`}
-                onClick={() => setSelectedMessage(message)}
               >
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 mb-2">
-                        <div className="flex-shrink-0">
-                          <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
-                            <User className="h-4 w-4 text-white" />
-                          </div>
+                        <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
+                          <User className="h-4 w-4 text-white" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                            <h3 className={`text-sm font-medium truncate ${
-                              !message.read ? 'text-green-900 font-semibold' : 'text-green-800'
-                            }`}>
-                              {message.from}
-                            </h3>
-                            <Badge className={`text-xs ${getCategoryColor(message.category)} self-start sm:self-auto`}>
-                              {message.category}
-                            </Badge>
+                            <h3 className={`text-sm truncate ${!message.read ? 'text-green-900 font-semibold' : 'text-green-800'}`}>{message.from}</h3>
+                            <Badge className={`text-xs ${getCategoryColor(message.category)} self-start sm:self-auto`}>{message.category}</Badge>
                           </div>
                         </div>
                       </div>
-                      <h4 className={`text-base sm:text-lg mb-2 truncate ${
-                        !message.read ? 'font-semibold text-green-900' : 'font-medium text-green-800'
-                      }`}>
-                        {message.subject}
-                      </h4>
+                      <h4 className={`text-base sm:text-lg mb-2 truncate ${!message.read ? 'font-semibold text-green-900' : 'font-medium text-green-800'}`}>{message.subject}</h4>
                       <p className="text-sm text-green-600 line-clamp-2">{message.preview}</p>
                     </div>
                     <div className="flex items-center gap-3 text-xs text-green-500">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
-                        {new Date(message.date).toLocaleDateString()}
-                      </div>
+                      <div className="flex items-center gap-1"><Calendar className="h-3 w-3" />{new Date(message.date).toLocaleDateString()}</div>
                       {message.starred && <Star className="h-4 w-4 text-amber-500 fill-current" />}
                       {!message.read && <div className="w-2 h-2 bg-amber-500 rounded-full" />}
                     </div>
@@ -237,7 +190,6 @@ export default function MessagesPage() {
         </div>
       </div>
 
-      {/* Compose Modal (simplified for demo) */}
       {isComposing && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <Card className="w-full max-w-2xl bg-white shadow-2xl">
@@ -245,25 +197,12 @@ export default function MessagesPage() {
               <CardTitle>Compose Message</CardTitle>
             </CardHeader>
             <CardContent className="p-6 space-y-4">
-              <Input placeholder="To: Guild Administration" className="border-green-200" />
-              <Input placeholder="Subject" className="border-green-200" />
-              <Textarea
-                placeholder="Your message..."
-                rows={6}
-                className="border-green-200 resize-none"
-              />
+              <Input value="To: Guild Administration" readOnly className="border-green-200 bg-green-50" />
+              <Input value={subject} onChange={(e) => setSubject(e.target.value)} placeholder="Subject" className="border-green-200" />
+              <Textarea value={messageBody} onChange={(e) => setMessageBody(e.target.value)} placeholder="Your message..." rows={6} className="border-green-200 resize-none" />
               <div className="flex justify-end gap-3">
-                <Button
-                  variant="outline"
-                  onClick={() => setIsComposing(false)}
-                  className="border-green-200 text-green-700"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  onClick={() => setIsComposing(false)}
-                  className="bg-gradient-to-r from-green-600 to-emerald-600 text-white"
-                >
+                <Button variant="outline" onClick={() => setIsComposing(false)} className="border-green-200 text-green-700">Cancel</Button>
+                <Button onClick={handleSend} className="bg-gradient-to-r from-green-600 to-emerald-600 text-white">
                   <Send className="h-4 w-4 mr-2" />
                   Send Message
                 </Button>
