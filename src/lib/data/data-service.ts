@@ -30,8 +30,15 @@ class DataService {
       return userId;
     }
 
+    const searchResponse = await this.apiCall(`/api/members?search=${encodeURIComponent(userId)}&limit=1&page=1`);
+    const matchedMemberId = searchResponse?.data?.[0]?.id || searchResponse?.members?.[0]?.id;
+
+    if (matchedMemberId) {
+      return matchedMemberId;
+    }
+
     const membersResponse = await this.apiCall('/api/members?limit=1&page=1');
-    const fallbackMemberId = membersResponse?.members?.[0]?.id;
+    const fallbackMemberId = membersResponse?.data?.[0]?.id || membersResponse?.members?.[0]?.id;
 
     if (!fallbackMemberId) {
       throw new Error('No member record available to load portal data.');

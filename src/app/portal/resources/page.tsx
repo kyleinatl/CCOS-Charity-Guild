@@ -21,13 +21,13 @@ import {
 } from 'lucide-react';
 
 interface Document {
-  id: number;
+  id: string;
   title: string;
-  type: 'minutes' | 'form' | 'policy' | 'other';
-  date: string;
-  size: string;
-  url: string;
+  document_type: 'minutes' | 'form' | 'policy' | 'other';
+  created_at: string;
   description?: string;
+  file_name?: string;
+  file_url?: string | null;
 }
 
 function MemberResourcesContent() {
@@ -36,109 +36,45 @@ function MemberResourcesContent() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [loading, setLoading] = useState(true);
+  const [documents, setDocuments] = useState<Document[]>([]);
+  const [error, setError] = useState('');
+  const [uploading, setUploading] = useState(false);
+  const [uploadMessage, setUploadMessage] = useState('');
+  const [uploadForm, setUploadForm] = useState({
+    title: '',
+    document_type: 'minutes',
+    description: '',
+  });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   useEffect(() => {
-    // Simulate loading
-    setTimeout(() => setLoading(false), 500);
-
     // Check authentication - redirect if not logged in
     if (!user) {
       router.push('/auth/login?redirect=/portal/resources');
+      return;
     }
-  }, [user, router]);
 
-  const documents: Document[] = [
-    {
-      id: 1,
-      title: 'Board Meeting Minutes - January 2026',
-      type: 'minutes',
-      date: '2026-01-15',
-      size: '245 KB',
-      url: '/documents/minutes-jan-2026.pdf',
-      description: 'Monthly board meeting minutes including financial reports and event planning'
-    },
-    {
-      id: 2,
-      title: 'Board Meeting Minutes - December 2025',
-      type: 'minutes',
-      date: '2025-12-18',
-      size: '198 KB',
-      url: '/documents/minutes-dec-2025.pdf',
-      description: 'Year-end review and 2026 planning session'
-    },
-    {
-      id: 3,
-      title: 'Board Meeting Minutes - November 2025',
-      type: 'minutes',
-      date: '2025-11-20',
-      size: '212 KB',
-      url: '/documents/minutes-nov-2025.pdf',
-      description: 'Hope Awards planning and grant allocation discussions'
-    },
-    {
-      id: 4,
-      title: 'Expense Reimbursement Form',
-      type: 'form',
-      date: '2026-01-01',
-      size: '156 KB',
-      url: '/documents/reimbursement-form.pdf',
-      description: 'Standard form for member expense reimbursement requests'
-    },
-    {
-      id: 5,
-      title: 'Event Planning Request Form',
-      type: 'form',
-      date: '2026-01-01',
-      size: '142 KB',
-      url: '/documents/event-planning-form.pdf',
-      description: 'Form for proposing new fundraising events or initiatives'
-    },
-    {
-      id: 6,
-      title: 'Volunteer Hours Log',
-      type: 'form',
-      date: '2026-01-01',
-      size: '128 KB',
-      url: '/documents/volunteer-hours-log.pdf',
-      description: 'Track your volunteer hours for annual reporting'
-    },
-    {
-      id: 7,
-      title: 'Sponsorship Overview 2026',
-      type: 'policy',
-      date: '2026-01-01',
-      size: 'PDF',
-      url: '/files/sponsorship-overview-2026.pdf',
-      description: 'Current sponsorship overview and participation details'
-    },
-    {
-      id: 8,
-      title: 'Live Donor List',
-      type: 'policy',
-      date: '2026-06-10',
-      size: 'Web',
-      url: '/donor-list',
-      description: 'Current donor roster copied into the local site'
-    },
-    {
-      id: 9,
-      title: 'Grant Application Guidelines',
-      type: 'policy',
-      date: '2025-09-15',
-      size: '324 KB',
-      url: '/documents/grant-guidelines.pdf',
-      description: 'Guidelines for nonprofits applying for guild grants'
-    },
-    {
-      id: 10,
-      title: '2025 Annual Report',
-      type: 'other',
-      date: '2026-01-10',
-      size: '2.4 MB',
-      url: '/documents/annual-report-2025.pdf',
-      description: 'Complete annual report including financials and impact metrics'
-    },
-  ];
+    const loadDocuments = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/portal/documents', { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error('Unable to load documents');
+        }
+
+        const data = await response.json();
+        setDocuments(data.documents || []);
+        setError('');
+      } catch (loadError) {
+        setError(loadError instanceof Error ? loadError.message : 'Unable to load documents');
+        setDocuments([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadDocuments();
+  }, [user, router]);
 
   const categories = [
     { id: 'all', label: 'All Documents', icon: FolderOpen },
@@ -149,14 +85,60 @@ function MemberResourcesContent() {
   ];
 
   const filteredDocuments = documents.filter(doc => {
-    const matchesCategory = selectedCategory === 'all' || doc.type === selectedCategory;
+    const matchesCategory = selectedCategory === 'all' || doc.document_type === selectedCategory;
     const matchesSearch = doc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          doc.description?.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
   const handleDownload = (doc: Document) => {
-    window.open(doc.url, '_blank', 'noopener,noreferrer');
+    if (doc.file_url) {
+      window.open(doc.file_url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const canUpload = user?.app_metadata?.role === 'admin_role' || user?.app_metadata?.role === 'treasurer_role';
+
+  const handleUpload = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (!selectedFile) {
+      setUploadMessage('Choose a file to upload.');
+      return;
+    }
+
+    try {
+      setUploading(true);
+      setUploadMessage('');
+
+      const payload = new FormData();
+      payload.append('title', uploadForm.title);
+      payload.append('document_type', uploadForm.document_type);
+      payload.append('description', uploadForm.description);
+      payload.append('file', selectedFile);
+
+      const response = await fetch('/api/portal/documents', {
+        method: 'POST',
+        body: payload,
+      });
+
+      const responseData = await response.json();
+      if (!response.ok) {
+        throw new Error(responseData.error || 'Upload failed');
+      }
+
+      setUploadForm({ title: '', document_type: 'minutes', description: '' });
+      setSelectedFile(null);
+      setUploadMessage('Document uploaded successfully.');
+
+      const refreshResponse = await fetch('/api/portal/documents', { cache: 'no-store' });
+      const refreshData = await refreshResponse.json();
+      setDocuments(refreshData.documents || []);
+    } catch (uploadError) {
+      setUploadMessage(uploadError instanceof Error ? uploadError.message : 'Upload failed');
+    } finally {
+      setUploading(false);
+    }
   };
 
   const formatDate = (dateString: string) => {
@@ -264,15 +246,86 @@ function MemberResourcesContent() {
         </CardContent>
       </Card>
 
+      {canUpload && (
+        <Card className="border-sky-200 bg-white/90 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg text-sky-800">Upload a New Document</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleUpload} className="grid gap-4 md:grid-cols-2">
+              <div className="space-y-2 md:col-span-2">
+                <label className="text-sm font-medium text-gray-700">Title</label>
+                <Input
+                  value={uploadForm.title}
+                  onChange={(e) => setUploadForm((current) => ({ ...current, title: e.target.value }))}
+                  placeholder="Board Meeting Minutes - June 2026"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700">Document Type</label>
+                <select
+                  value={uploadForm.document_type}
+                  onChange={(e) => setUploadForm((current) => ({ ...current, document_type: e.target.value }))}
+                  className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                >
+                  <option value="minutes">Board Minutes</option>
+                  <option value="form">Form</option>
+                  <option value="policy">Policy</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700">File</label>
+                <Input
+                  type="file"
+                  onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2 md:col-span-2">
+                <label className="text-sm font-medium text-gray-700">Description</label>
+                <Input
+                  value={uploadForm.description}
+                  onChange={(e) => setUploadForm((current) => ({ ...current, description: e.target.value }))}
+                  placeholder="Short description of what this file contains"
+                />
+              </div>
+
+              {uploadMessage && (
+                <div className="md:col-span-2 text-sm text-sky-700">
+                  {uploadMessage}
+                </div>
+              )}
+
+              <div className="md:col-span-2 flex justify-end">
+                <Button type="submit" disabled={uploading} className="bg-sky-600 hover:bg-sky-700">
+                  {uploading ? 'Uploading...' : 'Upload Document'}
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+      )}
+
+      {error && (
+        <Card className="border-amber-200 bg-amber-50">
+          <CardContent className="p-4 text-sm text-amber-800">{error}</CardContent>
+        </Card>
+      )}
+
       {/* Documents List */}
       <div className="grid gap-3 sm:gap-4 w-full">
         {filteredDocuments.length === 0 ? (
           <Card>
             <CardContent className="py-12 text-center">
               <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No documents found</h3>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No files uploaded yet</h3>
               <p className="text-gray-600">
-                Try adjusting your search or filters to find what you're looking for.
+                This library is ready for board minutes, forms, and policies as soon as they are uploaded.
               </p>
             </CardContent>
           </Card>
@@ -290,8 +343,8 @@ function MemberResourcesContent() {
                         <h3 className="text-lg font-semibold text-gray-900">
                           {doc.title}
                         </h3>
-                        <Badge className={getTypeColor(doc.type)}>
-                          {getTypeLabel(doc.type)}
+                        <Badge className={getTypeColor(doc.document_type)}>
+                          {getTypeLabel(doc.document_type)}
                         </Badge>
                       </div>
                       {doc.description && (
@@ -302,11 +355,11 @@ function MemberResourcesContent() {
                       <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500">
                         <span className="flex items-center">
                           <Calendar className="h-4 w-4 mr-1" />
-                          {formatDate(doc.date)}
+                          {formatDate(doc.created_at)}
                         </span>
                         <span className="flex items-center">
                           <File className="h-4 w-4 mr-1" />
-                          {doc.size}
+                          {doc.file_name || 'Uploaded file'}
                         </span>
                       </div>
                     </div>
@@ -315,6 +368,7 @@ function MemberResourcesContent() {
                     onClick={() => handleDownload(doc)}
                     className="w-full sm:w-auto sm:ml-0 flex items-center justify-center flex-shrink-0 text-sm"
                     size="sm"
+                    disabled={!doc.file_url}
                   >
                     <Download className="h-4 w-4 mr-2" />
                     Download

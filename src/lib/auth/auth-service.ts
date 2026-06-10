@@ -79,12 +79,21 @@ export class AuthService {
   // Sign in existing member
   async signIn(email: string, password: string) {
     try {
-      const { data, error } = await this.supabase.auth.signInWithPassword({
-        email,
-        password,
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: email, password }),
       });
 
-      return { data, error };
+      const data = await response.json();
+
+      if (!response.ok) {
+        return { data: null, error: data.error || 'Unable to sign in' };
+      }
+
+      return { data, error: null };
     } catch (error) {
       return { data: null, error };
     }
@@ -92,32 +101,28 @@ export class AuthService {
 
   // Sign out
   async signOut() {
-    const { error } = await this.supabase.auth.signOut();
-    return { error };
+    try {
+      const response = await fetch('/api/auth/logout', { method: 'POST' });
+      if (!response.ok) {
+        return { error: 'Unable to sign out' };
+      }
+      return { error: null };
+    } catch (error) {
+      return { error };
+    }
   }
 
   // Get current user with profile
   async getCurrentUserWithProfile(): Promise<{ user: AuthUser | null; error: any }> {
     try {
-      const { data: { user }, error: userError } = await this.supabase.auth.getUser();
-      
-      if (userError || !user) {
-        return { user: null, error: userError };
+      const response = await fetch('/api/auth/me', { cache: 'no-store' });
+
+      if (!response.ok) {
+        return { user: null, error: 'Failed to load session' };
       }
 
-      // Fetch member profile
-      const { data: profile, error: profileError } = await this.supabase
-        .from('members')
-        .select('*')
-        .eq('id', user.id)
-        .single();
-
-      const userWithProfile: AuthUser = {
-        ...user,
-        member_profile: profile || undefined
-      };
-
-      return { user: userWithProfile, error: profileError };
+      const data = await response.json();
+      return { user: data.user || null, error: null };
     } catch (error) {
       return { user: null, error };
     }
@@ -148,60 +153,12 @@ export class AuthService {
 
   // Reset password
   async resetPassword(email: string) {
-    try {
-      const { error } = await this.supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/auth/reset-password`,
-      });
-
-      return { error };
-    } catch (error) {
-      return { error };
-    }
+    return { error: 'Password resets are handled by the admin portal' };
   }
 
   // Listen to auth state changes
   onAuthStateChange(callback: (event: string, session: any) => void) {
-    return this.supabase.auth.onAuthStateChange(callback);
-  }
-
-  // Mock data fallback for development
-  async getMockUserData(): Promise<{ user: AuthUser | null; error: any }> {
-    // This is a mock user for development - easily replaceable with real data
-    const mockUser: AuthUser = {
-      id: 'mock-user-id',
-      email: 'john.doe@example.com',
-      aud: 'authenticated',
-      role: 'authenticated',
-      email_confirmed_at: new Date().toISOString(),
-      phone: '',
-      confirmed_at: new Date().toISOString(),
-      last_sign_in_at: new Date().toISOString(),
-      app_metadata: {},
-      user_metadata: {
-        first_name: 'John',
-        last_name: 'Doe',
-      },
-      identities: [],
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-      member_profile: {
-        id: 'mock-user-id',
-        first_name: 'John',
-        last_name: 'Doe',
-        tier: 'gold',
-        total_donated: 1250,
-        phone: '+1 (555) 123-4567',
-        address_line1: '123 Main St',
-        city: 'Anytown',
-        state: 'CA',
-        zip_code: '12345',
-        engagement_score: 85,
-        created_at: '2024-01-15T10:00:00Z',
-        updated_at: new Date().toISOString(),
-      }
-    };
-
-    return { user: mockUser, error: null };
+    return { data: { subscription: { unsubscribe() {} } } };
   }
 }
 

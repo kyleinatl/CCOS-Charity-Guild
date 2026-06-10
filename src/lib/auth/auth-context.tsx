@@ -23,41 +23,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Check current session on mount
     const getInitialSession = async () => {
       try {
-        // Try to get real user data first
         const { user: realUser, error } = await authService.getCurrentUserWithProfile();
-        
-        if (realUser && !error) {
-          setUser(realUser);
-        } else {
-          // Fallback to mock data for development
-          // TODO: Remove this in production - replace with proper error handling
-          const { user: mockUser } = await authService.getMockUserData();
-          setUser(mockUser);
-        }
+
+        setUser(realUser && !error ? realUser : null);
       } catch (error) {
         console.error('Auth initialization error:', error);
-        // Fallback to mock data
-        const { user: mockUser } = await authService.getMockUserData();
-        setUser(mockUser);
+        setUser(null);
       } finally {
         setLoading(false);
       }
     };
 
     getInitialSession();
-
-    // Listen for auth state changes
-    const { data: { subscription } } = authService.onAuthStateChange(async (event, session) => {
-      if (event === 'SIGNED_IN' && session?.user) {
-        const { user: userWithProfile } = await authService.getCurrentUserWithProfile();
-        setUser(userWithProfile);
-      } else if (event === 'SIGNED_OUT') {
-        setUser(null);
-      }
-      setLoading(false);
-    });
-
-    return () => subscription.unsubscribe();
   }, []);
 
   const signIn = async (email: string, password: string) => {

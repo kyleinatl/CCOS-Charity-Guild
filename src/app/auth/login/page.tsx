@@ -7,9 +7,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Eye, EyeOff, Mail, Lock, Shield } from 'lucide-react';
+import { authService } from '@/lib/auth/auth-service';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -22,26 +23,24 @@ export default function LoginPage() {
     setError('');
 
     try {
-      // Demo login - in production this would connect to Supabase
-      if (email && password) {
-        // Simulate login delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        // Redirect to admin dashboard
-        router.push('/analytics');
-      } else {
-        setError('Please enter both email and password');
+      if (!username || !password) {
+        setError('Please enter a username and password');
+        return;
       }
+
+      const { data, error: signInError } = await authService.signIn(username, password);
+      if (signInError || !data?.user) {
+        setError(typeof signInError === 'string' ? signInError : 'Invalid username or password');
+        return;
+      }
+
+      const role = data.user?.app_metadata?.role || data.user?.user_metadata?.role;
+      router.push(role === 'admin_role' || role === 'treasurer_role' ? '/analytics' : '/portal');
     } catch (err) {
       setError('An unexpected error occurred');
     } finally {
       setLoading(false);
     }
-  };
-
-  // Demo credentials helper
-  const useDemoCredentials = () => {
-    setEmail('admin@ccoscharityguild.org');
-    setPassword('admin123');
   };
 
   return (
@@ -78,17 +77,17 @@ export default function LoginPage() {
               )}
 
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-semibold text-green-800">
-                  Email Address
+                <label htmlFor="username" className="text-sm font-semibold text-green-800">
+                  Username or Name
                 </label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500" />
                   <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="staff@ccoscharityguild.org"
+                    id="username"
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Enter your name or portal username"
                     className="pl-12 h-12 border-green-200 focus:border-green-400 focus:ring-green-400"
                     required
                   />
@@ -121,12 +120,7 @@ export default function LoginPage() {
               </div>
 
               <div className="flex items-center justify-between">
-                <Link 
-                  href="/auth/forgot-password" 
-                  className="text-sm text-green-600 hover:text-emerald-600 font-medium transition-colors"
-                >
-                  Forgot password?
-                </Link>
+                <span className="text-sm text-green-600 font-medium">Password access only</span>
               </div>
 
               <Button
@@ -137,23 +131,6 @@ export default function LoginPage() {
                 {loading ? 'Signing in...' : 'Access Dashboard'}
               </Button>
 
-              {/* Demo credentials helper for development */}
-              <div className="border-t border-green-100 pt-6">
-                <div className="text-center text-sm text-green-600 mb-3">
-                  🧪 Demo Mode - Development Only
-                </div>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={useDemoCredentials}
-                  className="w-full border-amber-300 text-amber-700 hover:bg-amber-50 hover:border-amber-400"
-                >
-                  Use Demo Credentials
-                </Button>
-                <p className="text-xs text-green-500 mt-2 text-center">
-                  Auto-fills admin credentials for testing the dashboard
-                </p>
-              </div>
             </form>
 
             <div className="mt-6 text-center">
