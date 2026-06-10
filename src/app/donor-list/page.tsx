@@ -383,7 +383,7 @@ export default function DonorListPage() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="/donate"
+            href="/join-donate"
             className="inline-flex justify-center bg-gradient-to-r from-blue-600 to-sky-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-sky-700 transition-all shadow-lg hover:shadow-xl"
           >
             Back to Donate

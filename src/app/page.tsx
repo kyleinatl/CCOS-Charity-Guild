@@ -5,7 +5,21 @@ import { useState, useEffect, useRef } from 'react';
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [otherMenuOpen, setOtherMenuOpen] = useState(false);
+  const [activeHeroIndex, setActiveHeroIndex] = useState(0);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  const heroSlides = [
+    {
+      image: '/hero/join-donate-hero.jpg',
+      alt: 'Charity Guild join and donate hero',
+      position: 'center center',
+    },
+    {
+      image: '/2026-small-grant-recipients-hero.png',
+      alt: '2026 small grant recipients hero',
+      position: 'center center',
+    },
+  ];
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -24,6 +38,14 @@ export default function Home() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [menuOpen]);
+
+  useEffect(() => {
+    const slideInterval = window.setInterval(() => {
+      setActiveHeroIndex((currentIndex) => (currentIndex + 1) % heroSlides.length);
+    }, 8000);
+
+    return () => window.clearInterval(slideInterval);
+  }, [heroSlides.length]);
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
@@ -302,9 +324,22 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <div className="relative bg-cover bg-center" style={{backgroundImage: "url('/2026-small-grant-recipients-hero.png')"}}>
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+      <div className="relative overflow-hidden min-h-[520px] sm:min-h-[620px] lg:min-h-[720px]">
+        <div className="absolute inset-0">
+          {heroSlides.map((slide, index) => (
+            <img
+              key={slide.image}
+              src={slide.image}
+              alt={slide.alt}
+              className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-[2200ms] ease-in-out ${
+                index === activeHeroIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+              }`}
+              style={{ objectPosition: slide.position }}
+            />
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/70" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_45%)]" />
+        </div>
         
         {/* Content */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
