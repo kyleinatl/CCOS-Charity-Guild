@@ -369,7 +369,7 @@ export default function DonorListPage() {
             Donor List
           </h2>
           <p className="text-blue-700 text-sm sm:text-base">
-            Live donor roster copied from the current Charity Guild donor list and presented locally.
+            Current donor roster.
           </p>
         </div>
 

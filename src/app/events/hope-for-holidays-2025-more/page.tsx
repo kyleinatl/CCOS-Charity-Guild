@@ -27,10 +27,6 @@ export default function HopeForHolidays2025Page() {
                 <p>Live Online Auction</p>
                 <p>Tickets on Sale NOW</p>
               </div>
-              <p>
-                The flyer is the focal point of the live page, so the local version uses the exact event flyer and
-                keeps the messaging concise and centered on the fundraiser details.
-              </p>
               <div className="flex flex-wrap gap-3 pt-2">
                 <a href="/donate" className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white shadow-lg hover:bg-blue-700 transition-colors">
                   Donate

@@ -32,15 +32,7 @@ export default function GardenPartyPage() {
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-blue-100">
               <h2 className="text-2xl font-bold text-blue-900 mb-4">Tickets &amp; More info</h2>
               <p className="text-slate-700 leading-7">
-                The live page centers the Garden Party flyer, so this local version keeps the event art front and
-                center while preserving the site&apos;s existing visual style.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-r from-blue-600 to-sky-600 rounded-2xl p-6 text-white shadow-xl">
-              <h3 className="text-xl font-bold mb-2">Local event page</h3>
-              <p className="leading-7 text-white/95">
-                This page is now self-contained and no longer depends on the Wix event page for navigation or media.
+                Garden Party event details and flyer.
               </p>
             </div>
 
