@@ -104,7 +104,7 @@ export default function MemberDetails({ member, onClose, onEdit, onDelete }: Mem
                 <div className="flex items-center gap-2 mt-2">
                   <span className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${getTierColor(member.tier)}`}>
                     <Award className="w-4 h-4 mr-1" />
-                    {member.tier.charAt(0).toUpperCase() + member.tier.slice(1)} Member
+                    <strong>{member.tier.charAt(0).toUpperCase() + member.tier.slice(1)}</strong> Member
                   </span>
                   <span className="text-sm text-gray-500">
                     Member since {formatDate(member.member_since)}
