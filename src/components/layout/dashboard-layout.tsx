@@ -20,6 +20,7 @@ import {
   User,
   Heart,
   Sparkles,
+  FileText,
 } from 'lucide-react';
 
 interface DashboardLayoutProps {
@@ -34,6 +35,7 @@ const navigation = [
   { name: 'Communications', href: '/communications', icon: MessageSquare },
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
   { name: 'Automation', href: '/automation', icon: Sparkles },
+  { name: 'Documents & Minutes', href: '/portal/resources', icon: FileText },
 ];
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
