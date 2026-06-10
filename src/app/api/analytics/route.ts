@@ -149,8 +149,7 @@ export async function GET(request: NextRequest) {
       bronze: 98,
       silver: 85,
       gold: 42,
-      platinum: 15,
-      diamond: 5
+      platinum: 15
     };
 
     const tierDistribution = Object.entries(tierCounts).map(([tier, count]) => ({
@@ -163,8 +162,7 @@ export async function GET(request: NextRequest) {
         tier === 'bronze' ? 12500 :
         tier === 'silver' ? 25500 :
         tier === 'gold' ? 42000 :
-        tier === 'platinum' ? 37500 :
-        tier === 'diamond' ? 8250 : 0
+        tier === 'platinum' ? 37500 : 0
     }));
 
     // Top donors - use mock data if no real data
@@ -176,11 +174,11 @@ export async function GET(request: NextRequest) {
         total_donated: member.total_donated || 0,
         tier: member.tier
       })) : [
-        { member_id: 'mem_001', total_donated: 2500, tier: 'diamond' },
-        { member_id: 'mem_002', total_donated: 1800, tier: 'diamond' },
-        { member_id: 'mem_003', total_donated: 1500, tier: 'platinum' },
-        { member_id: 'mem_004', total_donated: 1250, tier: 'platinum' },
-        { member_id: 'mem_005', total_donated: 1000, tier: 'gold' }
+        { member_id: 'mem_001', total_donated: 15000, tier: 'platinum' },
+        { member_id: 'mem_002', total_donated: 12000, tier: 'platinum' },
+        { member_id: 'mem_003', total_donated: 8000, tier: 'gold' },
+        { member_id: 'mem_004', total_donated: 5000, tier: 'silver' },
+        { member_id: 'mem_005', total_donated: 2000, tier: 'bronze' }
       ];
 
     // Donation by method - use mock data if no real data

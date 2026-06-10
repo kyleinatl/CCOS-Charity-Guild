@@ -300,9 +300,9 @@ RETURNS member_tier AS $$
 BEGIN
     IF total_amount >= 10000 THEN
         RETURN 'platinum';
-    ELSIF total_amount >= 5000 THEN
+    ELSIF total_amount >= 2500 THEN
         RETURN 'gold';
-    ELSIF total_amount >= 1000 THEN
+    ELSIF total_amount >= 500 THEN
         RETURN 'silver';
     ELSE
         RETURN 'bronze';

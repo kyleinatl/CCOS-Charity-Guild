@@ -195,7 +195,7 @@ export default function DonationForm({
                           {member.first_name} {member.last_name}
                         </div>
                         <div className="text-sm text-gray-500">
-                          {member.email} • {member.tier} tier
+                          {member.email} • <strong>{member.tier}</strong> tier
                         </div>
                       </div>
                     ))}

@@ -79,8 +79,8 @@ class DataService {
     const totalDonated = donations.reduce((sum: number, donation: any) => sum + donation.amount, 0);
 
     const thresholds: Record<string, number> = {
-      bronze: 1000,
-      silver: 5000,
+      bronze: 500,
+      silver: 2500,
       gold: 10000,
       platinum: 25000,
     };

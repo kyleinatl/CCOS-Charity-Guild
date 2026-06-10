@@ -343,7 +343,7 @@ export default function DonationDetails({ donation, onClose, onEdit, onDelete }:
                     </div>
                     <div className="pt-2 border-t">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-${donationDetails.members.tier === 'bronze' ? 'amber' : donationDetails.members.tier === 'silver' ? 'gray' : donationDetails.members.tier === 'gold' ? 'yellow' : 'purple'}-100 text-${donationDetails.members.tier === 'bronze' ? 'amber' : donationDetails.members.tier === 'silver' ? 'gray' : donationDetails.members.tier === 'gold' ? 'yellow' : 'purple'}-800`}>
-                        {donationDetails.members.tier.charAt(0).toUpperCase() + donationDetails.members.tier.slice(1)} Member
+                        <strong>{donationDetails.members.tier.charAt(0).toUpperCase() + donationDetails.members.tier.slice(1)}</strong> Member
                       </span>
                     </div>
                   </div>
