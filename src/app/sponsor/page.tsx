@@ -8,9 +8,9 @@ export default function SponsorPage() {
     { name: 'MIBAB', image: '/mibab.png' },
     { name: 'Mighty Dog', image: '/mighty-dog.png' },
     { name: 'Grapes and Grains', image: '/grapes-and-grains.png' },
-    { name: 'Champions Community Foundation', image: 'https://static.wixstatic.com/media/a80fd7_46175305e5bf4d42b68734236271ec07~mv2.jpg/v1/fill/w_242,h_68,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/2022%20champions%20logo.jpg' },
-    { name: 'Shine the Light', image: 'https://static.wixstatic.com/media/a80fd7_ff35b4f5efac4853b872f54da1d11623~mv2.jpg/v1/fill/w_126,h_170,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Shine%20The%20Light_vert.jpg' },
-    { name: '1 Cure', image: 'https://static.wixstatic.com/media/a80fd7_df687faa292547bb8ded504de3d796fc~mv2.jpg/v1/crop/x_2,y_1,w_798,h_341/fill/w_232,h_104,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1-cure_logotype_pms.jpg' },
+    { name: 'Champions Community Foundation', image: '/partners/champions-community-foundation.jpg' },
+    { name: 'Shine the Light', image: '/partners/shine-the-light.jpg' },
+    { name: '1 Cure', image: '/partners/one-cure.jpg' },
   ];
 
   return (
@@ -111,7 +111,7 @@ export default function SponsorPage() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://www.charityguild.org/_files/ugd/a80fd7_48c5f30d7c134d0aaf54a650684cd90e.pdf"
+              href="/files/sponsorship-overview-2026.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-gradient-to-r from-blue-600 to-sky-600 text-white px-8 py-4 rounded-xl text-lg font-bold hover:from-blue-700 hover:to-sky-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 text-center"
@@ -119,9 +119,7 @@ export default function SponsorPage() {
               Sponsorship Overview
             </a>
             <a
-              href="https://www.charityguild.org/sponsorship#:~:text=Click%20here%20to%20Sponsor,Bronze%20Sponosr%20%241%2C000"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#sponsorship-levels"
               className="inline-block bg-gradient-to-r from-[#e5c366] to-[#d4b356] text-white px-8 py-4 rounded-xl text-lg font-bold hover:from-[#d4b356] hover:to-[#c4a346] transition-all shadow-lg hover:shadow-xl hover:scale-105 text-center"
             >
               Click here to Sponsor
@@ -150,7 +148,7 @@ export default function SponsorPage() {
         </div>
 
         {/* Sponsorship Levels */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-blue-100">
+        <div id="sponsorship-levels" className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-blue-100">
           <h3 className="text-2xl font-bold text-blue-900 mb-6 text-center">Sponsorship Levels</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-gradient-to-br from-[#e5c366] to-[#d4b356] rounded-xl p-6 text-center shadow-lg">

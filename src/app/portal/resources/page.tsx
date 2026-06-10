@@ -108,7 +108,7 @@ function MemberResourcesContent() {
       type: 'policy',
       date: '2026-01-01',
       size: 'PDF',
-      url: 'https://www.charityguild.org/_files/ugd/a80fd7_48c5f30d7c134d0aaf54a650684cd90e.pdf',
+      url: '/files/sponsorship-overview-2026.pdf',
       description: 'Current sponsorship overview and participation details'
     },
     {
@@ -117,8 +117,8 @@ function MemberResourcesContent() {
       type: 'policy',
       date: '2026-06-10',
       size: 'Web',
-      url: 'https://www.charityguild.org/list-of-donors',
-      description: 'Current donor roster published on the live site'
+      url: '/donor-list',
+      description: 'Current donor roster copied into the local site'
     },
     {
       id: 9,

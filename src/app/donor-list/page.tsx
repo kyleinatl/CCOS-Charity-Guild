@@ -1,16 +1,339 @@
 'use client';
 
+const donorSections = [
+  {
+    year: '2026 Donors',
+    subtitle: 'List of Donors as of June 7, 2026*',
+    content: `Diamond ($10,000+)
+Chuck Schneider
+Suzanne and Richard Schultze
+Ana Vargas
+
+Platinum Patron ($5,000-$9,999)
+Cathy and Glen Bradley
+Shelly and Chris Demetree
+Melissa Dickens
+Kristin and Thomas Golub
+Kristin and Brian Harms
+Beth and Andy Wren
+
+Gold ($1000-$4,999)
+Jan and Bruce Alonso
+Bridget Barfield
+Mary Baird and David Nelson
+Pam and Larry Buckley
+Chris Burson
+Joyce and Vince Connolly
+Mary and Lance Cunha
+Ruchi and Manish Dave
+Julia and David DeCook
+Irma Rodriguez and Fred Fernandez
+Jennifer and Gary Gabriel
+Kim and John Gehrhardt
+Julie Samsel and Benjamin Grimes
+Patrica Grimes
+Candace and Todd Hickman
+Marjorie and Michael Keith
+Diane and Michael Koehler
+Suzanne Kolb
+Sally Levan and Michael Steck
+Jill and Richard Levine
+Lani and Richard Lusk
+Vanessa and Kirk Mason
+Joyce and Larry Mays
+Jennifer Meyrowitz
+Meg Middleton
+Tracie and Jeff Nolde
+Louise O'Neill
+Lori and Larry Payne
+K Lee Sherman and John Perkins
+Stacey Ramani
+Tracy and Michael Reidenbach
+Glen and Debbie Rubin
+Pam and Bryant Scott
+Pat and Mark Seal
+Halina and Aleksander Szlam
+Louise and William Tallman
+Chantel and Rob Taylor
+LuAnn and Tom Via
+Rhonda and Russ Welch
+Leslie and Jeff Wilks
+Katherine and Ed Young
+
+Silver Patron ($500-$999)
+Christine Abbate
+Suzanne and Dennis Antinori
+Avinesh Bhar
+Maureen Anderson
+Judy and John Bardis
+James Callahan
+Lisa and Tom Chambers
+Dana and Rob Cochran
+Peggy and Paul Connors
+Cherlyn and Neal Corbett
+Ellie and Christopher Deedy
+Christine and George Fey
+Kristine and Phil Finkle
+Susan and Lance Friedland
+Pam and Pete Gebhardt
+Donna and Guy Gill
+Lynn and JP Gingras
+Tobey and Ed Gray
+Marcy and Paul Hirshberg
+Elaine and Peter Johns
+Whitney and Hugh Kaplan
+Gol and Clint Kimbrell
+Mary Lynn and JB Kurish
+Sissy and Michael Luciani
+Lynne and Gene Magurno
+Melinda Marshall
+Sandra and Patrick Marshall
+Connie and Jim McGinley
+Paula and George Norton
+Yvette and Tony Norwood
+Joy and Bill Prettyman
+Claire Quinn
+Romica Raina
+Brian Rohner
+Debbie and Glen Rubin
+Jaclyn and John Scarbrough
+Eileen and Mark Sharitz
+Andrea and Ken Shelton
+Lokendra and Anu Sheth
+Kristen and Trent Speckhals
+Kent and Pam Starke
+Shelley and Dale Stortz
+Jennifer and Chad Streetman
+Jennifer and Graham Stroman
+Carolyn and Walter Terry
+Suzanne and Bob Thomas
+
+Member ($100-$499)
+Betty Wolf and LeRoy Anderson
+Tammy and Todd Antin
+Erin and Andrew Armour
+Terry and Thomas Backer
+Amanda and Mike Blackwelder
+Andee Blauser
+Susan Sullivan and Doug Bonk
+Kim and Kevin Bryan
+Michelle and Ross Carlson
+Karen Cox
+Caroline and Ron Cruz
+Pam and Bill Curtice
+Heather and Bryan Davis
+Margaret Demetree
+Pamela DeRitis
+Sue and Steve Foege
+Lyn and Bob Isaacs
+Catherine and Bill Johnston
+Wendy and Bob King
+Rebecca Kozycki
+Erin and Brian McCarthy
+Barbara and Carlos Miramontes
+Rebecca and Kevin Polli
+Kristyn and Albert Rees
+Louise Scott
+Kirsten and David Stinson
+Joan Postell and Lee Trexler
+Bridget and David Rickey
+Ramon Rodriguez
+Dee and Jay Vallee`,
+  },
+  {
+    year: '2025 Donors',
+    subtitle: 'List of Donors as of Dec 31, 2025*',
+    content: `Diamond ($10,000+)
+Bradley Keeter
+Chuck Schneider
+Kinskey family
+Suzanne and Richard Schultze
+
+Platinum Patron ($5,000-$9,999)
+Cathy and Glen Bradley
+Shelly and Chris Demetree
+Melissa Dickens
+Kristin and Thomas Golub
+Douglas Ross
+Beth and Andy Wren
+
+Gold Patron ($1,000-$4,999)
+Jan and Bruce Alonso
+Mary Baird and David Nelson
+Judy and John Bardis
+Becky and Roger Brown
+Pam and Larry Buckley
+Chris Burson
+Joyce and Vince Connolly
+Mary and Lance Cunha
+Ruchi and Manish Dave
+Julia and David DeCook
+Irma Rodriguez and Fred Fernandez
+Kerri and Mark Friedman
+Jennifer and Gary Gabriel
+Ken Gary
+Kim and John Gehrhardt
+Susie and Michael Greenberg
+Beth Hausmann
+Candace and Todd Hickman
+Marjorie and Michael Keith
+Diane and Michael Koehler
+Jill and Richard Levine
+Lani and Richard Lusk
+Joyce and Larry Mays
+Jennifer and Barry Meyrowitz
+Konni and Jon Minter
+Stephanie and Dan Moody
+Tracie and Jeff Nolde
+Carol and Van Page
+Lori and Larry Payne
+Joy and Bill Prettyman
+Marianne and Winfried Johnson-Rank
+Zamira and John Rasper
+Tracy and Michael Reidenbach
+Julie Samsel and Benjamin Grimes
+Beth and John Scarbrough
+Pat and Mark Seal
+Kathy and Scott Solomon
+Salli LeVan and Michael Steck
+Barbara and Scott Stevens
+Halina and Aleksander Szlam
+Chantel and Rob Taylor
+LuAnn and Tom Via
+Rhonda and Russell Welch
+
+Silver Patron ($500-$999)
+Suzanne and Dennis Antinori
+Vivienne and Mark Avetoom
+Tricia and Mike Bennett
+Kimberly and Clydall Bobb
+Cynthia and Robert Bowers
+Karri Bunn Holley
+Sandie and Craig Cappai
+Lisa and Tom Chambers
+Ann Chapman
+Heidi Cohen-Brugliera and Gary Brugliera
+Marie and Kyle Cooper
+Cherlyn and Neal Corbett
+Marcelle DeCuir
+Christine and George Fey
+Kristine and Phil Finkle
+Barbara Flandreau
+Susan and Lance Friedland
+Pam and Pete Gebhardt
+Donna and Guy Gill
+Lynn and JP Gingras
+Tobey and Ed Gray
+Susie and Michael Greenberg
+Deirdre and Ken Greenfield
+Marcy and Paul Hirshberg
+Tracy and Allen Hobbs
+Kathy and Rob Hoddeson
+Elaine and Peter Johns
+Whitney and Hugh Kaplan
+Kausar and Michael Kenning
+Mary Lyn and JB Kurish
+Jacqueline and Keith Large
+Allison and Andy Loetscher
+Sandra and Patrick Marshall
+Julie Maurer
+Yvette and Tony Mendez-Norwood
+Monica and Ric Murray
+Louise O'Neill
+Yara Parada-Aguirre
+Karishma Kothari and Kushal Patel
+Jen and Mike Passilla
+Heather and Tim Perry
+Romica Raina
+Stacey Ramani
+Rebecca and Phil Rochester
+Brian Rohner
+Megan and Bob Ross
+Debbie and Glen Rubin
+Lynn and Rick Schultz
+Eileen and Mark Sharitz
+Anu and Lokendra Sheth
+Stephanie and Andrew Shearer
+Andrea and Ken Shelton
+Kristin and Trent Speckhals
+Shelley and Dale Stortz
+Jennifer and Chad Streetman
+Jennifer and Graham Stroman
+Cathy and Majdi Suleiman
+Denise Templeton
+Carolyn and Walter Terry
+Suzanne and Robert Thomas
+Anne and Al Tiano
+Tina and Thomas Tromiczak
+Sarah Weyl
+Leslie and Jeff Wilks
+Betty Wolf and LeRoy Anderson
+
+Hope ($100-$499)
+Chenab and Sunny Aiya
+Kat and Michael Anderson
+Tammy and Todd Antin
+Terry and Thomas Backer
+Amanda and Mike Blackwelder
+Andee Blauser
+Susan Sullivan and Doug Bonk
+Jennifer and Nate Browne
+Barbara Young and Bennett Bruckner
+Julie and Warren Carson
+Dana Cochran
+Randolph Cochran
+Pam and Bill Curtice
+Sonya Dane
+Monica Davis and Richard Alford
+Ellie and Chris Deedy
+Claire Demetree
+Phillip Dopson
+Bradley Ellis
+Sue and Steve Foege
+Catherine Foley
+Maggie Goldman
+Cathy and Bill Johnston
+Carla and Grantley Joseph
+Mary Beth Kennedy
+Ryann and Scott Kennedy
+Lauren Kermani
+Sissy and Michael Luciani
+Erin and Brian McCarthy
+Meghan and Kam McCarthy
+Marla and Greg Milano
+Colleen Nilan
+Marissa Pendegraft
+Rebecca and Kevin Polli
+Jennifer and David Ray
+Nancy and Marion Rhine
+Bridget and David Rickey
+Ramon Rodriguez
+Kevin Ryan
+Melanie Sanders
+Eileen and Mark Sharitz
+Anu and Lokendra Sheth
+Ann and Jesse Seidman
+Paulette and Carter Simpson
+Beth and Jonathan Speigner
+Carter Spriggs
+Holly and Rami Suleiman
+Dee and Jay Vallee
+Nicole Vereen and Steve Siegner
+Gina and Sharad Virmani
+Mike Wells`,
+  },
+];
+
 export default function DonorListPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-amber-50 to-sky-100">
-      {/* Header */}
       <header className="bg-white/95 backdrop-blur-sm shadow-lg border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-3">
-              <img 
-                src="/logo.png" 
-                alt="CCOS Charity Guild Logo" 
+              <img
+                src="/ccos-logo-transparent.png"
+                alt="CCOS Charity Guild Logo"
                 className="h-12 w-auto"
               />
               <div>
@@ -30,12 +353,10 @@ export default function DonorListPage() {
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Back Button */}
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
         <button
           onClick={() => window.history.back()}
-          className="mb-6 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+          className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -43,138 +364,36 @@ export default function DonorListPage() {
           Back
         </button>
 
-        {/* Page Title */}
-        <div className="text-center mb-8">
+        <div className="text-center">
           <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-700 to-sky-600 bg-clip-text text-transparent mb-4">
             Donor List
           </h2>
           <p className="text-blue-700 text-sm sm:text-base">
-            Synced to the current donor roster published on charityguild.org/list-of-donors
+            Live donor roster copied from the current Charity Guild donor list and presented locally.
           </p>
         </div>
 
-        {/* 2025 Donors */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-blue-100 mb-8">
-          <h3 className="text-3xl font-bold text-blue-900 mb-2">2025 Donors</h3>
-          <p className="text-lg text-blue-700 mb-6">List of Donors as of Dec 31, 2025*</p>
+        {donorSections.map((section) => (
+          <section key={section.year} className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-xl border border-blue-100">
+            <h3 className="text-3xl font-bold text-blue-900 mb-2">{section.year}</h3>
+            <p className="text-lg text-blue-700 mb-6">{section.subtitle}</p>
+            <pre className="whitespace-pre-wrap text-sm sm:text-[15px] leading-7 text-slate-800 font-sans">{section.content}</pre>
+          </section>
+        ))}
 
-          {/* Diamond */}
-          <div className="mb-8">
-            <h4 className="text-2xl font-bold text-amber-600 mb-4 border-b-2 border-amber-600 pb-2">Diamond ($10,000+)</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              {['Bradley Keeter', 'Chuck Schneider', 'Kinskey family', 'Suzanne and Richard Schultze'].map((name, i) => (
-                <p key={i} className="text-blue-800">{name}</p>
-              ))}
-            </div>
-          </div>
-
-          {/* Platinum */}
-          <div className="mb-8">
-            <h4 className="text-2xl font-bold text-gray-600 mb-4 border-b-2 border-gray-600 pb-2">Platinum Patron ($5,000-$9,999)</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              {['Cathy and Glen Bradley', 'Chris Burson', 'Shelly and Chris Demetree', 'Melissa Dickens', 'Kristin and Thomas Golub', 'Douglas Ross', 'Beth and Andy Wren'].map((name, i) => (
-                <p key={i} className="text-blue-800">{name}</p>
-              ))}
-            </div>
-          </div>
-
-          {/* Gold */}
-          <div className="mb-8">
-            <h4 className="text-2xl font-bold text-[#e5c366] mb-4 border-b-2 border-[#e5c366] pb-2">Gold Patron ($1,000-$4,999)</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              {['Jan and Bruce Alonso', 'Mary Baird and David Nelson', 'Judy and John Bardis', 'Becky and Roger Brown', 'Pam and Larry Buckley', 'Joyce and Vince Connolly', 'Mary and Lance Cunha', 'Ruchi and Manish Dave', 'Julia and David DeCook', 'Irma Rodriguez and Fred Fernandez', 'Kerri and Mark Friedman', 'Jennifer and Gary Gabriel', 'Ken Gary', 'Kim and John Gehrhardt', 'Susie and Michael Greenberg', 'Beth Hausmann', 'Candace and Todd Hickman', 'Marjorie and Michael Keith', 'Diane and Michael Koehler', 'Jill and Richard Levine', 'Lani and Richard Lusk', 'Joyce and Larry Mays', 'Jennifer and Barry Meyrowitz', 'Konni and Jon Minter', 'Stephanie and Dan Moody', 'Tracie and Jeff Nolde', 'Lori and Larry Payne', 'Joy and Bill Prettyman', 'Marianne and Winfried Johnson-Rank', 'Zamira and John Rasper', 'Tracy and Michael Reidenbach', 'Julie Samsel', 'Beth and John Scarbrough', 'Pat and Mark Seal', 'Kathy and Scott Solomon', 'Salli LeVan and Michael Steck', 'Barbara and Scott Stevens', 'Halina and Aleksander Szlam', 'Chantel and Rob Taylor', 'LuAnn and Tom Via', 'Rhonda and Russell Welch'].map((name, i) => (
-                <p key={i} className="text-blue-800">{name}</p>
-              ))}
-            </div>
-          </div>
-
-          {/* Silver */}
-          <div className="mb-8">
-            <h4 className="text-2xl font-bold text-gray-500 mb-4 border-b-2 border-gray-500 pb-2">Silver Patron ($500-$999)</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              {['Suzanne and Dennis Antinori', 'Vivienne and Mark Avetoom', 'Tricia and Mike Bennett', 'Kimberly and Clydall Bobb', 'Cynthia and Robert Bowers', 'Karri Bunn Holley', 'Sandie and Craig Cappai', 'Lisa and Tom Chambers', 'Ann Chapman', 'Heidi Cohen-Brugliera and Gary Brugliera', 'Marie and Kyle Cooper', 'Cherlyn and Neal Corbett', 'Marcelle DeCuir', 'Christine and George Fey', 'Kristine and Phil Finkle', 'Barbara Flandreau', 'Susan and Lance Friedland', 'Pam and Pete Gebhardt', 'Donna and Guy Gill', 'Lynn and JP Gingras', 'Tobey and Ed Gray', 'Susie and Michael Greenberg', 'Deirdre and Ken Greenfield', 'Marcy and Paul Hirshberg', 'Tracy and Allen Hobbs', 'Kathy and Rob Hoddeson', 'Elaine and Peter Johns', 'Whitney and Hugh Kaplan', 'Kausar and Michael Kenning', 'Mary Lyn and JB Kurish', 'Jacqueline and Keith Large', 'Allison and Andy Loetscher', 'Sandra and Patrick Marshall', 'Julie Maurer', 'Yvette and Tony Mendez-Norwood', 'Monica and Ric Murray', 'Louise O\'Neill', 'Yara Parada-Aguirre', 'Karishma Kothari and Kushal Patel', 'Jen and Mike Passilla', 'Heather and Tim Perry', 'Romica Raina', 'Stacey Ramani', 'Rebecca and Phil Rochester', 'Brian Rohner', 'Megan and Bob Ross', 'Debbie and Glen Rubin', 'Lynn and Rick Schultz', 'Eileen and Mark Sharitz', 'Stephanie and Andrew Shearer', 'Andrea and Ken Shelton', 'Kristin and Trent Speckhals', 'Jennifer and Chad Streetman', 'Jennifer and Graham Stroman', 'Cathy and Majdi Suleiman', 'Denise Templeton', 'Carolyn and Walter Terry', 'Suzanne and Robert Thomas', 'Anne and Al Tiano', 'Tina and Thomas Tromiczak', 'Sarah Weyl', 'Leslie and Jeff Wilks', 'Betty Wolf and LeRoy Anderson'].map((name, i) => (
-                <p key={i} className="text-blue-800">{name}</p>
-              ))}
-            </div>
-          </div>
-
-          {/* Hope */}
-          <div className="mb-8">
-            <h4 className="text-2xl font-bold text-blue-600 mb-4 border-b-2 border-blue-600 pb-2">Hope ($100-$499)</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              {['Chenab and Sunny Aiya', 'Kat and Michael Anderson', 'Tammy and Todd Antin', 'Terry and Thomas Backer', 'Amanda and Mike Blackwelder', 'Andee Blauser', 'Susan Sullivan and Doug Bonk', 'Jennifer and Nate Browne', 'Barbara Young and Bennett Bruckner', 'Julie and Warren Carson', 'Dana Cochran', 'Randolph Cochran', 'Pam and Bill Curtice', 'Sonya Dane', 'Monica Davis and Richard Alford', 'Ellie and Christopher Deedy', 'Claire Demetree', 'Phillip Dopson', 'Bradley Ellis', 'Sue and Steve Foege', 'Catherine Foley', 'Maggie Goldman', 'Cathy and Bill Johnston', 'Carla and Grantley Joseph', 'Mary Beth Kennedy', 'Ryann and Scott Kennedy', 'Lauren Kermani', 'Sissy and Michael Luciani', 'Erin and Brian McCarthy', 'Meghan and Kam McCarthy', 'Marla and Greg Milano', 'Colleen Nilan', 'Marissa Pendegraft', 'Rebecca and Kevin Polli', 'Jennifer and David Ray', 'Nancy and Marion Rhine', 'Bridget and David Rickey', 'Ramon Rodriguez', 'Kevin Ryan', 'Melanie Sanders', 'Eileen and Mark Sharitz', 'Anu and Lokendra Sheth', 'Ann and Jesse Seidman', 'Paulette and Carter Simpson', 'Beth and Jonathan Speigner', 'Carter Spriggs', 'Holly and Rami Suleiman', 'Dee and Jay Vallee', 'Nicole Vereen and Steve Siegner', 'Gina and Sharad Virmani', 'Mike Wells'].map((name, i) => (
-                <p key={i} className="text-blue-800">{name}</p>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* 2024 Donors */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-blue-100">
-          <h3 className="text-3xl font-bold text-blue-900 mb-2">2024 Donors</h3>
-          <p className="text-lg text-blue-700 mb-6">List of Donors as of Dec 31, 2024*</p>
-
-          <h4 className="text-2xl font-bold text-blue-800 mb-6">Patrons ($500+)</h4>
-
-          {/* Diamond */}
-          <div className="mb-8">
-            <h5 className="text-xl font-bold text-amber-600 mb-4 border-b-2 border-amber-600 pb-2">Diamond Patron ($10,000+)</h5>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              {['Bradley Keeter', 'Kinskey family', 'Chuck Schneider', 'Suzanne and Richard Schultze'].map((name, i) => (
-                <p key={i} className="text-blue-800">{name}</p>
-              ))}
-            </div>
-          </div>
-
-          {/* Gold */}
-          <div className="mb-8">
-            <h5 className="text-xl font-bold text-[#e5c366] mb-4 border-b-2 border-[#e5c366] pb-2">Gold Patron ($5,000-$9,999)</h5>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              {['Judy and John Bardis', 'Cathy and Glen Bradley', 'Melissa Dickens', 'Kristin and Tom Golub', 'Betsy and Rod Odom', 'Marianne and Winfried Johnson-Rank', 'Beth and Andy Wren'].map((name, i) => (
-                <p key={i} className="text-blue-800">{name}</p>
-              ))}
-            </div>
-          </div>
-
-          {/* Ruby */}
-          <div className="mb-8">
-            <h5 className="text-xl font-bold text-red-600 mb-4 border-b-2 border-red-600 pb-2">Ruby Patron ($2,500-$4,999)</h5>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              {['Chris Burson', 'Julia and David DeCook', 'Beth and John Scarbrough', 'Halina and Aleksander Szlam'].map((name, i) => (
-                <p key={i} className="text-blue-800">{name}</p>
-              ))}
-            </div>
-          </div>
-
-          {/* Silver */}
-          <div className="mb-8">
-            <h5 className="text-xl font-bold text-gray-500 mb-4 border-b-2 border-gray-500 pb-2">Silver Patron ($1,000-$2,499)</h5>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              {['Jan and Bruce Alonso', 'Mary Baird and David Nelson', 'Catherine and Tom Borbone', 'Heidi Cohen-Brugliera and Gary BrugulieraIssure Chen', 'Joyce and Vince Connolly', 'Mary and Lance Cunha', 'Jennifer and Gary Gabriel', 'Ken Gary', 'Kim and John Gehrhardt', 'Susie and Michael Greenberg', 'Beth Hausmann', 'Candace and Todd Hickman', 'Marcy and Paul Hirshberg', 'Tracy and Allen Hobbs', 'Elaine and Peter Johns', 'Philip Jones', 'Marjorie and Michael Keith', 'Diane and Michael Koehler', 'Jill and Richard Levine', 'Lani and Richard Lusk', 'Joyce and Larry Mays', 'Jennifer and Barry Meyrowitz', 'Konni and Jon Minter', 'Stephanie and Dan Moody', 'Judy and Bob Murphy', 'Tracie and Jeff Nolde', 'Carol and Van Page', 'Lori and Larry Payne', 'Marissa Pendegraft', 'Zamira and John Rasper', 'Tracy and Michael Reidenbach', 'Irma Rodriguez and Fred Fernandez', 'Pat and Mark Seal', 'Kathy and Scott Solomon', 'Barbara and Scott Stevens', 'Jennifer and Graham Stroman', 'Louise and William Tallman', 'LuAnn and Tom Via', 'Rhonda and Russe Welch'].map((name, i) => (
-                <p key={i} className="text-blue-800">{name}</p>
-              ))}
-            </div>
-          </div>
-
-          {/* Hope */}
-          <div className="mb-8">
-            <h5 className="text-xl font-bold text-blue-600 mb-4 border-b-2 border-blue-600 pb-2">Hope Patron ($500-$999)</h5>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              {['Katherine and Michael Anderson', 'Suzanne and Dennis Antinori', 'Vivienne and Mark Avetoom', 'Tricia and Mike Bennett', 'Kimberly and Clydall Bobb', 'Cynthia and Robert Bowers', 'Meredith and Matt Brohm', 'Becky and Roger Brown', 'Rachael Cassidy + Tracy Brown', 'Pam and Larry Buckley', 'Lisa and Tom Chambers', 'Ann Chapman', 'Peggy and Paul Connors', 'Cherlyn and Neal Corbett', 'Ruchi and Manish Dave', 'Stephanie and Gary Dennis', 'Geri and Gary Eubanks', 'Christine and George Fey', 'Kristine and Phil Finkle', 'Barbara Flandreau', 'Susan and Lance Friedland', 'Pam and Pete Gebhardt', 'Donna and Guy Gill', 'Lynn and JP Gingras', 'Tobey and Ed Gray', 'Kerri and Brian Holmes', 'Andrea and Chris Johnson', 'Whitney and Hugh Kaplan', 'Mary Lyn and JB Kurish', 'Jacqueline and Keith Large', 'Allison and Andy Loetscher', 'Sylvia and Mike Lundberg', 'Lynne and Gene Magurno', 'Sandra and Patrick Marshall', 'Julie Maurer', 'Yvette and Tony Mendez-Norwood', 'Donna and Wes Mize', 'Vanessa and Frank Nguyen', 'Vallee and Robert Ohayon', 'Louise O\'Neill', 'Yara Parada-Aguirre', 'Karishma Kothari and Kushal Patel', 'Heather and Tim Perry', 'Linda and Charles Phillips', 'Joy and Bill Prettyman', 'Stacey Ramani', 'Joseph Riccardo', 'Vickie Riccardo and Billy Nicholson', 'Bridget and David Rickey', 'Brian Rohner', 'Megan and Bob Ross', 'Debbie and Glen Rubin', 'Lynn and Rick Schultz', 'Eileen and Mark Sharitz', 'Stephanie and Andrew Shearer', 'Andrea and Ken Shelton', 'Kristin and Trent Speckhals', 'Salli LeVan and Michael Steck', 'Shelley and Dale Stortz', 'Jennifer and Chad Streetman', 'Jane Fershko-Taylor and Gary Taylor', 'Carolyn and Walter Terry', 'Suzanne and Robert Thomas', 'Anne and Al Tiano', 'Tina and Thomas Tromiczak', 'Dee and Jay Vallee', 'Ana Vargas', 'Karen and Mark Whaley', 'Leslie and Jeff Wilks', 'Betty Wolf and LeRoy Anderson'].map((name, i) => (
-                <p key={i} className="text-blue-800">{name}</p>
-              ))}
-            </div>
-          </div>
-
-          {/* Members */}
-          <div className="mb-8">
-            <h5 className="text-xl font-bold text-sky-600 mb-4 border-b-2 border-emerald-600 pb-2">Members ($100-$499)</h5>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              {['Tammy and Todd Antin', 'Terry and Thomas Backer', 'Andee Blauser', 'Becky and Roger Brown', 'Jennifer and Nate Browne', 'Marie Cooper', 'Samantha and Andrew Cooper', 'Caroline and Ron Cruz', 'Pam and Bill Curtice', 'Phillip Dopson', 'Gail and Gary Dowling', 'Family Dugan', 'Bradley Ellis', 'Susan and Ted Glahn', 'Sharon and Rob Glazier', 'Deirdre and Ken Greenfield', 'Katie and Jeff Hopeck', 'Leah and Tim Johnson', 'Lauren Kermani', 'Lynn Lanier', 'Sissy and Michael Luciani', 'Erin and Brian McCarthy', 'Kevin McCarthy', 'Laura Miller', 'Barbara and Carlos Miramontes', 'Jennifer and Steve Oliveras', 'Joan Postell', 'Kalpana Prasad', 'Nancy and Marlon Rhine', 'Marian Ross', 'Zaquis and Zachary Ross', 'Kim and Chris Schweitzer', 'Nicole and John Schweizer', 'Ruchika Sethi', 'Amy Shackelford', 'Paulette and Carter Simpson', 'Sunali and Kush Singh', 'Beth and Jonathan Speigner', 'Carter Spriggs', 'Kristen and David Stinson', 'Nicole Vereen and Steve Siegner', 'Susan Sullivan and Doug Bonk', 'Denise Templeton', 'Greg Tremble', 'Gina and Sharad Virmani', 'Stuart Voigts', 'Niki and Kip Wagner', 'Kathy and Ed Young'].map((name, i) => (
-                <p key={i} className="text-blue-800">{name}</p>
-              ))}
-            </div>
-          </div>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/donate"
+            className="inline-flex justify-center bg-gradient-to-r from-blue-600 to-sky-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-sky-700 transition-all shadow-lg hover:shadow-xl"
+          >
+            Back to Donate
+          </a>
+          <a
+            href="/contact"
+            className="inline-flex justify-center bg-gradient-to-r from-[#e5c366] to-[#d4b356] text-white px-6 py-3 rounded-xl font-semibold hover:from-[#d4b356] hover:to-[#c4a346] transition-all shadow-lg hover:shadow-xl"
+          >
+            Contact the Board
+          </a>
         </div>
       </main>
     </div>

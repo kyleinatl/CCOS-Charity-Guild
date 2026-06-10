@@ -8,11 +8,11 @@ export default function GrantRecipientsPage() {
     { name: 'Home Repairs Ministries', logo: '/home-repairs-ministries.avif', alt: 'Home Repairs Ministries Logo' },
     { name: 'Thrive Community', logo: '/thrive-community.avif', alt: 'Thrive Community Logo' },
     { name: 'Wellspring Living', logo: '/wellspring-living.avif', alt: 'Wellspring Living Logo' },
-    { name: 'Family Promise', logo: 'https://static.wixstatic.com/media/a80fd7_0a5eee0afce1481c93b47aa99fe412ed~mv2.jpg/v1/fill/w_390,h_104,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Family%20Promise.jpg', alt: 'Family Promise Logo' },
-    { name: 'Angels Among Us', logo: 'https://static.wixstatic.com/media/a80fd7_b961059dafcc49a1b89384035809940c~mv2.jpg/v1/fill/w_200,h_124,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Angels%20Among%20Us%20Logo%20Half%20Rez.jpg', alt: 'Angels Among Us Logo' },
-    { name: 'Hire Heroes USA', logo: 'https://static.wixstatic.com/media/a80fd7_d97dd976bddf42189484d15c58070880~mv2.jpg/v1/fill/w_174,h_144,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/HireHeroesUSA_logo_Vert_4C.jpg', alt: 'Hire Heroes USA Logo' },
-    { name: 'Children\'s Development Academy', logo: 'https://static.wixstatic.com/media/a80fd7_4dd87b9c6d3149a1a34ad0e645068c98~mv2.png/v1/fill/w_126,h_124,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ACDS%20logo%20round%202wht%20bkg.png', alt: 'Children\'s Development Academy Logo' },
-    { name: 'Atlanta CASA', logo: 'https://static.wixstatic.com/media/a80fd7_63d23cb80905494bb2289af3fc0d2a3b~mv2.png/v1/fill/w_188,h_184,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ATLANTA_v_RedBlue%20Wht%20bkg.png', alt: 'Atlanta CASA Logo' },
+    { name: 'Family Promise', logo: '/partners/family-promise.jpg', alt: 'Family Promise Logo' },
+    { name: 'Angels Among Us', logo: '/partners/angels-among-us.jpg', alt: 'Angels Among Us Logo' },
+    { name: 'Hire Heroes USA', logo: '/partners/hire-heroes-usa.jpg', alt: 'Hire Heroes USA Logo' },
+    { name: 'Children\'s Development Academy', logo: '/partners/childrens-development-academy.png', alt: 'Children\'s Development Academy Logo' },
+    { name: 'Atlanta CASA', logo: '/partners/atlanta-casa.png', alt: 'Atlanta CASA Logo' },
   ];
 
   return (
