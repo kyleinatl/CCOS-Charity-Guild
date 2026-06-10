@@ -10,8 +10,8 @@ export default function Home() {
 
   const heroSlides = [
     {
-      image: '/hero/join-donate-hero.jpg',
-      alt: 'Charity Guild join and donate hero',
+      image: '/events/hope-awards-2026/A5EEF7FB-266D-4470-8835-5D6B22A0855C_4_5005_c.jpeg',
+      alt: 'Hope Awards 2026 event',
       position: 'center center',
     },
     {
