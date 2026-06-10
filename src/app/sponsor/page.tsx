@@ -43,7 +43,7 @@ export default function SponsorPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
         {/* Back Button */}
         <button
           onClick={() => window.history.back()}
@@ -56,30 +56,36 @@ export default function SponsorPage() {
         </button>
 
         {/* Page Title */}
-        <div className="text-center mb-12">
+        <div className="text-center">
           <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-700 to-sky-600 bg-clip-text text-transparent mb-4">
             Become a Sponsor
           </h2>
+          <p className="text-blue-700 text-sm sm:text-base max-w-3xl mx-auto">
+            Business sponsors cover operating expenses so donations from patrons and members go directly to the chosen charities.
+          </p>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-2xl border border-blue-100 p-4 sm:p-6 overflow-hidden">
+          <img
+            src="/sponsorship/sponsorship-hero.jpg"
+            alt="Sponsorship presentation"
+            className="w-full h-auto rounded-xl"
+          />
         </div>
 
         {/* Introduction Text */}
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-blue-100 mb-8">
           <p className="text-lg text-blue-800 leading-relaxed mb-6">
-            Business Sponsors serve a vital role in the success of the Country Club of the South Charity Guild 
-            as the funds raised from Sponsors cover <span className="font-bold">ALL operating expenses</span> (printing, 
-            postage, accounting, insurance, software subscription fees, etc.) so that all donations raised from 
-            our Patrons and Members will go to the direct benefit of the chosen charities.
+            Business Sponsors serve a vital role in the success of the Country Club of the South Charity Guild as the funds raised from Sponsors cover <span className="font-bold">ALL operating expenses</span> (printing, postage, accounting, insurance, software subscription fees, etc.) so that all donations raised from our Patrons and Members will go to the direct benefit of the chosen charities.
           </p>
           <p className="text-lg text-blue-800 leading-relaxed mb-6">
-            For more information on becoming a Sponsor, please contact <span className="font-semibold">Kayc Carper 404-626-1143</span>
+            For more information on becoming a Sponsor, please contact <span className="font-semibold">Kayc Carper 404-626-1143</span>.
           </p>
         </div>
 
         {/* Benefits Section */}
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-blue-100 mb-8">
-          <h3 className="text-2xl font-bold text-blue-900 mb-6">
-            This year's sponsors will have expanded promotional opportunities through:
-          </h3>
+          <h3 className="text-2xl font-bold text-blue-900 mb-6">This year&apos;s sponsors will have expanded promotional opportunities through:</h3>
           <ul className="space-y-3 mb-6">
             <li className="flex items-start">
               <span className="text-blue-600 mr-3 text-xl">•</span>
@@ -102,8 +108,7 @@ export default function SponsorPage() {
             The sooner you sponsor, the more promotional time you will receive!
           </p>
           <p className="text-lg text-blue-800 mb-6">
-            To participate in this year's program as a sponsor, please review our sponsorship level presentation 
-            to select a sponsorship level.
+            To participate in this year&apos;s program as a sponsor, please review our sponsorship level presentation to select a sponsorship level.
           </p>
           <p className="text-lg text-blue-800 mb-8">
             We look forward to learning about your sponsorship interest and working together for an impactful 2026.
@@ -116,13 +121,13 @@ export default function SponsorPage() {
               rel="noopener noreferrer"
               className="inline-block bg-gradient-to-r from-blue-600 to-sky-600 text-white px-8 py-4 rounded-xl text-lg font-bold hover:from-blue-700 hover:to-sky-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 text-center"
             >
-              Sponsorship Overview
+              Review the Sponsorship Presentation
             </a>
             <a
               href="#sponsorship-levels"
               className="inline-block bg-gradient-to-r from-[#e5c366] to-[#d4b356] text-white px-8 py-4 rounded-xl text-lg font-bold hover:from-[#d4b356] hover:to-[#c4a346] transition-all shadow-lg hover:shadow-xl hover:scale-105 text-center"
             >
-              Click here to Sponsor
+              Click here to Sponsor.
             </a>
           </div>
         </div>

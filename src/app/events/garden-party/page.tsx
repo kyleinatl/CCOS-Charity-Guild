@@ -37,7 +37,7 @@ export default function GardenPartyPage() {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <a href="/donate" className="inline-flex items-center justify-center rounded-xl bg-[#e5c366] px-5 py-3 font-semibold text-white shadow-lg hover:bg-[#d4b356] transition-colors">
+              <a href="/join-donate" className="inline-flex items-center justify-center rounded-xl bg-[#e5c366] px-5 py-3 font-semibold text-white shadow-lg hover:bg-[#d4b356] transition-colors">
                 Donate
               </a>
               <a href="/sponsor" className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white shadow-lg hover:bg-blue-700 transition-colors">

@@ -122,7 +122,7 @@ export default function Home() {
             </div>
             <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-4 flex-shrink-0">
               <a
-                href="/donate"
+                href="/join-donate"
                 className="bg-gradient-to-r from-blue-600 to-sky-600 text-white px-2 sm:px-4 lg:px-6 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-xs lg:text-base font-medium hover:from-blue-700 hover:to-sky-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
               >
                 Join/Donate
@@ -191,7 +191,7 @@ export default function Home() {
                 Our Impact
               </a>
               <a
-                href="/donate"
+                href="/join-donate"
                 className="block px-6 py-3 text-blue-700 hover:bg-blue-50 transition-colors font-medium"
                 onClick={() => setMenuOpen(false)}
               >
@@ -335,7 +335,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
               <a
-                href="/donate"
+                href="/join-donate"
                 className="bg-gradient-to-r from-blue-600 to-sky-600 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:from-blue-700 hover:to-sky-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
               >
                 Join/Donate
