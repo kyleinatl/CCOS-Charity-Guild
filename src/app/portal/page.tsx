@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useAuth } from '@/lib/auth/auth-context';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -149,6 +150,9 @@ function MemberDashboard() {
                 {formatCurrency(dashboardData.stats.totalDonated)}
               </div>
               <p className="text-blue-700 font-semibold">Total contributed</p>
+              <Button asChild className="mt-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:from-green-700 hover:to-emerald-700">
+                <Link href="/portal/donate">Make a Donation</Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -282,8 +286,8 @@ function MemberDashboard() {
                     </div>
                   </div>
                 ))}
-                <Button className="w-full mt-4 bg-gradient-to-r from-blue-600 to-sky-600 text-white hover:from-blue-700 hover:to-sky-700">
-                  View All Donations
+                <Button asChild className="w-full mt-4 bg-gradient-to-r from-blue-600 to-sky-600 text-white hover:from-blue-700 hover:to-sky-700">
+                  <Link href="/portal/donations">View All Donations</Link>
                 </Button>
               </div>
             </CardContent>

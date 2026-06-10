@@ -402,7 +402,7 @@ function MemberResourcesContent() {
               <p className="text-sm text-gray-600">View your member portal</p>
             </a>
             <a
-              href="/join-donate"
+              href="/portal/donate"
               className="p-4 bg-white rounded-lg hover:shadow-md transition-shadow"
             >
               <h4 className="font-semibold text-gray-900 mb-1">Make a Donation</h4>

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card } from '@/components/ui/card';
-import { Member, MemberFormData, MemberFormSchema, MemberTier } from '@/types';
+import { Member, MemberFormData, MemberFormSchema } from '@/types';
 import { X, Save, User } from 'lucide-react';
 
 interface MemberFormProps {
@@ -20,6 +20,7 @@ export default function MemberForm({ member, onClose, onSave, isLoading }: Membe
     email: member?.email || '',
     first_name: member?.first_name || '',
     last_name: member?.last_name || '',
+    status: member?.status || 'active',
     phone: member?.phone || '',
     address_line1: member?.address_line1 || '',
     address_line2: member?.address_line2 || '',
@@ -27,6 +28,11 @@ export default function MemberForm({ member, onClose, onSave, isLoading }: Membe
     state: member?.state || '',
     zip_code: member?.zip_code || '',
     country: member?.country || 'United States',
+    tier: member?.tier || 'bronze',
+    total_donated: member?.total_donated || 0,
+    last_donation_date: member?.last_donation_date?.split('T')[0] || '',
+    member_since: member?.member_since?.split('T')[0] || '',
+    engagement_score: member?.engagement_score || 0,
     date_of_birth: member?.date_of_birth || '',
     occupation: member?.occupation || '',
     employer: member?.employer || '',
@@ -192,6 +198,89 @@ export default function MemberForm({ member, onClose, onSave, isLoading }: Membe
 
             {/* Address Information */}
             <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Membership Controls</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Status
+                  </label>
+                  <select
+                    value={formData.status}
+                    onChange={(e) => handleInputChange('status', e.target.value as 'active' | 'inactive')}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Tier
+                  </label>
+                  <select
+                    value={formData.tier}
+                    onChange={(e) => handleInputChange('tier', e.target.value as 'bronze' | 'silver' | 'gold' | 'platinum')}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="bronze">Bronze</option>
+                    <option value="silver">Silver</option>
+                    <option value="gold">Gold</option>
+                    <option value="platinum">Platinum</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Total Donated
+                  </label>
+                  <Input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    value={formData.total_donated}
+                    onChange={(e) => handleInputChange('total_donated', Number(e.target.value || 0))}
+                    placeholder="0.00"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Engagement Score (0-100)
+                  </label>
+                  <Input
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={formData.engagement_score}
+                    onChange={(e) => handleInputChange('engagement_score', Number(e.target.value || 0))}
+                    placeholder="0"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Member Since
+                  </label>
+                  <Input
+                    type="date"
+                    value={formData.member_since || ''}
+                    onChange={(e) => handleInputChange('member_since', e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Last Donation Date
+                  </label>
+                  <Input
+                    type="date"
+                    value={formData.last_donation_date || ''}
+                    onChange={(e) => handleInputChange('last_donation_date', e.target.value)}
+                  />
+                </div>
+              </div>
+
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Address Information</h3>
               <div className="grid grid-cols-1 gap-4">
                 <div>

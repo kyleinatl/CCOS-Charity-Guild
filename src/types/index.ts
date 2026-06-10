@@ -24,6 +24,7 @@ export interface Member extends BaseEntity {
   email: string;
   first_name: string;
   last_name: string;
+  status?: 'active' | 'inactive';
   phone?: string;
   address_line1?: string;
   address_line2?: string;
@@ -265,6 +266,7 @@ export const MemberFormSchema = z.object({
   email: z.string().email('Invalid email address'),
   first_name: z.string().min(1, 'First name is required'),
   last_name: z.string().min(1, 'Last name is required'),
+  status: z.enum(['active', 'inactive']).default('active'),
   phone: z.string().optional(),
   address_line1: z.string().optional(),
   address_line2: z.string().optional(),
@@ -272,6 +274,11 @@ export const MemberFormSchema = z.object({
   state: z.string().optional(),
   zip_code: z.string().optional(),
   country: z.string().default('United States'),
+  tier: z.enum(['bronze', 'silver', 'gold', 'platinum']).default('bronze'),
+  total_donated: z.number().min(0).default(0),
+  last_donation_date: z.string().optional(),
+  member_since: z.string().optional(),
+  engagement_score: z.number().int().min(0).max(100).default(0),
   date_of_birth: z.string().optional(),
   occupation: z.string().optional(),
   employer: z.string().optional(),
