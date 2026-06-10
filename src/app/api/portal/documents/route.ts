@@ -53,11 +53,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
+  if (!['admin_role', 'treasurer_role'].includes(account.role)) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
+
   const formData = await request.formData();
   const title = String(formData.get('title') || '').trim();
   const documentType = String(formData.get('document_type') || formData.get('type') || 'other');
   const description = String(formData.get('description') || '').trim();
   const file = formData.get('file');
+  const allowedTypes = new Set(['minutes', 'form', 'policy', 'other']);
 
   if (!title) {
     return NextResponse.json({ error: 'Title is required' }, { status: 400 });
@@ -65,6 +70,10 @@ export async function POST(request: NextRequest) {
 
   if (!(file instanceof File)) {
     return NextResponse.json({ error: 'A file is required' }, { status: 400 });
+  }
+
+  if (!allowedTypes.has(documentType)) {
+    return NextResponse.json({ error: 'Invalid document type' }, { status: 400 });
   }
 
   const supabase = createAdminClient() as any;

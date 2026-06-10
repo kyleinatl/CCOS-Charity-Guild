@@ -12,7 +12,7 @@ export const portalAccounts: PortalAccount[] = [
   {
     username: "admin",
     displayName: "Admin",
-    passwordHash: "83da7d08e3f5cbc6cf4a27c7d5f904a9462eccbed3baf66f9a1a40b9b2ed9b0a",
+    passwordHash: "6d66d16574d52348a706c15db4ba388471d235d0b2bb0ba97270f91ce882705e",
     role: "admin_role" as PortalAccount['role'],
     tier: "platinum" as PortalAccount['tier'],
     email: "admin@ccoscharityguild.org",
