@@ -6,8 +6,16 @@ type PortalAccount = {
   displayName: string;
   email: string;
   role: 'admin_role' | 'treasurer_role' | 'member_role';
-  tier: 'bronze' | 'silver' | 'gold' | 'platinum';
+  tier: string;
 };
+
+function normalizeTier(rawTier: string) {
+  if (rawTier === 'diamond') return 'platinum';
+  if (rawTier === 'platinum') return 'platinum';
+  if (rawTier === 'gold') return 'gold';
+  if (rawTier === 'silver') return 'silver';
+  return 'bronze';
+}
 
 function buildProfile(account: PortalAccount, profile: Record<string, any> | null, now: string) {
   if (profile) {
@@ -15,11 +23,12 @@ function buildProfile(account: PortalAccount, profile: Record<string, any> | nul
   }
 
   const [firstName, ...rest] = account.displayName.split(' ');
+  const normalizedTier = normalizeTier(account.tier);
   return {
     id: account.email,
     first_name: firstName || account.displayName,
     last_name: rest.join(' '),
-    tier: account.tier,
+    tier: normalizedTier,
     total_donated: 0,
     phone: '',
     address_line1: '',
@@ -34,6 +43,7 @@ function buildProfile(account: PortalAccount, profile: Record<string, any> | nul
 
 function buildUser(account: PortalAccount, profile: Record<string, any> | null) {
   const now = new Date().toISOString();
+  const normalizedTier = normalizeTier(account.tier);
   const memberProfile = buildProfile(account, profile, now);
   const [firstName, ...rest] = memberProfile.first_name
     ? [memberProfile.first_name, memberProfile.last_name || '']
@@ -50,14 +60,14 @@ function buildUser(account: PortalAccount, profile: Record<string, any> | null) 
     last_sign_in_at: now,
     app_metadata: {
       role: account.role,
-      tier: account.tier,
+      tier: normalizedTier,
     },
     user_metadata: {
       first_name: firstName || account.displayName,
       last_name: rest.join(' ').trim(),
       display_name: account.displayName,
       role: account.role,
-      tier: account.tier,
+      tier: normalizedTier,
     },
     identities: [],
     created_at: memberProfile.created_at || now,
@@ -76,6 +86,7 @@ export async function getPortalUserResponse(account: PortalAccount) {
 
   if (!profile) {
     const [firstName, ...rest] = account.displayName.split(' ');
+    const normalizedTier = normalizeTier(account.tier);
     const { data: insertedProfile } = await supabase
       .from('members')
       .upsert(
@@ -83,7 +94,7 @@ export async function getPortalUserResponse(account: PortalAccount) {
           email: account.email,
           first_name: firstName || account.displayName,
           last_name: rest.join(' ') || firstName || account.displayName,
-          tier: account.tier,
+          tier: normalizedTier,
           total_donated: 0,
           engagement_score: 0,
           email_subscribed: true,
